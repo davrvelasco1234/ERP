@@ -26,3 +26,17 @@ C:\PROYECTOS\csharp\Pruebas\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.csproj
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.csproj.CopyComplete
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.dll
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.pdb
+C:\PROYECTOS\v17\erp2\ERP\Components\ERP_SettingsCom.dll
+C:\PROYECTOS\v17\erp2\ERP\Components\ERP_SettingsCom.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.csprojAssemblyReference.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\Views\SettingsControl.g.cs
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom_MarkupCompile.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom_MarkupCompile.lref
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\Views\SettingsControl.baml
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.g.resources
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.Properties.Resources.resources
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.csproj.GenerateResource.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.csproj.CopyComplete
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_SettingsCom\obj\Debug\ERP_SettingsCom.pdb

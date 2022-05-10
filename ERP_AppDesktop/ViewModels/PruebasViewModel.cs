@@ -47,7 +47,7 @@ namespace ERP_AppDesktop.ViewModels
 
         public PruebasViewModel()
         {
-            
+            //cambios
         }
 
 

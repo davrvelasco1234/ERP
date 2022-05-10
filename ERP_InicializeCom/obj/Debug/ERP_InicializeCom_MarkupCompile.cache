@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\PROYECTOS\csharp\Pruebas\ERP\ERP_InicializeCom\obj\Debug\
+C:\PROYECTOS\v17\erp2\ERP\ERP_InicializeCom\obj\Debug\
 ERP_InicializeCom
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 1-187673654
 
 61365755772
-22141294656
+22945220716
 Views\InicializeControl.xaml;
 
 False

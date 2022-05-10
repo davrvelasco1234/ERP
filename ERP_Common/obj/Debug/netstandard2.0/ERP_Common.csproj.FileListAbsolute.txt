@@ -32,3 +32,12 @@ C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.A
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.dll
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.pdb
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.csprojAssemblyReference.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\bin\Debug\netstandard2.0\ERP_Common.deps.json
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\bin\Debug\netstandard2.0\ERP_Common.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\bin\Debug\netstandard2.0\ERP_Common.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.csprojAssemblyReference.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.AssemblyInfoInputs.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.AssemblyInfo.cs
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Common\obj\Debug\netstandard2.0\ERP_Common.pdb

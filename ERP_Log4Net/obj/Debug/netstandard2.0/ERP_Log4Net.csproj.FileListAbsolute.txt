@@ -46,3 +46,15 @@ C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.csproj.CopyComplete
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.dll
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\bin\Debug\netstandard2.0\ERP_Log4Net.deps.json
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\bin\Debug\netstandard2.0\ERP_Log4Net.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\bin\Debug\netstandard2.0\ERP_Log4Net.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\bin\Debug\netstandard2.0\ERP_Common.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\bin\Debug\netstandard2.0\ERP_Common.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.csprojAssemblyReference.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.AssemblyInfoInputs.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.AssemblyInfo.cs
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.csproj.CopyComplete
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Log4Net\obj\Debug\netstandard2.0\ERP_Log4Net.pdb

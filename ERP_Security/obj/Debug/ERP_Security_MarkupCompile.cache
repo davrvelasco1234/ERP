@@ -4,7 +4,7 @@
 library
 C#
 .cs
-C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Security\obj\Debug\
+C:\PROYECTOS\v17\erp2\ERP\ERP_Security\obj\Debug\
 ERP_Security
 none
 false
@@ -13,7 +13,7 @@ DEBUG;TRACE
 11760993127
 
 9-168296237
-281337990648
+281427309908
 Login\LoginControl.xaml;
 
 False

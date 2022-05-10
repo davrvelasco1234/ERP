@@ -20,3 +20,14 @@ C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.csproj.CoreCom
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.csproj.CopyComplete
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.dll
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\bin\Debug\ERP_Entorno.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\bin\Debug\ERP_Entorno.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\bin\Debug\Dapper.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\bin\Debug\ERP_Common.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\bin\Debug\ERP_Common.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\bin\Debug\Dapper.xml
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.csprojAssemblyReference.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.csproj.CopyComplete
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Entorno\obj\Debug\ERP_Entorno.pdb

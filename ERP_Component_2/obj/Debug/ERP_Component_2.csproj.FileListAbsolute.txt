@@ -44,3 +44,17 @@ C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.csproj
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.csproj.CopyComplete
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.dll
 C:\PROYECTOS\csharp\Pruebas\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.pdb
+C:\PROYECTOS\v17\erp2\ERP\Components\ERP_Component_2.dll
+C:\PROYECTOS\v17\erp2\ERP\Components\ERP_Component_2.pdb
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.csprojAssemblyReference.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\Views\ComponentControl.g.cs
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2_MarkupCompile.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2_MarkupCompile.lref
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\Views\ComponentControl.baml
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.g.resources
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.Properties.Resources.resources
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.csproj.GenerateResource.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.csproj.CopyComplete
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.dll
+C:\PROYECTOS\v17\erp2\ERP\ERP_Component_2\obj\Debug\ERP_Component_2.pdb
