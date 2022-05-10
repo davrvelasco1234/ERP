@@ -1,0 +1,115 @@
+﻿<UserControl 
+    x:Class="ERP_Security.Login.LoginControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:ERP_Security.Login"
+    mc:Ignorable="d" 
+    Width="400" Height="300"
+    
+    xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:MVVM="clr-namespace:ERP_MVVM.Helpers;assembly=ERP_MVVM">
+
+
+    <Interactivity:Interaction.Triggers>
+        <Interactivity:EventTrigger EventName="Loaded">
+            <Interactivity:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </Interactivity:EventTrigger>
+    </Interactivity:Interaction.Triggers>
+    
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" 
+               Content="Usuario"/>
+        <TextBox Grid.Column="2" Grid.Row="1"
+                 Text="{Binding User}"
+                 MVVM:SelectAllFocusBehavior.Enable="True"
+                 MVVM:FocusExtension.IsFocused="{Binding UserIsFocused}"/>
+
+        <Label Grid.Column="1" Grid.Row="2"
+               Content="Rol"/>
+        <TextBox Grid.Column="2" Grid.Row="2"
+                 Text="{Binding Rol}"
+                 MVVM:SelectAllFocusBehavior.Enable="True"/>
+
+        <Label Grid.Column="1" Grid.Row="3"
+               Content="Password"/>
+        <PasswordBox Grid.Column="2" Grid.Row="3"
+                     PasswordChar="*" x:Name="Password" Password="test"
+                     MVVM:SelectAllFocusBehavior.Enable="True">
+            <Interactivity:Interaction.Triggers>
+                <Interactivity:EventTrigger EventName="PasswordChanged">
+                    <Interactivity:InvokeCommandAction Command="{Binding PasswordChangedCommand}"  CommandParameter="{Binding ElementName=Password,  Mode=OneWay}"/>
+                </Interactivity:EventTrigger>
+            </Interactivity:Interaction.Triggers>
+        </PasswordBox>
+
+        <Label Grid.Column="1" Grid.Row="4"
+               Content="Servidor"/>
+        <ComboBox Grid.Column="2" Grid.Row="4"
+                  ItemsSource="{Binding ServidorList}"
+                  SelectedItem="{Binding ServidorSelected}"
+                  ItemTemplateSelector="{DynamicResource itemTemplateSelector}">
+            <ComboBox.Resources>
+                <DataTemplate x:Key="selectedTemplate">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding IP}"/>
+                        <TextBlock Text=":"/>
+                        <TextBlock Text="{Binding Puerto}"/>
+                        <TextBlock Text="  "/>
+                        <TextBlock Text="{Binding Server}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <DataTemplate x:Key="dropDownTemplate">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding IP}"/>
+                        <TextBlock Text=":"/>
+                        <TextBlock Text="{Binding Puerto}"/>
+                        <TextBlock Text="  "/>
+                        <TextBlock Text="{Binding Server}"/>
+                    </StackPanel>
+                </DataTemplate>
+                <MVVM:ComboBoxItemTemplateSelector
+                                        x:Key="itemTemplateSelector"
+                                        SelectedTemplate="{StaticResource selectedTemplate}"
+                                        DropDownTemplate="{StaticResource dropDownTemplate}"/>
+            </ComboBox.Resources>
+
+
+
+            <Interactivity:Interaction.Triggers>
+                <Interactivity:EventTrigger EventName="SelectionChanged">
+                    <Interactivity:InvokeCommandAction 
+                                        Command="{Binding SelectionChangedFuturoCommand}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}}}"/>
+                </Interactivity:EventTrigger>
+            </Interactivity:Interaction.Triggers>
+        </ComboBox>
+
+
+        <Button Grid.Column="2" Grid.Row="6"
+                Content="Login"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
+        </Button>
+
+    </Grid>
+</UserControl>

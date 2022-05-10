@@ -1,0 +1,16 @@
+C:\PROYECTOS\csharp\ERP\ERP_Common\bin\Release\netstandard2.0\ERP_Common.deps.json
+C:\PROYECTOS\csharp\ERP\ERP_Common\bin\Release\netstandard2.0\ERP_Common.dll
+C:\PROYECTOS\csharp\ERP\ERP_Common\bin\Release\netstandard2.0\ERP_Common.pdb
+C:\PROYECTOS\csharp\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\csharp\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.AssemblyInfoInputs.cache
+C:\PROYECTOS\csharp\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.AssemblyInfo.cs
+C:\PROYECTOS\csharp\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.dll
+C:\PROYECTOS\csharp\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.pdb
+C:\PROYECTOS\v17\ERP\ERP_Common\bin\Release\netstandard2.0\ERP_Common.deps.json
+C:\PROYECTOS\v17\ERP\ERP_Common\bin\Release\netstandard2.0\ERP_Common.dll
+C:\PROYECTOS\v17\ERP\ERP_Common\bin\Release\netstandard2.0\ERP_Common.pdb
+C:\PROYECTOS\v17\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\v17\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.AssemblyInfoInputs.cache
+C:\PROYECTOS\v17\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.AssemblyInfo.cs
+C:\PROYECTOS\v17\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.dll
+C:\PROYECTOS\v17\ERP\ERP_Common\obj\Release\netstandard2.0\ERP_Common.pdb

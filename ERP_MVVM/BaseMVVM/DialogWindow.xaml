@@ -1,0 +1,38 @@
+﻿<App:WindowDialogERP 
+    xmlns:App="clr-namespace:ERP_Core;assembly=ERP_Core"
+    xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+    x:Class="ERP_MVVM.BaseMVVM.DialogWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Name="Window"
+    WindowStartupLocation="CenterScreen"
+    Style="{StaticResource MyModernWindowDialog}"
+    Closing="Window_Closing">
+    
+    <!--
+    
+    Style="{StaticResource MyModernWindowEmpty}"
+    
+        Style="{StaticResource MyModernWindow}"
+    
+    <mui:ModernWindow.TitleLinks>
+        <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
+        <mui:Link DisplayName="Help" Source="https://github.com/firstfloorsoftware/mui/wiki" />
+    </mui:ModernWindow.TitleLinks>
+    -->
+    <!--
+    <ContentPresenter x:Name="ContentPresenter" Content="{Binding}" ></ContentPresenter>
+    -->
+    
+    <StackPanel>
+        <ContentPresenter x:Name="ContentPresenter" Content="{Binding}" ></ContentPresenter>
+    </StackPanel>
+    
+    
+</App:WindowDialogERP >
+    
+    
+    

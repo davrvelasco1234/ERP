@@ -1,0 +1,8 @@
+C:\PROYECTOS\v17\ERP\ERP_Components\bin\Release\netstandard2.0\ERP_Components.deps.json
+C:\PROYECTOS\v17\ERP\ERP_Components\bin\Release\netstandard2.0\ERP_Components.dll
+C:\PROYECTOS\v17\ERP\ERP_Components\bin\Release\netstandard2.0\ERP_Components.pdb
+C:\PROYECTOS\v17\ERP\ERP_Components\obj\Release\netstandard2.0\ERP_Components.csproj.CoreCompileInputs.cache
+C:\PROYECTOS\v17\ERP\ERP_Components\obj\Release\netstandard2.0\ERP_Components.AssemblyInfoInputs.cache
+C:\PROYECTOS\v17\ERP\ERP_Components\obj\Release\netstandard2.0\ERP_Components.AssemblyInfo.cs
+C:\PROYECTOS\v17\ERP\ERP_Components\obj\Release\netstandard2.0\ERP_Components.dll
+C:\PROYECTOS\v17\ERP\ERP_Components\obj\Release\netstandard2.0\ERP_Components.pdb

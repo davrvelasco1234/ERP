@@ -1,0 +1,48 @@
+﻿<App:AppERP
+    xmlns:App="clr-namespace:ERP_Core;assembly=ERP_Core"
+    x:Class="ERP_AppDesktop.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    
+    
+    xmlns:Locator="clr-namespace:ERP_AppDesktop.WindowLocator"
+    Startup="Application_Startup">
+
+    <App:AppERP.Resources>
+        <ResourceDictionary>
+
+            <Locator:ViewModelLocator x:Key="ViewModelLocator"/>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.dark.xaml" />
+
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindow.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernDialog.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowDialog.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowEmpty.xaml" />
+                
+                
+                
+                <!--
+                
+                admin admin 123 QA 127.0.0.1 1800
+                
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ERP_ModernUI;component/ModernDialog.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ERP_ModernUI;component/ERP_ModernUI/Themes/ModernWindow.xaml"/>
+                <ResourceDictionary Source="Themes/ModernWindow.xaml" />
+                -->
+
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+
+    </App:AppERP.Resources>
+
+</App:AppERP>
+
+    
+    
+    
+    

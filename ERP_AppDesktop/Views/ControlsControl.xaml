@@ -1,0 +1,359 @@
+﻿<UserControl 
+    x:Class="ERP_AppDesktop.Views.ControlsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:ERP_AppDesktop.Views"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="800"         
+             
+    xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+    DataContext="{Binding ControlsViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}">
+
+    
+    
+    
+    <Grid Style="{StaticResource ContentRoot}">
+
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <RadioButton x:Name="ok" Content="ok" IsChecked="True" Margin="0,0,0,2" />
+            <RadioButton x:Name="okcancel" Content="ok, cancel" Margin="0,0,0,2"/>
+            <RadioButton x:Name="yesno" Content="yes, no" Margin="0,0,0,2"/>
+            <RadioButton x:Name="yesnocancel" Content="yes, no, cancel" Margin="0,0,0,2"/>
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <TextBlock Text="CHECKBOX"/>
+            <CheckBox Content="standard checkbox"/>
+            <CheckBox Content="three state checkbox"/>
+            <CheckBox Content="disabled checkbox"/>
+            <CheckBox Content="disabled checked checkbox" IsChecked="True" IsEnabled="False"/>
+        </StackPanel>
+
+
+
+
+
+        <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left">
+            <Calendar>
+                <Calendar.BlackoutDates>
+                    <CalendarDateRange Start="1/1/2013" End="6/1/2013" />
+                </Calendar.BlackoutDates>
+            </Calendar>
+            <DatePicker Margin="0,0,0,8" />
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Column="3" Grid.Row="0">
+            <Button Content="back"/>
+            <Button Content="Refresh"/>
+            <Button Content="Error"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Column="4" Grid.Row="0">
+            <TextBlock Text="Style:" VerticalAlignment="Center" />
+            <ComboBox>
+                <ComboBoxItem Content="Chasing Dots" />
+                <ComboBoxItem Content="Circle (default style)" IsSelected="True"/>
+                <ComboBoxItem Content="Double Bounce"/>
+                <ComboBoxItem Content="Pulse"/>
+                <ComboBoxItem Content="Rotating Plane"/>
+                <ComboBoxItem Content="Three Bounce"/>
+                <ComboBoxItem Content="Wandering Cubes"/>
+                <ComboBoxItem Content="Wave"/>
+            </ComboBox>
+        </StackPanel>
+
+
+
+        <DockPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" >
+            <TextBlock DockPanel.Dock="Top" Text="DATAGRID" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+            <DataGrid Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="First Name"  Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                    <DataGridCheckBoxColumn Header="Member" Binding="{Binding IsMember}" />
+                    <DataGridComboBoxColumn Header="Order Status" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding OrderStatus}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+
+        <ScrollViewer Grid.Column="0" Grid.Row="2" >
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock Text="COMBOBOX" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+                <ComboBox Margin="0,0,0,8" HorizontalAlignment="Left" MinWidth="100">
+                    <ComboBoxItem Content="Item 1" />
+                    <ComboBoxItem Content="Item 2" />
+                    <ComboBoxItem Content="Item 3" />
+                    <ComboBoxItem Content="Item 4" />
+                    <ComboBoxItem Content="Item 5" />
+                </ComboBox>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox IsEditable="True" Margin="0,0,0,32" HorizontalAlignment="Left" MinWidth="100">
+                        <ComboBoxItem Content="Item 1" />
+                        <ComboBoxItem Content="Item 2" />
+                        <ComboBoxItem Content="Item 3" />
+                        <ComboBoxItem Content="Item 4" />
+                        <ComboBoxItem Content="Item 5" />
+                    </ComboBox>
+                    <TextBlock Text="(editable)" Margin="8,2,0,0" Foreground="{DynamicResource WindowTextReadOnly}" />
+                </StackPanel>
+                <TextBlock Text="CONTEXTMENU" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+                <Button Content="show context menu" Click="ShowContextMenu_Click" Margin="0,0,0,32" HorizontalAlignment="Left"/>
+
+                <TextBlock Text="LISTBOX" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
+                <ListBox Margin="0,0,0,32">
+                    <ListBoxItem Content="Item 1" />
+                    <ListBoxItem Content="Item 2" />
+                    <ListBoxItem Content="Item 3" />
+                    <ListBoxItem Content="Item 4" />
+                    <ListBoxItem Content="Item 5" />
+                </ListBox>
+                <TextBlock Text="LISTVIEW" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
+                <ListView Margin="0,0,0,16">
+                    <ListViewItem Content="Item 1" />
+                    <ListViewItem Content="Item 2" />
+                    <ListViewItem Content="Item 3" />
+                    <ListViewItem Content="Item 4" />
+                    <ListViewItem Content="Item 5" />
+                </ListView>
+                <ListView Margin="0,0,0,32">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Column 1" />
+                            <GridViewColumn Header="Column 2" />
+                            <GridViewColumn Header="Column 3" />
+                        </GridView>
+                    </ListView.View>
+
+                    <ListViewItem Content="Item 1" />
+                    <ListViewItem Content="Item 2" />
+                    <ListViewItem Content="Item 3" />
+                    <ListViewItem Content="Item 4" />
+                    <ListViewItem Content="Item 5" />
+                </ListView>
+
+                <TextBlock Text="TREEVIEW" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
+                <TreeView>
+                    <TreeViewItem Header="Item 1">
+                        <TreeViewItem Header="Item 1.1" />
+                        <TreeViewItem Header="Item 1.2" />
+                        <TreeViewItem Header="Item 1.3" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="Item 2">
+                        <TreeViewItem Header="Item 2.1" />
+                        <TreeViewItem Header="Item 2.2" />
+                        <TreeViewItem Header="Item 2.3" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="Item 3">
+                        <TreeViewItem Header="Item 3.1" />
+                        <TreeViewItem Header="Item 3.2" />
+                        <TreeViewItem Header="Item 3.3" />
+                    </TreeViewItem>
+                    <TreeViewItem Header="Item 4" />
+                    <TreeViewItem Header="Item 5" />
+                </TreeView>
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <!-- actual form starts here -->
+        <StackPanel Grid.Column="1" Grid.Row="2" x:Name="Form" Orientation="Vertical">
+
+
+
+            <StackPanel.Resources>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Orientation" Value="Horizontal" />
+                    <Setter Property="Margin" Value="0,0,0,4" />
+                </Style>
+                <Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                    <Setter Property="Width" Value="100" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+                <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                    <Setter Property="Padding" Value="0,3" />
+                </Style>
+                <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
+                    <Setter Property="Padding" Value="0,3" />
+                </Style>
+            </StackPanel.Resources>
+
+            <StackPanel>
+                <Label Content="First name" Target="{Binding ElementName=TextFirstName}"/>
+                <TextBox x:Name="TextFirstName" Width="150" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Last name" Target="{Binding ElementName=TextLastName}"/>
+                <TextBox x:Name="TextLastName" Width="150" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Gender" Target="{Binding ElementName=RadioGendeMale}"/>
+                <RadioButton x:Name="RadioGendeMale">
+                    <TextBlock>Male</TextBlock>
+                </RadioButton>
+                <RadioButton Content="Female" Margin="8,0,0,0" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Birth date" Target="{Binding ElementName=DateBirth}" />
+                <DatePicker x:Name="DateBirth" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Address" Target="{Binding ElementName=TextAddress}"/>
+                <TextBox x:Name="TextAddress" Width="150" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="City" Target="{Binding ElementName=TextCity}"/>
+                <TextBox x:Name="TextCity" Width="150" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="State" Target="{Binding ElementName=ComboState}"/>
+                <ComboBox x:Name="ComboState" Width="150">
+                    <ComboBoxItem>Alabama</ComboBoxItem>
+                    <ComboBoxItem>Alaska</ComboBoxItem>
+                    <ComboBoxItem>Arizona</ComboBoxItem>
+                    <ComboBoxItem>Arkansas</ComboBoxItem>
+                    <ComboBoxItem>California</ComboBoxItem>
+                    <ComboBoxItem>Colorado</ComboBoxItem>
+                    <ComboBoxItem>Connecticut</ComboBoxItem>
+                    <ComboBoxItem>Delaware</ComboBoxItem>
+                    <ComboBoxItem>Florida</ComboBoxItem>
+                    <ComboBoxItem>Georgia</ComboBoxItem>
+                    <ComboBoxItem>Hawaii</ComboBoxItem>
+                    <ComboBoxItem>Idaho</ComboBoxItem>
+                    <ComboBoxItem>Illinois</ComboBoxItem>
+                    <ComboBoxItem>Indiana</ComboBoxItem>
+                    <ComboBoxItem>Iowa</ComboBoxItem>
+                    <ComboBoxItem>Kansas</ComboBoxItem>
+                    <ComboBoxItem>Kentucky</ComboBoxItem>
+                    <ComboBoxItem>Louisiana</ComboBoxItem>
+                    <ComboBoxItem>Maine</ComboBoxItem>
+                    <ComboBoxItem>Maryland</ComboBoxItem>
+                    <ComboBoxItem>Massachusetts</ComboBoxItem>
+                    <ComboBoxItem>Michigan</ComboBoxItem>
+                    <ComboBoxItem>Minnesota</ComboBoxItem>
+                    <ComboBoxItem>Mississippi</ComboBoxItem>
+                    <ComboBoxItem>Missouri</ComboBoxItem>
+                    <ComboBoxItem>Montana</ComboBoxItem>
+                    <ComboBoxItem>Nebraska</ComboBoxItem>
+                    <ComboBoxItem>Nevada</ComboBoxItem>
+                    <ComboBoxItem>New Hampshire</ComboBoxItem>
+                    <ComboBoxItem>New Jersey</ComboBoxItem>
+                    <ComboBoxItem>New Mexico</ComboBoxItem>
+                    <ComboBoxItem>New York</ComboBoxItem>
+                    <ComboBoxItem>North Carolina</ComboBoxItem>
+                    <ComboBoxItem>North Dakota</ComboBoxItem>
+                    <ComboBoxItem>Ohio</ComboBoxItem>
+                    <ComboBoxItem>Oklahoma</ComboBoxItem>
+                    <ComboBoxItem>Oregon</ComboBoxItem>
+                    <ComboBoxItem>Pennsylvania</ComboBoxItem>
+                    <ComboBoxItem>Rhode Island</ComboBoxItem>
+                    <ComboBoxItem>South Carolina</ComboBoxItem>
+                    <ComboBoxItem>South Dakota</ComboBoxItem>
+                    <ComboBoxItem>Tennessee</ComboBoxItem>
+                    <ComboBoxItem>Texas</ComboBoxItem>
+                    <ComboBoxItem>Utah</ComboBoxItem>
+                    <ComboBoxItem>Vermont</ComboBoxItem>
+                    <ComboBoxItem>Virginia</ComboBoxItem>
+                    <ComboBoxItem>Washington</ComboBoxItem>
+                    <ComboBoxItem>West Virginia</ComboBoxItem>
+                    <ComboBoxItem>Wisconsin</ComboBoxItem>
+                    <ComboBoxItem>Wyoming</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Zip code" Target="{Binding ElementName=TextZipCode}"/>
+                <TextBox x:Name="TextZipCode" Width="150" />
+            </StackPanel>
+            <StackPanel >
+                <Label />
+                <CheckBox>
+                    <TextBlock FontWeight="Bold">I agree to the terms of use</TextBlock>
+                </CheckBox>
+            </StackPanel>
+
+            <Button Content="Submit" Margin="100,16,0,0" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="2"  Width="240" HorizontalAlignment="Left">
+
+            <TextBlock Text="SLIDER" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+            <Slider Margin="0,0,0,16" />
+            <Slider IsEnabled="False" Value="3" TickPlacement="Both" Margin="0,0,0,16" />
+            <Slider IsSelectionRangeEnabled="True" SelectionStart="4" SelectionEnd="7" TickPlacement="Both" Margin="0,0,0,16" />
+
+
+            <StackPanel Orientation="Horizontal" Height="200">
+                <Slider Orientation="Vertical" />
+                <Slider Orientation="Vertical" IsEnabled="False" Value="3" TickPlacement="Both" Margin="16,0,0,0" />
+                <Slider Orientation="Vertical" IsSelectionRangeEnabled="True" SelectionStart="4" SelectionEnd="7" TickPlacement="Both" Margin="16,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3" Grid.Row="2" Width="240" HorizontalAlignment="Left">
+
+            <TextBlock Text="PROGRESSBAR" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
+            <ProgressBar Minimum="0" Maximum="1" Height="16" IsIndeterminate="True" Margin="0,0,0,16" />
+
+            <ProgressBar Minimum="0" Maximum="1" Value=".7" Height="16" IsIndeterminate="False" Margin="0,0,0,16" />
+        </StackPanel>
+
+
+
+        <ScrollViewer Grid.Column="4" Grid.Row="2">
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock Text="TEXT STYLING" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
+
+                <TextBlock Text="HEADING1" Style="{StaticResource Heading1}" Margin="0,0,0,8" />
+                <TextBlock Text="HEADING2" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
+                <TextBlock Text="title" Style="{StaticResource Title}" Margin="0,0,0,8"/>
+                <TextBlock Text="Normal" Margin="0,0,0,8"/>
+                <TextBlock Text="small" Style="{StaticResource Small}" Margin="0,0,0,8"/>
+                <TextBlock Text="EMPHASIS" Style="{StaticResource Emphasis}" Margin="0,0,0,8"/>
+                <TextBlock Text="Fixed" Style="{StaticResource Fixed}" Margin="0,0,0,32"/>
+
+                <TextBlock Text="TEXT AND PASSWORDBOX" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
+                <TextBox Text="textbox" Margin="0,0,0,8"/>
+                <TextBox Text="readonly textbox" IsReadOnly="True" Margin="0,0,0,8"/>
+                <TextBox Text="disabled textbox" IsEnabled="False" Margin="0,0,0,8"/>
+                <PasswordBox Password="12345" Margin="0,0,0,32"/>
+
+                <TextBlock Text="LABEL" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
+                <Label Content="label" Margin="0,0,0,8"/>
+                <Label Content="disabled label" IsEnabled="False" />
+
+
+
+            </StackPanel>
+
+
+
+        </ScrollViewer>
+
+
+
+    </Grid>
+</UserControl>
