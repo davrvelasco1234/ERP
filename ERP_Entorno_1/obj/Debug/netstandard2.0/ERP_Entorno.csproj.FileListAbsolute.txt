@@ -1,9 +1,0 @@
-C:\PROYECTOS\v17\ERP\ERP_Entorno\bin\Debug\netstandard2.0\ERP_Entorno.deps.json
-C:\PROYECTOS\v17\ERP\ERP_Entorno\bin\Debug\netstandard2.0\ERP_Entorno.dll
-C:\PROYECTOS\v17\ERP\ERP_Entorno\obj\Debug\netstandard2.0\ERP_Entorno.csproj.CoreCompileInputs.cache
-C:\PROYECTOS\v17\ERP\ERP_Entorno\obj\Debug\netstandard2.0\ERP_Entorno.AssemblyInfoInputs.cache
-C:\PROYECTOS\v17\ERP\ERP_Entorno\obj\Debug\netstandard2.0\ERP_Entorno.AssemblyInfo.cs
-C:\PROYECTOS\v17\ERP\ERP_Entorno\obj\Debug\netstandard2.0\ERP_Entorno.csprojAssemblyReference.cache
-C:\PROYECTOS\v17\ERP\ERP_Entorno\bin\Debug\netstandard2.0\ERP_Entorno.pdb
-C:\PROYECTOS\v17\ERP\ERP_Entorno\obj\Debug\netstandard2.0\ERP_Entorno.dll
-C:\PROYECTOS\v17\ERP\ERP_Entorno\obj\Debug\netstandard2.0\ERP_Entorno.pdb

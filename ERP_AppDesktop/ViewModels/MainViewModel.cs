@@ -28,8 +28,7 @@ namespace ERP_AppDesktop.ViewModels
         #region Fields
         private ComponentManager componentManager;
         public IComponentView SettingsCom { get; set; }
-        public IComponentView InicializeCom { get; set; }
-        public UserControl InicializeControl { get; set; }
+        public IComponentView InitializeCom { get; set; }
         #endregion
 
 
@@ -93,12 +92,12 @@ namespace ERP_AppDesktop.ViewModels
             set => SetProperty(ref this.indexComponent, value);
         }
 
-        private IComponentView bodyComponent;
-        public IComponentView BodyComponent
-        {
-            get => bodyComponent;
-            set => SetProperty(ref this.bodyComponent, value);
-        }
+        //private IComponentView bodyComponent;
+        //public IComponentView BodyComponent
+        //{
+        //    get => bodyComponent;
+        //    set => SetProperty(ref this.bodyComponent, value);
+        //}
 
         private BitmapImage logoCompany;
         public BitmapImage LogoCompany
@@ -213,16 +212,16 @@ namespace ERP_AppDesktop.ViewModels
 
             //LOAD COMPONENTS
             this.componentManager = ComponentManager.GetComponents();
-            IComponent buttomComp = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_ButtonCom").FirstOrDefault();
-            IComponent settingsCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_SettingsCom").FirstOrDefault();
+            IComponent buttomComp = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_ButtonCom").FirstOrDefault();       
+            IComponent settingsCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_SettingsCom").FirstOrDefault();    
             IComponent inicializeCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_InicializeCom").FirstOrDefault();
             
 
             //INICIALIZA COMPONENS DEFAULT
             if (!(buttomComp is null)) this.ButtonComponent = buttomComp.GetComponent();
             if (!(settingsCom is null)) this.SettingsCom = settingsCom.GetComponent();
-            if (!(inicializeCom is null)) this.InicializeCom = inicializeCom.GetComponent();
-            if (!(inicializeCom is null)) this.InicializeControl = inicializeCom.GetControl();
+            if (!(inicializeCom is null)) this.InitializeCom = inicializeCom.GetComponent();
+            
 
             //INICIALIZA IMAGEN
             this.LogoCompany = Properties.Resources.construccion.ToBitmapImage();
@@ -231,9 +230,9 @@ namespace ERP_AppDesktop.ViewModels
 
             //INICIALIZA DATOS DEFAULT
             this.IndexGroupList = new ObservableCollection<IndexGroup>(Helpers.CreateIndex.GetIndexGroup());
-            this.BodyComponent = this.InicializeCom;
+            //this.BodyComponent = this.InitializeCom;
 
-            this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.BodyComponent};
+            this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.InitializeCom };
 
             /*
             this.TabControlList = new ObservableCollection<TabItem>();
@@ -309,8 +308,6 @@ namespace ERP_AppDesktop.ViewModels
                     item.IsVisibilityItemsControl = Visibility.Visible;
                 }
             }
-
-
         }
 
 
@@ -319,7 +316,7 @@ namespace ERP_AppDesktop.ViewModels
             if (selectedItem is null) { return; }
             if (!selectedItem.IsComponent) { return; }
 
-            this.BodyComponent = null;
+            //this.BodyComponent = null;
 
             IComponent componenSelected = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == selectedItem.IdComponent).FirstOrDefault();
 
@@ -328,28 +325,28 @@ namespace ERP_AppDesktop.ViewModels
 
             
 
-            this.BodyComponent = await GetInstansViewModel(componenSelected);
+            IComponentView compview = await GetInstansViewModel(componenSelected);
 
-            var resp = this.BodyComponentList.Where(w => w.NameSpace == componenSelected.ToString()).FirstOrDefault();
+            var existsComponent = this.BodyComponentList.Where(w => w.NameSpace == componenSelected.ToString()).FirstOrDefault();
 
-            if (this.BodyComponentList.Where(w => w.NameSpace == componenSelected.ToString()).FirstOrDefault() is null)
+            if (existsComponent is null)
             {
-                this.BodyComponentList.Add(new Models.BodyComponent { Name = componenSelected.Title, ComponentView = this.BodyComponent, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
+                this.BodyComponentList.Add(new Models.BodyComponent { Name = componenSelected.Title, ComponentView = compview, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
                 this.BodyComponentSelected = this.BodyComponentList.LastOrDefault();
             }
             else
             {
-                var item = this.BodyComponentList.Where(w => w.NameSpace == componenSelected.ToString()).First();
-                var index = this.BodyComponentList.IndexOf(item);
+                //var item = this.BodyComponentList.Where(w => w.NameSpace == componenSelected.ToString()).First();
+                var index = this.BodyComponentList.IndexOf(existsComponent);
                 this.BodyComponentList.RemoveAt(index);
-                this.BodyComponentList.Insert(index, new Models.BodyComponent { Name = componenSelected.Title, ComponentView = this.BodyComponent, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
+                this.BodyComponentList.Insert(index, new Models.BodyComponent { Name = componenSelected.Title, ComponentView = compview, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
                 this.BodyComponentSelected = this.BodyComponentList.ElementAt(index);
             }
 
 
             GC.Collect();
 
-            ListBoxSelectionChanged();
+            //ListBoxSelectionChanged();
         }
 
         private async Task<IComponentView> GetInstansViewModel(IComponent component)
@@ -371,7 +368,8 @@ namespace ERP_AppDesktop.ViewModels
         {
             if (link.DisplayCommanParam == "Settings")
             {
-                this.BodyComponent = this.SettingsCom;
+                //this.BodyComponent = this.SettingsCom;
+                this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.SettingsCom };
             }
             else if (link.DisplayCommanParam == "Google")
             {
@@ -391,11 +389,13 @@ namespace ERP_AppDesktop.ViewModels
         {
             if (gesture == "CtrlS")
             {
-                this.BodyComponent = this.SettingsCom;
+                //this.BodyComponent = this.SettingsCom;
+                this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.SettingsCom };
             }
             else if(gesture == "CtrlI")
             {
-                this.BodyComponent = this.InicializeCom;
+                //this.BodyComponent = this.InicializeCom;
+                this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.InitializeCom };
             }
             else if (gesture == "Esc")
             {
