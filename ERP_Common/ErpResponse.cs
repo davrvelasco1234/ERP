@@ -23,19 +23,22 @@ namespace ERP_Common
         public Exception Exception { get; set; }
 
 
+
+
         public ErpResponse()
         {
 
         }
 
 
+        //message
         public ErpResponse(string message)
         {
             this.IsSuccess = false;
             this.Message = message;
             this.MessageCode = 0;
-            this.MessageType = MessageType.Bug;
-            this.Result = null;
+            this.MessageType = MessageType.Warning;
+            this.Exception = null;
         }
 
         public ErpResponse(string message, int messageCode)
@@ -43,8 +46,8 @@ namespace ERP_Common
             this.IsSuccess = false;
             this.Message = message;
             this.MessageCode = messageCode;
-            this.MessageType = MessageType.Bug;
-            this.Result = null;
+            this.MessageType = MessageType.Warning;
+            this.Exception = null;
         }
 
         public ErpResponse(string message, MessageType messageType)
@@ -53,7 +56,7 @@ namespace ERP_Common
             this.Message = message;
             this.MessageCode = 0;
             this.MessageType = messageType;
-            this.Result = null;
+            this.Exception = null;
         }
 
         public ErpResponse(string message, int messageCode, MessageType messageType)
@@ -62,18 +65,49 @@ namespace ERP_Common
             this.Message = message;
             this.MessageCode = messageCode;
             this.MessageType = messageType;
-            this.Result = null;
+            this.Exception = null;
         }
 
-        public ErpResponse(bool isSuccess, string message, object result)
+
+        //Exception
+        public ErpResponse(Exception exception)
         {
-            this.IsSuccess = isSuccess;
-            this.Message = message;
-            this.MessageCode = isSuccess ? 1 : 0;
-            this.MessageType = isSuccess ? MessageType.Success : MessageType.Bug;
-            this.Result = result;
+            this.IsSuccess = false;
+            this.Message = exception.Message;
+            this.MessageCode = 0;
+            this.MessageType = MessageType.Bug;
+            this.Exception = exception;
         }
 
+        public ErpResponse(Exception exception, int messageCode)
+        {
+            this.IsSuccess = false;
+            this.Message = exception.Message;
+            this.MessageCode = messageCode;
+            this.MessageType = MessageType.Bug;
+            this.Exception = exception;
+        }
+
+        public ErpResponse(Exception exception, MessageType messageType)
+        {
+            this.IsSuccess = false;
+            this.Message = exception.Message;
+            this.MessageCode = 0;
+            this.MessageType = messageType;
+            this.Exception = exception;
+        }
+
+        public ErpResponse(Exception exception, int messageCode, MessageType messageType)
+        {
+            this.IsSuccess = false;
+            this.Message = exception.Message;
+            this.MessageCode = messageCode;
+            this.MessageType = messageType;
+            this.Exception = exception;
+        }
+
+
+        //result
         public ErpResponse(object result)
         {
             this.IsSuccess = true;
@@ -81,15 +115,40 @@ namespace ERP_Common
             this.MessageCode = 1;
             this.MessageType = MessageType.Success;
             this.Result = result;
+            this.Exception = null;
         }
 
-        public ErpResponse(bool isSuccess, string message, int messageCode, MessageType messageType, object result)
+        public ErpResponse(bool isSuccess, object result)
+        {
+            this.IsSuccess = isSuccess;
+            this.Message = "";
+            this.MessageCode = isSuccess ? 1 : 0;
+            this.MessageType = isSuccess ? MessageType.Success : MessageType.Warning;
+            this.Result = result;
+            this.Exception = null;
+        }
+
+
+        public ErpResponse(bool isSuccess, string message, object result)
+        {
+            this.IsSuccess = isSuccess;
+            this.Message = message;
+            this.MessageCode = isSuccess ? 1 : 0;
+            this.MessageType = isSuccess ? MessageType.Success : MessageType.Warning;
+            this.Result = result;
+            this.Exception = null;
+        }
+
+        //todos
+        public ErpResponse(bool isSuccess, string message, int messageCode, MessageType messageType, object result, Exception exception)
         {
             this.IsSuccess = isSuccess;
             this.Message = message;
             this.MessageCode = messageCode;
             this.MessageType = messageType;
             this.Result = result;
+            this.Exception = exception;
         }
+        
     }
 }

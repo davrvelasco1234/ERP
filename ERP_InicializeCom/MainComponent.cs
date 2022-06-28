@@ -1,43 +1,33 @@
 ﻿
-using System;
 using System.ComponentModel.Composition;
-using System.Windows.Controls;
-using ERP_Components;
+using ERP_Core.Components;
 using ERP_MVVM.Helpers;
 
 namespace ERP_InicializeCom
 {
-    [Export(typeof(IComponent))]
-    public class MainComponent : IComponent
+    [Export(typeof(IComponentERP))]
+    public class MainComponent : ComponentERP
     {
         static MainComponent()
         {
             DataTemplateManager.RegisterDataTemplate<ViewModels.InicializeViewModel, Views.InicializeControl>();
         }
 
-        public string ComponentName => "MainComponent";
 
-        public object ComponentContent => "Menu Inicialize";
-
-        public string ComponentCode => "ERP_InicializeCom";
-
-        public ComponentInfo ComponentInfo() => new ComponentInfo
+        public override ComponentInfo ComponentInfo => new ComponentInfo
         {
-            Code = "ERP",
-            Name = "ERP_InicializeCom"
+            ComponentName = "Name",
+            ComponentContent = "Content",
+            ComponentCode = "Code",
+            Title = "Title"
         };
 
-        public IComponentView GetComponent() => new ViewModels.InicializeViewModel();
 
-        public UserControl GetControl() => new Views.InicializeControl();
-
-
-        public UserControl GetControlView() => new Views.InicializeControl();
-        public object GetControlViewModel() => new ViewModels.InicializeViewModel();
-        public string Title => "Titulo";
+        public override IComponentView GetInstansComponent()
+        {
+            return new ViewModels.InicializeViewModel();
+        }
 
 
-        public Func<UserControl> FuncControlView(object param) => null;
-        public Func<object> FuncViewModel() => () => null;
     }
 }

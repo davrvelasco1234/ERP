@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -47,6 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppERP.cs" />
+    <Compile Include="Components\ComponentERP.cs" />
+    <Compile Include="Components\ComponentInfo.cs" />
+    <Compile Include="Components\IComponentERP.cs" />
+    <Compile Include="Components\IComponentView.cs" />
     <Compile Include="WindowERP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowDialogERP.cs" />
@@ -61,5 +67,6 @@
       <Name>FirstFloor.ModernUI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

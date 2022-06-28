@@ -39,7 +39,7 @@ namespace ERP_Common
             this.IsSuccess = false;
             this.Message = message;
             this.MessageCode = 0;
-            this.MessageType = MessageType.Bug;
+            this.MessageType = MessageType.Warning;
             this.Exception = null;
         }
 
@@ -48,7 +48,7 @@ namespace ERP_Common
             this.IsSuccess = false;
             this.Message = message;
             this.MessageCode = messageCode;
-            this.MessageType = MessageType.Bug;
+            this.MessageType = MessageType.Warning;
             this.Exception = null;
         }
 
@@ -120,24 +120,37 @@ namespace ERP_Common
             this.Exception = null;
         }
 
+        public ErpResponse(bool isSuccess, T result)
+        {
+            this.IsSuccess = isSuccess;
+            this.Message = "";
+            this.MessageCode = isSuccess ? 1 : 0;
+            this.MessageType = isSuccess ? MessageType.Success : MessageType.Warning;
+            this.Result = result;
+            this.Exception = null;
+        }
+
+
         public ErpResponse(bool isSuccess, string message, T result)
         {
             this.IsSuccess = isSuccess;
             this.Message = message;
             this.MessageCode = isSuccess ? 1 : 0;
-            this.MessageType = isSuccess ? MessageType.Success : MessageType.Bug;
+            this.MessageType = isSuccess ? MessageType.Success : MessageType.Warning;
             this.Result = result;
             this.Exception = null;
         }
 
-        public ErpResponse(bool isSuccess, string message, int messageCode, MessageType messageType, T result)
+
+        //todos
+        public ErpResponse(bool isSuccess, string message, int messageCode, MessageType messageType, T result, Exception exception)
         {
             this.IsSuccess = isSuccess;
             this.Message = message;
             this.MessageCode = messageCode;
             this.MessageType = messageType;
             this.Result = result;
-            this.Exception = null;
+            this.Exception = exception;
         }
     }
 }

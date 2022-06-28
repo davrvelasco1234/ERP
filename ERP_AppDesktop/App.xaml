@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     
-    
+    xmlns:Img="clr-namespace:ERP_Images;assembly=ERP_Images"
     xmlns:Locator="clr-namespace:ERP_AppDesktop.WindowLocator"
     Startup="Application_Startup">
 
@@ -13,17 +13,19 @@
 
             <Locator:ViewModelLocator x:Key="ViewModelLocator"/>
 
+            <Img:Images x:Key="Images"/>
+            
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.dark.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.dark.xaml"/>
 
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindow.xaml" />
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernDialog.xaml" />
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowDialog.xaml" />
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowEmpty.xaml" />
-                
-                
-                
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindow.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernDialog.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowDialog.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowEmpty.xaml"/>
+
+                <ResourceDictionary Source="Styles/StylesControls.xaml"/>
+
                 <!--
                 
                 admin admin 123 QA 127.0.0.1 1800

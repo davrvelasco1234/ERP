@@ -13,11 +13,8 @@
     Closing="Window_Closing">
     
     <!--
-    
     Style="{StaticResource MyModernWindowEmpty}"
-    
         Style="{StaticResource MyModernWindow}"
-    
     <mui:ModernWindow.TitleLinks>
         <mui:Link DisplayName="Settings" Source="/Pages/Settings.xaml" />
         <mui:Link DisplayName="Help" Source="https://github.com/firstfloorsoftware/mui/wiki" />

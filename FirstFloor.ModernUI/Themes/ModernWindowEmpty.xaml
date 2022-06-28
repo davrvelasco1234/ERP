@@ -57,23 +57,23 @@
 
 
                                         <StackPanel  Margin="10,2,10,0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top"  WindowChrome.IsHitTestVisibleInChrome="True">
-                                            <!-- Menu -->
+                                            <!-- Menu ImgData="{Binding IconMenuImage}"  -->
                                             <mui:ModernButton EllipseDiameter="35" EllipseStrokeThickness="0" IconWidth="30" IconHeight="30" ToolTip="Close/Open - Menu &#x0a; CTRL+M"  
-                                                              ImgData="{Binding IconMenuImage}" 
+                                                              ImgData="{Binding IconMenuImage}"
                                                               Command="{Binding IcomMenuCommand}"
                                                               IsEnabled="{Binding GridWindowIsEnabled}"/>
 
-                                            <!-- Restore -->
+                                            <!-- Restore ImgData="{Binding IconReloadImage}"  -->
                                             <mui:ModernButton Margin="10,0,10,0" EllipseDiameter="35" EllipseStrokeThickness="0" IconWidth="30" IconHeight="30" ToolTip="Restore &#x0a; CTRL+R"
-                                                              ImgData="{Binding IconReloadImage}" 
+                                                              ImgData="{Binding IconReloadImage}"
                                                               Command="{Binding IcomReloadCommand}"
                                                               IsEnabled="{Binding GridWindowIsEnabled}"/>
 
 
-                                            <!-- GetOut -->
+                                            <!-- GetOut ImgData="{Binding IconGetInGetOutImage}"  -->
                                             <mui:ModernButton EllipseDiameter="35" EllipseStrokeThickness="0" IconWidth="30" IconHeight="30" 
                                                               ToolTip="{Binding IconGetInGetOutToolTip}" 
-                                                              ImgData="{Binding IconGetInGetOutImage}" 
+                                                              ImgData="{Binding IconGetInGetOutImage}"
                                                               Command="{Binding IcomGetInGetOutCommand}"/>
 
                                         </StackPanel>

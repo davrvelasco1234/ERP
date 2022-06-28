@@ -1,37 +1,34 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ERP_AppDesktop.Helpers;
 using ERP_AppDesktop.Models;
 using ERP_Common.Models;
-using ERP_Components;
+using ERP_Core.Components;
 using ERP_MVVM.BaseMVVM;
 using ERP_MVVM.Helpers;
-using ERP_Security;
 using Microsoft.Toolkit.Mvvm.Input;
 
 
 namespace ERP_AppDesktop.ViewModels
 {
-    public class MainViewModel : BaseViewModel, IComponentView
+    public class MainViewModel : BaseViewModel
     {
         //admin admin 123 QA 127.0.0.1 1801
         #region Fields
+        private readonly object _lock = new object();
         private ComponentManager componentManager;
         public IComponentView SettingsCom { get; set; }
         public IComponentView InitializeCom { get; set; }
         #endregion
 
 
+        
         #region Properties
         private ObservableCollection<BodyComponent> bodyComponentList = new ObservableCollection<BodyComponent>();
         public ObservableCollection<BodyComponent> BodyComponentList
@@ -85,6 +82,7 @@ namespace ERP_AppDesktop.ViewModels
             get => buttonComponent;
             set => SetProperty(ref this.buttonComponent, value);
         }
+
         private IComponentView indexComponent;
         public IComponentView IndexComponent
         {
@@ -195,10 +193,7 @@ namespace ERP_AppDesktop.ViewModels
         public ICommand ListBoxSelectionChangedCommand => new RelayCommand(ListBoxSelectionChanged);
         #endregion
 
-
-        //public List<TabControlItem> TabControlList { get; set; }
-
-
+        
         #region Contructors
         public MainViewModel()
         {
@@ -212,9 +207,9 @@ namespace ERP_AppDesktop.ViewModels
 
             //LOAD COMPONENTS
             this.componentManager = ComponentManager.GetComponents();
-            IComponent buttomComp = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_ButtonCom").FirstOrDefault();       
-            IComponent settingsCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_SettingsCom").FirstOrDefault();    
-            IComponent inicializeCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_InicializeCom").FirstOrDefault();
+            IComponentERP buttomComp = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_ButtonCom").FirstOrDefault();
+            IComponentERP settingsCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_SettingsCom").FirstOrDefault();
+            IComponentERP inicializeCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_InicializeCom").FirstOrDefault();
             
 
             //INICIALIZA COMPONENS DEFAULT
@@ -232,64 +227,27 @@ namespace ERP_AppDesktop.ViewModels
             this.IndexGroupList = new ObservableCollection<IndexGroup>(Helpers.CreateIndex.GetIndexGroup());
             //this.BodyComponent = this.InitializeCom;
 
-            this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.InitializeCom };
 
-            /*
-            this.TabControlList = new ObservableCollection<TabItem>();
-            var tabItem = new TabItem { Header = "Tab A", };
-            var tabItem1 = new TabItem { Header = "Tab B", };
-            var tabItem2 = new TabItem { Header = "Tab C", };
-            this.TabControlList.Insert(0, tabItem);
-            this.TabControlList.Insert(1, tabItem1);
-            this.TabControlList.Insert(2, tabItem2);
-            */
+            Inicialize();
+
+            
 
         }
+
+
+
+
         #endregion
-
-        /*
-        private ObservableCollection<TabItem> tabControlList;
-        public ObservableCollection<TabItem> TabControlList
-        {
-            get => this.tabControlList;
-            set => SetProperty(ref this.tabControlList, value);
-        }
-        */
-
-
         #region Loaded
         public void Loaded()
         {
             //VALIDA LOGIN
             InicializaLogIn();
-
-
-            /*
-            object viewModel = null;
-            this.PanelLoading = true;                                   //inicia la animacion   
-            Task task1 = Task.Run(() =>
-            {
-
-                viewModel = new UserViewModel();
-
-                this.PanelLoading = false;                              //detiene la animacion  
-            });
-
-            task1.Wait();
-
-            this.TabControlList = new ObservableCollection<TabItem>();
-            var tabItem = new TabItem { Content = new UserControl1() { DataContext = viewModel }, Header = "Tab A", };
-            this.TabControlList.Insert(0, tabItem);
-
-            this.BodyComponentSelected = this.BodyComponentList.FirstOrDefault();
-            */
-
         }
 
         public void Inicialize()
         {
-
-            
+            this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.InitializeCom };
         }
 
         #endregion
@@ -309,47 +267,45 @@ namespace ERP_AppDesktop.ViewModels
                 }
             }
         }
-
+        
 
         private async Task MouseDoubleClickItemTreeView(IndexGroup selectedItem)
         {
             if (selectedItem is null) { return; }
             if (!selectedItem.IsComponent) { return; }
 
-            //this.BodyComponent = null;
-
-            IComponent componenSelected = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == selectedItem.IdComponent).FirstOrDefault();
-
-            if (componenSelected is null) return;
-
-
+            IComponentERP componenSelected = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == selectedItem.IdComponent).FirstOrDefault();
             
-
+            if (componenSelected is null) return;
+            
+            
             IComponentView compview = await GetInstansViewModel(componenSelected);
-
+            
             var existsComponent = this.BodyComponentList.Where(w => w.NameSpace == componenSelected.ToString()).FirstOrDefault();
-
+            
             if (existsComponent is null)
             {
-                this.BodyComponentList.Add(new Models.BodyComponent { Name = componenSelected.Title, ComponentView = compview, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
+                this.BodyComponentList.Add(new Models.BodyComponent { Name = componenSelected.ComponentInfo.Title, ComponentView = compview, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
                 this.BodyComponentSelected = this.BodyComponentList.LastOrDefault();
             }
             else
             {
-                //var item = this.BodyComponentList.Where(w => w.NameSpace == componenSelected.ToString()).First();
+                Inicialize();
                 var index = this.BodyComponentList.IndexOf(existsComponent);
-                this.BodyComponentList.RemoveAt(index);
-                this.BodyComponentList.Insert(index, new Models.BodyComponent { Name = componenSelected.Title, ComponentView = compview, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
+                this.BodyComponentList.Remove(existsComponent);
+                this.BodyComponentList.Insert(index, new Models.BodyComponent { Name = componenSelected.ComponentInfo.Title, ComponentView = compview, NameSpace = componenSelected.ToString(), IsVisibilityItemsControl = Visibility.Visible });
                 this.BodyComponentSelected = this.BodyComponentList.ElementAt(index);
+                this.BodyComponentList.RemoveAt(10);
             }
+            
 
+            this.CallGarbageCollector();
 
-            GC.Collect();
-
-            //ListBoxSelectionChanged();
         }
 
-        private async Task<IComponentView> GetInstansViewModel(IComponent component)
+
+
+        private async Task<IComponentView> GetInstansViewModel(IComponentERP component)
         {
             this.PanelLoading = true;
             var resp = await Task.Factory.StartNew(() => component.GetComponent());
@@ -357,19 +313,17 @@ namespace ERP_AppDesktop.ViewModels
 
             return resp;
         }
-        //private async Task<object> GetInstansViewModel(Func<object> viewModelParam) => await Task.Factory.StartNew(() => viewModelParam() );
 
-
-
-
-
+        
 
         private void HeaderLinksProperty(HeaderLinks link)
         {
             if (link.DisplayCommanParam == "Settings")
             {
-                //this.BodyComponent = this.SettingsCom;
-                this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.SettingsCom };
+                //this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.SettingsCom, IsVisibilityItemsControl = Visibility.Visible };
+                this.BodyComponentList.Add(new Models.BodyComponent { Name = "asd", ComponentView = this.SettingsCom, NameSpace = "asdf", IsVisibilityItemsControl = Visibility.Visible });
+                this.BodyComponentSelected = this.BodyComponentList.LastOrDefault();
+
             }
             else if (link.DisplayCommanParam == "Google")
             {
@@ -389,12 +343,10 @@ namespace ERP_AppDesktop.ViewModels
         {
             if (gesture == "CtrlS")
             {
-                //this.BodyComponent = this.SettingsCom;
                 this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.SettingsCom };
             }
             else if(gesture == "CtrlI")
             {
-                //this.BodyComponent = this.InicializeCom;
                 this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.InitializeCom };
             }
             else if (gesture == "Esc")
@@ -402,7 +354,6 @@ namespace ERP_AppDesktop.ViewModels
 
             }
         }
-
         #endregion
 
 

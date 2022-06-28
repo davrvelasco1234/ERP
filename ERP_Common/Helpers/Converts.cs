@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
+using System.Linq;
+using System.Reflection;
 using System.Text;
+
 
 namespace ERP_Common.Helpers
 {
@@ -27,6 +33,10 @@ namespace ERP_Common.Helpers
             textWrite.Close();
             return stringBuilder.ToString().Replace("'", "").Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "");
         }
+
+
+        
+
 
 
     }

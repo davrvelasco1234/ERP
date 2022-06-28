@@ -124,7 +124,7 @@ namespace ERP_Security.Login
             return new ErpResponse<LoginRequest>(respLog);   
         }
 
-        private void Login(Window window)
+        private void Login(Window window)   
         {
             var resp = UserList.Where(W => W.User == this.User && W.Rol == this.Rol && W.Password == this.Password).FirstOrDefault();
             if (resp is null)

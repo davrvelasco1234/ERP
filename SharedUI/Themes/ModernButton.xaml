@@ -28,8 +28,8 @@
                                      Stroke="{DynamicResource ModernButtonBorder}"
                                      StrokeThickness="{TemplateBinding EllipseStrokeThickness}"
                                      VerticalAlignment="Stretch" />
-                                
-                            <!--
+                            
+
                             <Path x:Name="icon"
                                   Data="{TemplateBinding IconData}" 
                                   Width="{TemplateBinding IconWidth}"
@@ -37,10 +37,9 @@
                                   Fill="{TemplateBinding Foreground}"
                                   Stretch="Uniform" HorizontalAlignment="Center"
                                   VerticalAlignment="Center"/>
-                            -->
+
                             
-                            
-                            <Image x:Name="icon"
+                            <Image x:Name="iconn"
                                    Source="{TemplateBinding ImgData}"
                                    Width="{TemplateBinding IconWidth}"
                                    Height="{TemplateBinding IconHeight}"
@@ -48,6 +47,7 @@
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"  
                                    Visibility="{Binding Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=inverse}"/>
+                            
                             
                         </Grid>
                         <Grid Grid.Column="1" >

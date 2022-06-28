@@ -9,13 +9,7 @@ namespace ERP_Components
     {
         
     }
-
-    public interface IComponentView2
-    {
-        Func<UserControl> FuncComponentview { get; set; }
-        Func<object> FuncComponentViewModel { get; set; }
-        string Title { get; set; }
-    }
+    
 
 
     

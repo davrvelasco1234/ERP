@@ -16,7 +16,6 @@ namespace FirstFloor.ModernUI.Windows.Controls
     public class ModernButton
         : Button
     {
-        
         /// <summary>
         /// Identifies the EllipseDiameter property.
         /// </summary>
@@ -41,7 +40,6 @@ namespace FirstFloor.ModernUI.Windows.Controls
 
 
         public static readonly DependencyProperty ImgDataProperty = DependencyProperty.Register("ImgData", typeof(BitmapImage), typeof(ModernButton));
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModernButton"/> class.
@@ -80,7 +78,6 @@ namespace FirstFloor.ModernUI.Windows.Controls
             get { return (Geometry)GetValue(IconDataProperty); }
             set { SetValue(IconDataProperty, value); }
         }
-
 
         /// <summary>
         /// Gets or sets the icon height.

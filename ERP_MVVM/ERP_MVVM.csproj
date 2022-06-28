@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,42 +31,43 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces">
-      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      <HintPath>..\DLLS\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Toolkit.Mvvm">
       <HintPath>..\DLLS\Microsoft.Toolkit.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\dllsNuGet\DLLS\Microsoft.Windows.Shell.dll</HintPath>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\DLLS\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors">
-      <HintPath>..\..\dllsNuGet\Microsoft.Xaml.Behaviors.Wpf\Microsoft.Xaml.Behaviors.dll</HintPath>
+      <HintPath>..\DLLS\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers">
-      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Buffers.dll</HintPath>
+      <HintPath>..\DLLS\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Memory">
-      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Memory.dll</HintPath>
+      <HintPath>..\DLLS\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\DLLS\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Threading.Tasks.Extensions.dll</HintPath>
+      <HintPath>..\DLLS\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -83,15 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseMVVM\BaseViewModel.cs" />
-    <Compile Include="BaseMVVM\ObservableValidatorDialog.cs" />
+    <Compile Include="BaseMVVM\BaseViewModelDialog.cs" />
     <Compile Include="BaseMVVM\DialogService.cs" />
     <Compile Include="BaseMVVM\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BaseMVVM\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="BaseMVVM\OpenDialogMVVM.cs" />
     <Compile Include="Helpers\ComboBoxItemTemplateSelector.cs" />
+    <Compile Include="Helpers\DataGridBehavior.cs" />
     <Compile Include="Helpers\FocusExtension.cs" />
     <Compile Include="Helpers\ImagingExtension.cs" />
     <Compile Include="Helpers\SelectAllFocusBehavior.cs" />
@@ -141,10 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="BaseMVVM\DialogWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BaseMVVM\UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

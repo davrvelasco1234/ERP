@@ -25,6 +25,7 @@
     <RegisterForComInterop>false</RegisterForComInterop>
     <DocumentationFile>
     </DocumentationFile>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Toolkit.Mvvm">
@@ -45,8 +47,13 @@
       <HintPath>..\DLLS\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,7 +68,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Querys.cs" />
+    <Compile Include="Data\Scripts.cs" />
+    <Compile Include="Identity\Auto.cs" />
     <Compile Include="MainComponent.cs" />
+    <Compile Include="Messaging\Messenger.cs" />
+    <Compile Include="Models\AutoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -76,10 +88,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\ComponentViewModel.cs" />
+    <Compile Include="ViewModels\Dialog\AutoMtoViewModel.cs" />
     <Compile Include="Views\ComponentControl.xaml.cs">
       <DependentUpon>ComponentControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WindowLocator\ViewModelLocator.cs" />
+    <Compile Include="Views\Dialog\AutoMtoControl.xaml.cs">
+      <DependentUpon>AutoMtoControl.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -94,27 +109,44 @@
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ERP_Components\ERP_Components.csproj">
-      <Project>{26e170bb-31e8-473a-82e7-2b3d7e7dfe5c}</Project>
-      <Name>ERP_Components</Name>
+    <ProjectReference Include="..\ERP_Controls\ERP_Controls.csproj">
+      <Project>{93a3d94b-e723-4717-803b-750cd8fa7b55}</Project>
+      <Name>ERP_Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_Core\ERP_Core.csproj">
+      <Project>{05206B8A-0309-40BF-997F-5D51129B0C9B}</Project>
+      <Name>ERP_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_Entorno\ERP_Entorno.csproj">
+      <Project>{1bae086b-f7e1-452d-9e18-d046b6e46b67}</Project>
+      <Name>ERP_Entorno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_ExcelGeneric\ERP_ExcelGeneric.csproj">
+      <Project>{97aec0b8-b16e-4abe-9c52-3039d592f62b}</Project>
+      <Name>ERP_ExcelGeneric</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_Images\ERP_Images.csproj">
+      <Project>{7281e3d7-82f2-45df-8771-0803a0773026}</Project>
+      <Name>ERP_Images</Name>
     </ProjectReference>
     <ProjectReference Include="..\ERP_MVVM\ERP_MVVM.csproj">
-      <Project>{04C82D0C-6FF4-434E-880D-97FA1CD539FA}</Project>
+      <Project>{04c82d0c-6ff4-434e-880d-97fa1cd539fa}</Project>
       <Name>ERP_MVVM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Dictionary1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ComponentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Dialog\AutoMtoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

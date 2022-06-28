@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,10 +31,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Toolkit.Mvvm">
-      <HintPath>..\..\dllsNuGet\DLLS\Microsoft.Toolkit.Mvvm.dll</HintPath>
+      <HintPath>..\DLLS\Microsoft.Toolkit.Mvvm.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Windows.Shell">
       <HintPath>..\..\dllsNuGet\DLLS\Microsoft.Windows.Shell.dll</HintPath>
@@ -94,9 +96,9 @@
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ERP_Components\ERP_Components.csproj">
-      <Project>{26e170bb-31e8-473a-82e7-2b3d7e7dfe5c}</Project>
-      <Name>ERP_Components</Name>
+    <ProjectReference Include="..\ERP_Core\ERP_Core.csproj">
+      <Project>{05206B8A-0309-40BF-997F-5D51129B0C9B}</Project>
+      <Name>ERP_Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\ERP_Entorno\ERP_Entorno.csproj">
       <Project>{1bae086b-f7e1-452d-9e18-d046b6e46b67}</Project>

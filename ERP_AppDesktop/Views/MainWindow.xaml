@@ -1,0 +1,222 @@
+﻿<App:WindowERP 
+    xmlns:App="clr-namespace:ERP_Core;assembly=ERP_Core"
+    x:Class="ERP_AppDesktop.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ERP_AppDesktop.Views"
+    mc:Ignorable="d"
+    
+    Title="ERP"
+    xmlns:MVVM="clr-namespace:ERP_MVVM.Helpers;assembly=ERP_MVVM"
+    MinHeight="400" MinWidth="600"
+    xmlns:Load="clr-namespace:ERP_MVVM.Loading.Controls;assembly=ERP_MVVM"
+    xmlns:controls="clr-namespace:ERP_AppDesktop.Controls"
+    IsTitleVisible="True"
+    LogoCompany="{Binding logoCompany}"
+    HeaderLinksList="{Binding HeaderLinksList}"
+    WindowState="Maximized"
+    xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+    Style="{StaticResource MyModernWindowEmpty}"
+    DataContext="{Binding MainViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"
+    Loaded="WindowERP_Loaded"
+    KeyUp="WindowERP_KeyUp"
+    xmlns:model="clr-namespace:ERP_AppDesktop.Models"
+    xmlns:viewModels="clr-namespace:ERP_AppDesktop.ViewModels"
+    xmlns:views="clr-namespace:ERP_AppDesktop.Views">
+    
+    
+    
+    
+    <Interactivity:Interaction.Triggers>
+        <Interactivity:EventTrigger EventName="Loaded">
+            <Interactivity:InvokeCommandAction Command="{Binding LoadedCommand}" 
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
+        </Interactivity:EventTrigger>
+    </Interactivity:Interaction.Triggers>
+
+
+    <App:WindowERP.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="M" Command="{Binding IcomMenuCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="R" Command="{Binding IcomReloadCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="G" Command="{Binding IcomGetInGetOutCommand}"/>
+
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding InputBindingsWindowERPCommand}" CommandParameter="CtrlS"/>
+        <KeyBinding Modifiers="Ctrl" Key="I" Command="{Binding InputBindingsWindowERPCommand}" CommandParameter="CtrlI"/>
+        <!--
+        <KeyBinding Key="Esc" Command="{Binding InputBindingsWindowERPCommand}" CommandParameter="Esc"/>
+        -->
+    </App:WindowERP.InputBindings>
+
+
+    <Grid IsEnabled="{Binding GridWindowIsEnabled}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding WidthMenu, Mode=TwoWay}"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+
+
+
+        <!--HEADER-->
+        <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Margin="0,0,0,5" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+        </Grid>
+        <GridSplitter Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Height="5" HorizontalAlignment="Stretch" IsEnabled="False"/>
+
+
+        <!--INDEX-->
+        <Grid Grid.Column="0" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <controls:IndexControl x:Name="index"/>
+
+        </Grid>
+        <GridSplitter Grid.Column="1" Grid.Row="2" Width="5" HorizontalAlignment="Stretch" />
+
+
+
+        <!--BODY-->
+        <Grid Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--PESTAÑAS-->
+            <ListBox Grid.Row="0"  
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                     ItemsSource="{Binding BodyComponentList}" 
+                     SelectedValue="{Binding BodyComponentSelected}" IsSynchronizedWithCurrentItem="True">
+
+                <Interactivity:Interaction.Triggers>
+                    <Interactivity:EventTrigger EventName="SelectionChanged">
+                        <Interactivity:InvokeCommandAction Command="{Binding ListBoxSelectionChangedCommand}" />
+                    </Interactivity:EventTrigger>
+                </Interactivity:Interaction.Triggers>
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="30">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+
+                            </Grid.RowDefinitions>
+                            <WrapPanel VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Path=Name}"/>
+                                <Line x:Name="Separator" X1=".5" Y1="1" X2=".5" Y2="20" Margin="10,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+                            </WrapPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!--SEPARADOR-->
+            <GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" IsEnabled="False"/>
+
+            <!--COMPONENTE-->
+            <ItemsControl  Grid.Row="2" Grid.RowSpan="2" ItemsSource="{Binding BodyComponentList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,5"  Visibility="{Binding IsVisibilityItemsControl}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Name="control"  Content="{Binding ComponentView, IsAsync=True, FallbackValue=Loading...}"></ContentPresenter>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+
+
+            <!--
+            <UserControl Grid.Row="1" Grid.RowSpan="2" Name="control" Content="{Binding BodyComponentSelected.ComponentView, IsAsync=True, FallbackValue=Loading...}" ></UserControl>
+            -->
+
+            <mui:ModernProgressRing Grid.Row="1"  IsActive="{Binding PanelLoading}" Width="120" Height="120"/>
+
+
+        </Grid>
+        <GridSplitter Grid.Column="3" Grid.Row="2" Width="5" HorizontalAlignment="Stretch" IsEnabled="False" />
+
+
+
+        <!--SETTINGS-->
+        <Grid Grid.Column="4" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="SETTINGS"/>
+
+        </Grid>
+
+
+
+
+        <!--BUTTON-->
+        <GridSplitter Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="5" Height="5" HorizontalAlignment="Stretch" IsEnabled="False"/>
+        <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ContentControl Content="{Binding ButtonComponent}" VerticalAlignment="Center"></ContentControl>
+        </Grid>
+
+
+        <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="5" 
+               Source="{Binding ImagenLockSource}"
+               Visibility="{Binding ImagenLockVisibility}"
+               Opacity=".10"/>
+    </Grid>
+
+</App:WindowERP>
+    
+    
+    

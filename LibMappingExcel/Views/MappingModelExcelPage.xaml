@@ -1,0 +1,176 @@
+﻿<UserControl 
+    x:Class="LibMappingExcel.Views.MappingModelExcelPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    Height="800"
+    xmlns:Interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
+    xmlns:MVVM="clr-namespace:MVVM.Helpers;assembly=MVVM">
+    
+    
+    
+    <Interactivity:Interaction.Triggers>
+        <Interactivity:EventTrigger EventName="Loaded">
+            <Interactivity:InvokeCommandAction Command="{Binding LoadedCommand}" 
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
+        </Interactivity:EventTrigger>
+    </Interactivity:Interaction.Triggers>
+
+
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>  
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Column="0" Grid.Row="0" Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0" HorizontalAlignment="Stretch" Header="Plantilla " >
+                <ComboBox Margin="8" Width="240" HorizontalAlignment="Left"
+                ItemsSource="{Binding PlantillaExcelList}"
+                SelectedValue="{Binding PlantillaExcelSelected}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Descripcion}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <Interactivity:Interaction.Triggers>
+                        <Interactivity:EventTrigger EventName="SelectionChanged">
+                            <Interactivity:InvokeCommandAction 
+                                        Command="{Binding SelectionChangedPlantillaCommand}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                        </Interactivity:EventTrigger>
+                    </Interactivity:Interaction.Triggers>
+                </ComboBox>
+            </GroupBox>
+            <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                   Content="Descripcion Plantilla"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" MaxLength="40"
+                     MVVM:SelectAllFocusBehavior.Enable="True"
+                     Text="{Binding NombrePlantilla}"/>
+            <Label Grid.Column="0" Grid.Row="2"
+                       Content="Renglon Inicial"/>
+            <TextBox Grid.Column="1" Grid.Row="2"
+                     MVVM:SelectAllFocusBehavior.Enable="True"
+                     Text="{Binding MappingExcel.RenglonInicial}"
+                     ToolTip="Indica a partir de que renglon se comensara a migrar datos">
+                <Interactivity:Interaction.Triggers>
+                    <Interactivity:EventTrigger EventName="LostFocus">
+                        <Interactivity:InvokeCommandAction 
+                                        Command="{Binding LostFocusRenglonInicialCommand}"
+                                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBox}}}"/>
+                    </Interactivity:EventTrigger>
+                </Interactivity:Interaction.Triggers>
+            </TextBox>
+            <Label Grid.Column="2" Grid.Row="2"
+                   Content="Maximo Renglones"/>
+            <TextBox Grid.Column="3" Grid.Row="2"
+                     MVVM:SelectAllFocusBehavior.Enable="True"
+                     Text="{Binding MappingExcel.MaximoRenglones}"
+                     ToolTip="Maximo de renglones que se podran migrar &#x0a;     (0 == No limita)">
+            </TextBox>
+            <DataGrid Grid.Column="0" Grid.Row="3" Name="Boveda" Grid.ColumnSpan="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    IsReadOnly="True"  
+                    SelectionMode="Single"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding MappingExcel.PropiedadesList}"
+                    SelectedItem="{Binding PropiedadSelected}">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Propiedad" Width="auto" Binding="{Binding Alias}"/>
+                    <DataGridTextColumn Header="Columna Excel" Width="auto" Binding="{Binding ColumnaExcel}"/>
+                    <DataGridTextColumn Header="Comentario" Width="auto" Binding="{Binding Comentario}"/>
+                    <DataGridTemplateColumn Header="ValorEsperado / ValorOtorgado">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl Grid.Column="0" Grid.Row="0" MaxHeight="400"
+                                              ItemsSource="{Binding ValorPropiedadesList}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Column="0" Grid.Row="0" Background="Transparent"
+                                                       Content="{Binding Propiedad}"/>
+                                                <TextBox Grid.Column="1" Grid.Row="0" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"
+                                                         Text="{Binding Valor}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Formato Fecha" Width="auto" Binding="{Binding FormatDate.InputFormatDate}"/>
+                    <DataGridTextColumn Header="Default" Width="auto" Binding="{Binding ValorDefault.Valor}"/>
+                    <DataGridTemplateColumn  Header="Modificar" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Padding="20,0,20,0">
+                                    <Button ToolTip="Modifica" Width="20" Height="20" Background="Transparent"  BorderBrush="Transparent"
+                                                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.UpdateCommand}">
+                                        <Image Source="Imagenes/modify.png"/>
+                                    </Button>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <WrapPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
+            <Button
+                    ToolTip="Guardar Cambios Realizados" Width="96"
+                    Margin="32,8,32,8" Background="Transparent" BorderBrush="Black"
+                    IsEnabled="{Binding IsEnabledButton}"
+                    Visibility="{Binding IsVisibilityUpdate}"
+                    Command="{Binding GuardarCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Imagenes/accept.png"/>
+                    <TextBlock Text="  Guardar" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+
+            <Button 
+                    ToolTip="Elimina la plantilla seleccionada" Width="96"
+                    Margin="32,8,32,8"  Background="Transparent"  BorderBrush="Black"
+                    Visibility="{Binding IsVisibilityDelete}"
+                    Command="{Binding EliminarCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Imagenes/remove.png"/>
+                    <TextBlock Text="  Cancelar" VerticalAlignment="Center" />
+                </StackPanel>
+            </Button>
+        </WrapPanel>
+
+    </Grid>
+
+
+</UserControl>
