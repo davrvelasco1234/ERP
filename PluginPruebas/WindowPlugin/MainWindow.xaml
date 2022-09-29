@@ -1,0 +1,46 @@
+﻿<Window 
+    x:Class="PluginPruebas.WindowPlugin.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
+    mc:Ignorable="d"    
+    
+    xmlns:Plugin="clr-namespace:PluginPruebas.WindowPlugin"     
+    xmlns:WinLoc="clr-namespace:PluginPruebas.WindowLocator"    
+    WindowStartupLocation="CenterScreen"        
+    Title="PluginPruebas"
+    MinWidth="600" MinHeight="300"
+    Width="900" Height="500">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="140"/>
+            </Grid.ColumnDefinitions>
+            <ToolBar Grid.Column="0" Width="9999"/>
+            <Image Source="../Images/finamex_azul.jpg" Grid.Column="2"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="5,2,5,5">
+            <Plugin:PluginControl/>
+        </Grid>
+
+        <!--
+        <Grid Grid.Row="2" Margin="5,-3,5,2" DataContext="{Binding Source={x:Static WinLoc:ViewModelLocator.BottomViewModel}}">
+            <ContentPresenter Content="{Binding}"></ContentPresenter>
+        </Grid>
+        -->
+        
+    </Grid>
+    
+</Window>
+    
+    

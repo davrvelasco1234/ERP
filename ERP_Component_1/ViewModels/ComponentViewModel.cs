@@ -54,7 +54,7 @@ namespace ERP_Component_1.ViewModels
         
         public void DownloadExcel() 
         {
-            ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "Autos", ColNum = new int[] { 6 }, ColDate = new int[] { 7 } }); 
+            ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "Autos" }); 
         }
 
         public void RecibeMessage(string mesage)
@@ -81,6 +81,8 @@ namespace ERP_Component_1.ViewModels
 
         public void Add()
         {
+
+
             var response = OpenDialogMVVM.Show(new AutoMtoViewModel(), "Inserta Auto");
             if (response.IsSuccess == false) return;
 

@@ -7,18 +7,20 @@
     xmlns:local="clr-namespace:ERP_Component_1.Views"
     xmlns:VM="clr-namespace:ERP_Component_1.ViewModels"
     mc:Ignorable="d" 
-
+    
     xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
     xmlns:Img="clr-namespace:ERP_Images;assembly=ERP_Images"
     xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mui="http://firstfloorsoftware.com/ModernUI"
     xmlns:MVVM="clr-namespace:ERP_MVVM.Helpers;assembly=ERP_MVVM">
     
+    <!--   
     <UserControl.Resources>
         <ResourceDictionary>
             <Img:Images x:Key="Images"/>
         </ResourceDictionary>
     </UserControl.Resources>
+    -->
     
     <Interactivity:Interaction.Triggers>
         <Interactivity:EventTrigger EventName="Loaded">
@@ -50,7 +52,7 @@
                         HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                         Command="{Binding AddCommand}">
                     <StackPanel>
-                        <Image Source="{Binding Images24.add, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                        <Image Source="{Binding add, Source={x:Static Img:Images.Images24}}"/>
                         <TextBlock Text="Nuevo Registro"/>
                     </StackPanel>
                 </Button>
@@ -60,7 +62,7 @@
                         HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                         Command="{Binding DownloadExcelCommand}">
                     <StackPanel>
-                        <Image Source="{Binding Images24.DownloadExcel, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                        <Image Source="{Binding DownloadExcel, Source={x:Static Img:Images.Images24}}"/>
                         <TextBlock Text="Descargar"/>
                     </StackPanel>
                 </Button>
@@ -106,7 +108,7 @@
                             <Button ToolTip="Modificar Registro" 
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                 Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.UpdateCommand}">
-                                <Image Source="{Binding Images16.modify, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                                <Image Source="{Binding modify, Source={x:Static Img:Images.Images16}}"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -118,7 +120,7 @@
                             <Button ToolTip="Eliminar Registro" 
                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                 Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.DeleteCommand}">
-                                <Image Source="{Binding Images16.remove, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                                <Image Source="{Binding remove, Source={x:Static Img:Images.Images16}}"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

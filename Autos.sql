@@ -79,9 +79,9 @@ INSERT INTO Modelos values(@Tesla,'Model S')				DECLARE @ModelS int = (SELECT SC
 INSERT INTO Autos VALUES (@Toyota, @Sedan, @Corolla, '2022', 'Gris', 'Auto nuevo', 4200.00, GETDATE())
 INSERT INTO Autos VALUES (@Toyota, @Sedan, @Yaris, '2022', 'Rojo', 'Auto nuevo', 320000.00, GETDATE())
 INSERT INTO Autos VALUES (@Toyota, @Syubi, @Rav4, '2018', 'Gris', 'Camioneta Seminueva', 390000.00, GETDATE())
-INSERT INTO Autos VALUES (@Nissan, @Sedan, @Versa, '2020', 'Azul', 'Auto Semi-Nuevo sin daños', 230000.00, GETDATE())
-INSERT INTO Autos VALUES (@Bmw, @Sedan, @Series3, '2021', 'Blanco', 'Auto Semi-Nuevo con garantia', 540000.00, GETDATE())
-INSERT INTO Autos VALUES (@Cevrolet, @Sedan, @Cruze, '2016', 'Gris', 'Auto Semi-Nuevo con garantia', 200000.00, GETDATE())
+INSERT INTO Autos VALUES (@Nissan, @Sedan, @Versa, '2020', 'Azul', 'Auto Semi-Nuevo sin daños', 230000.00, GETDATE())		
+INSERT INTO Autos VALUES (@Bmw, @Sedan, @Series3, '2021', 'Blanco', 'Auto Semi-Nuevo con garantia', 540000.00, GETDATE())	
+INSERT INTO Autos VALUES (@Cevrolet, @Sedan, @Cruze, '2016', 'Gris', 'Auto Semi-Nuevo con garantia', 200000.00, GETDATE())	
 GO
 
 

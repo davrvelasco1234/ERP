@@ -1,10 +1,5 @@
-﻿using ERP_Common.Helpers;
-using ERP_ExcelGeneric.Models;
+﻿using ERP_ExcelGeneric.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ERP_Component_1.Identity
 {
@@ -23,7 +18,7 @@ namespace ERP_Component_1.Identity
         public string IdCarroceria { get; set; }
         [AttDownloadExcel(AliasProperty = "Carroceria")]
         public string DescCarroceria { get; set; }
-        [AttDownloadExcel(AliasProperty = "Año")]
+        [AttDownloadExcel(AliasProperty = "Año", ApplyFormating = false)]
         public int Anio { get; set; }
         public string Color { get; set; }
         public decimal Precio { get; set; }

@@ -10,21 +10,21 @@ namespace ERP_ExcelGeneric.Controller
 {
     internal class Download
     {
-        public static void Exec<TData>(IEnumerable<TData> datoslist, ConfigDownloadExcel config)
+        internal static bool Exec<TData>(IEnumerable<TData> datoslist, ConfigDownloadExcel config)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = config.NameBook + "_" + String.Format("{0:dd-MMM-yyyy}", ERP_Entorno.Entorno.GetProperty.FechaHoy());
-            saveFileDialog.DefaultExt = ".xlsx";
+            saveFileDialog.FileName = config.NameBook;
+            saveFileDialog.DefaultExt = "." + config.ExtencionExcel.ToString().ToLower();
             saveFileDialog.Title = "Guardar Archivo";
-            if (saveFileDialog.ShowDialog() == false) { return; }
+            if (saveFileDialog.ShowDialog() == false) { return false; }
 
             string rutaGuardar = saveFileDialog.FileName;
 
-            Exec<TData>(rutaGuardar, datoslist, config);
+            return Exec<TData>(rutaGuardar, datoslist, config);
         }
 
 
-        public static void Exec<TData>(string path, IEnumerable<TData> datoslist, ConfigDownloadExcel config)
+        internal static bool Exec<TData>(string path, IEnumerable<TData> datoslist, ConfigDownloadExcel config)
         {
             SpreadsheetInfo.SetLicense("E0YU-JKB1-WFGE-HHO3");
             ExcelFile workbook = new ExcelFile();
@@ -33,69 +33,88 @@ namespace ERP_ExcelGeneric.Controller
 
             var worksheet = workbook.Worksheets.Add(config.NameSheet);
 
-
             var respData = Helpers.Helper.ConvertToDataTable<TData>(datoslist);
-
 
             worksheet.InsertDataTable(respData,
             new InsertDataTableOptions()
             {
-                ColumnHeaders = true,
-                StartRow = 0
+                ColumnHeaders = config.ColumnHeaders,
+                StartRow = config.StartRow
             });
 
 
-            /********************FORMATO DE CONTABILIDAD EN CELDAS*****************/
-            for (int i = 0; i < config.ColNum.Count(); i++)
+
+            /***********************************FORMATO DE CELDAS********************************/
+            for (int colum = 0; colum < respData.Columns.Count; colum++)
             {
-                int colum = config.ColNum[i];
-                for (int ren = 0; ren < respData.Columns.Count; ren++)
+                var type = ERP_Common.Helpers.Converts.GetTypeCode(respData.Columns[colum].DataType.Name);
+                string name = respData.Columns[colum].ColumnName;
+                var AttributeProperty = Helpers.Helper.GetAttributeProperty<TData>(name);
+                var applyFormating = AttributeProperty is null ? true : AttributeProperty.ApplyFormating;
+
+                if ((type == TypeCode.Decimal || type == TypeCode.Double) && !string.IsNullOrEmpty(config.FormatDec) && applyFormating)
                 {
-                    worksheet.Cells[ren, colum].Style.NumberFormat = config.FormatNum;
+                    for (int ren = 0; ren <= respData.Rows.Count; ren++)
+                        worksheet.Cells[ren, colum].Style.NumberFormat = config.FormatDec;
+                }
+                else if ((type == TypeCode.Int16 || type == TypeCode.Int32 || type == TypeCode.Int64) && !string.IsNullOrEmpty(config.FormatInt) && applyFormating)
+                {
+                    for (int ren = 0; ren <= respData.Rows.Count; ren++)
+                        worksheet.Cells[ren, colum].Style.NumberFormat = config.FormatInt;
+                }
+                else if (type == TypeCode.DateTime && !string.IsNullOrEmpty(config.FormatDate) && applyFormating)
+                {
+                    for (int ren = 0; ren <= respData.Rows.Count; ren++)
+                        worksheet.Cells[ren, colum].Style.NumberFormat = config.FormatDate;
+                }
+                if ((AttributeProperty is null ? false : AttributeProperty.IsColumnEmpty))
+                {
+                    for (int ren = 0; ren <= respData.Rows.Count; ren++)
+                        worksheet.Cells[ren, colum].Value = "";
                 }
             }
             /************************************************************************************/
 
-
-            /********************FORMATO DE FECHA EN CELDAS*****************/
-            for (int i = 0; i < config.ColDate.Count(); i++)
+            
+            if (config.ColumnHeaders)
             {
-                int colum = config.ColDate[i];
-                for (int ren = 0; ren < respData.Columns.Count; ren++)
+                /**************FORMATO DE ENCABEZADO*****************/
+                CellStyle style = new CellStyle();
+                style.HorizontalAlignment = HorizontalAlignmentStyle.Center;
+                style.Font.Weight = ExcelFont.BoldWeight;
+                style.Font.Size = 12 * 20;
+                for (int j = 0; j < respData.Columns.Count; j++)
                 {
-                    worksheet.Cells[ren, colum].Style.NumberFormat = config.FormatDate;
+                    for (int i = 0; i <= config.StartRow; i++)
+                    {
+                        worksheet.Cells[i, j].Style = style;
+
+                        //if (!(worksheet.Cells[i, j].Value is null) && worksheet.Cells[i, j].Value.ToString().Contains(ConfigDownloadExcel.NameColumnEmpty))
+                        //    worksheet.Cells[i, j].Value = "";
+                    }
+                    worksheet.Columns[j].AutoFit(1, worksheet.Rows[0], worksheet.Rows[100]);
                 }
+                /****************************************************/
             }
-            /************************************************************************************/
 
-
-            /**************FORMATO DE ENCABEZADO*****************/
-            CellStyle style = new CellStyle();
-            style.HorizontalAlignment = HorizontalAlignmentStyle.Center;
-            style.Font.Weight = ExcelFont.BoldWeight;
-            style.Font.Size = 12 * 20;
-            for (int j = 0; j < respData.Columns.Count; j++)
+            if (config.PanesState)
             {
-                worksheet.Cells[0, j].Style = style;
-                worksheet.Columns[j].AutoFit(1, worksheet.Rows[0], worksheet.Rows[100]);
+                /****************FIJAR EL ENCABEZADO*******************/
+                worksheet.Panes = new WorksheetPanes(PanesState.Frozen, 0, config.PanesStateRow, string.Concat("A", config.PanesStateRow + 1), PanePosition.BottomLeft);
+                /******************************************************/
             }
-            /****************************************************/
-
-
-            /****************FIJAR EL ENCABEZADO*******************/
-            worksheet.Panes = new WorksheetPanes(PanesState.Frozen, 0, 1, "A2", PanePosition.BottomLeft);
-            /******************************************************/
-
             try
             {
+                
                 Helpers.Helper.SaveBook(workbook, path);
-                return;
+                return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error*", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return false;
             }
         }
     }
+    
 }

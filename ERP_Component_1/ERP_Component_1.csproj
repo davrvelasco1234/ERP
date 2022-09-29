@@ -129,6 +129,10 @@
       <Project>{7281e3d7-82f2-45df-8771-0803a0773026}</Project>
       <Name>ERP_Images</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ERP_Log4Net\ERP_Log4Net.csproj">
+      <Project>{2a096ca9-14dd-4f91-be23-6619a6d5206a}</Project>
+      <Name>ERP_Log4Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ERP_MVVM\ERP_MVVM.csproj">
       <Project>{04c82d0c-6ff4-434e-880d-97fa1cd539fa}</Project>
       <Name>ERP_MVVM</Name>

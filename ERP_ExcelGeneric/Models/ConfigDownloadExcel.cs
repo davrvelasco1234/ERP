@@ -12,21 +12,53 @@ namespace ERP_ExcelGeneric.Models
         /// </summary>
         public string NameSheet { get; set; } = "Sheet1";
         /// <summary>
-        /// Columnas numericas en excel. Ejemplo new int[] { 3, 5, 6 } quiere decir que las columnas d,f,g en el excel son numericas. Si se agrega este parametro se les dara formato de numero a estas columnas 
+        /// Formato numerico que se asignara a las propiedades int
         /// </summary>
-        //public string ColNum { get; set; } = "";
-        public int[] ColNum { get; set; } = new int[0];
+        public string FormatInt { get; set; } = "_-* #,##0_-;-* #,##0_-;_-* \" - \"??_-;_-@_-"; 
+        /// <summary>   
+        /// Formato numerico que se asignara a las propiedades decimal  
+        /// </summary>  
+        public string FormatDec { get; set; } = "_-* #,##0.00_-;-* #,##0.00_-;_-* \" - \"??_-;_-@_-";   
+        /// <summary>   
+        /// Formato numerico que se asignara a las propiedades datetime 
+        /// </summary>  
+        public string FormatDate { get; set; } = "dd MMM yyyy"; 
+        /// <summary>   
+        /// Indica si coloca o no titulos a las coumnas 
+        /// </summary>  
+        public bool ColumnHeaders { get; set; } = true; 
+        /// <summary>   
+        /// Indica a partir de que renglon comiensa escribir    
+        /// </summary>  
+        private int startRow = 0;   
+        public int StartRow 
+        {
+            get { return startRow; }
+            set
+            {
+                startRow = value;
+                PanesStateRow = startRow + 1;
+            }
+        }
         /// <summary>
-        /// Formato numerico que se asignara al archivo para las columnas indicadas en ColNum
+        /// indica si fijara los titulos 
         /// </summary>
-        public string FormatNum { get; set; } = ERP_Common.Helpers.Constantes.FormatAccountingExcel;
+        public bool PanesState { get; set; } = true;
         /// <summary>
-        /// Columnas de fecha en excel. Ejemplo new int[] { 3, 5, 6 } quiere decir que las columnas d,f,g en el excel son fechas. Si se agrega este parametro se les dara formato de fecha a estas columnas 
+        /// indica a partir de que renglon fijara los titulos
         /// </summary>
-        public int[] ColDate { get; set; } = new int[0];
+        public int PanesStateRow { get; set; }
         /// <summary>
-        /// Formato de fecha que se asignara al archivo para las columnas indicadas en ColDate
+        /// Indica la extencion con la que se descargara el archivo
         /// </summary>
-        public string FormatDate { get; set; } = ERP_Common.Helpers.Constantes.FormatDate1;
+        public ExtencionExcel ExtencionExcel { get; set; } = ExtencionExcel.XLSX;
+    }
+
+
+
+    public enum ExtencionExcel
+    {
+        CSV,
+        XLSX
     }
 }

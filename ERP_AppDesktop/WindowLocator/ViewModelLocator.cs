@@ -28,8 +28,8 @@ namespace ERP_AppDesktop.WindowLocator
             var services = new ServiceCollection();
 
             //ViewModels
-            services.AddSingleton<MainViewModel>();
-            services.AddSingleton<ControlsViewModel>();
+            services.AddSingleton<MainViewModel>();     
+            services.AddSingleton<ControlsViewModel>(); 
             
 
 
@@ -43,7 +43,5 @@ namespace ERP_AppDesktop.WindowLocator
 
             return services.BuildServiceProvider();
         }
-
-        
     }
 }

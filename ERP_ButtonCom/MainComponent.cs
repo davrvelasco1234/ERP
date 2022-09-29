@@ -1,7 +1,5 @@
 ﻿
-using System;
 using System.ComponentModel.Composition;
-using System.Windows.Controls;
 using ERP_Core.Components;
 using ERP_MVVM.Helpers;
 

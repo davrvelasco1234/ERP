@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using ERP_Core.Components;
 using ERP_MVVM.Helpers;
 

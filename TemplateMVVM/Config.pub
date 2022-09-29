@@ -1,0 +1,16 @@
+
+[Config]
+global gvServer      = 'THORNEW'
+global gvUsuario     = 'uspruebas'
+global gvPassword    = 'pruebas'
+global gvBaseDatos   = 'finaAyer'
+global gvBaseProdu   = 'finaAyer'
+global gvBaseGasto   = 'gasto'
+global gvR1W         = 'S4_valfi.R1W'
+global gvRCL         = 'S2_VALFI.RCL'
+global gvR1WinExe    = 'J\:\\R1WIN.V42\\R1WIN'
+global gvDDE         = 'DDEMDOL'
+global gvPathDatos   = 'j\:\\casade~1\\datos\\'
+global gvPathTemp    = 'c\:\\temp\\'
+global gvEmpresa     = 'VALORES FINAMEX, S.A.'
+

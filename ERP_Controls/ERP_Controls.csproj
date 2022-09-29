@@ -73,5 +73,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ERP_Common\ERP_Common.csproj">
+      <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
+      <Name>ERP_Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

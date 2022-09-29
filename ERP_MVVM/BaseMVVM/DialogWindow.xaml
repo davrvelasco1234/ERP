@@ -11,6 +11,8 @@
     WindowStartupLocation="CenterScreen"
     Style="{StaticResource MyModernWindowDialog}"
     Closing="Window_Closing">
+
+    
     
     <!--
     Style="{StaticResource MyModernWindowEmpty}"

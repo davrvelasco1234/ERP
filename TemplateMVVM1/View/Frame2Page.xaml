@@ -1,0 +1,75 @@
+﻿<Page 
+    x:Class="TemplateMVVM1.View.Frame2Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:TemplateMVVM1.View"
+    mc:Ignorable="d" 
+      
+    xmlns:MVVM="clr-namespace:MVVM.Helpers;assembly=MVVM"
+    xmlns:Interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
+    xmlns:Load="clr-namespace:MVVM.Loading.Controls;assembly=MVVM"
+    DataContext="{Binding Frame2ViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}">
+
+
+
+
+    <Interactivity:Interaction.Triggers>
+        <Interactivity:EventTrigger EventName="Loaded">
+            <Interactivity:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </Interactivity:EventTrigger>
+    </Interactivity:Interaction.Triggers>
+
+    <Grid IsEnabled="{Binding IsEnabledWindow}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ToolBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="8" Margin="0">
+
+
+        </ToolBar>
+
+        <ScrollViewer  Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="2">
+            <Grid KeyboardNavigation.TabNavigation="Cycle">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+
+
+
+
+
+                <Button 
+                        Background="Transparent"
+                        ToolTip="Add"
+                        VerticalAlignment="Center" 
+                        Command="{Binding AddCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}}">
+                    <StackPanel>
+                        <Image Source="../Images/add.png"/>
+                        <TextBlock Text="Add"/>
+                    </StackPanel>
+                </Button>
+
+
+            </Grid>
+        </ScrollViewer>
+
+
+    </Grid>
+
+
+
+</Page>

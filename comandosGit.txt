@@ -1,0 +1,104 @@
+
+
+
+******************************************************
+*************CONFIGURAR IDENTIDAD*********************
+******************************************************
+git config --global user.name "mi nombre"
+git config --global user.email MiCorreo@example.com
+******************************************************
+
+ENLISTAR ARCHIVOS 
+ls
+ENLISTAR ARCHIVOS Y ARCHIVOS OCULTOS 
+ls -la
+
+
+INICIALIZAR REPOSITORIO
+git init 
+
+
+AGREGAR ARCHIVOS 
+git add nombreDeArchivo.extencion
+git add . 
+
+
+COMMIT
+git commit -m "comentario"
+
+
+LOGS DE COMMIT
+git log --oneline
+
+
+PASAR DE UN COMMIT A OTRO
+git checkout e9e9986
+
+
+PASAR AL COMMIT MAS NUEVO 
+git checkout master
+
+
+STATUS
+UNTRACKED   --> sin segimiento
+STAGING     --> con segimiento
+
+
+REGRESAR A COMMIT ELIMINADO LOS NUEVOS
+git reset idComnit --hard
+
+
+VER RAMAS
+git branchtag
+
+
+AGREGAR RAMA 
+grit branch nombreRama
+
+
+MOVERSE DE RAMA
+git checkout nombreRamaDestino
+
+
+LIGAR PROYECTO CON REPOSITORIO REMOTO
+git remote add origin https://github.com/davrvelasco1234/ERP.git
+
+
+SUBIR PROYECTO A REPOSITORIO
+git push -u origin master
+
+
+CLONAR PROYECTO
+git clone ruta
+
+
+DESCARGAR LA ULTIMA VERSION DE UNA RMA
+git pull origin nombrerama
+F1namex07
+
+
+CONSULTAR TAG
+git tag
+
+
+AGREGAR UN TAG (SE REQUIERE AL FINAL UN ID DE COMMIT PARA LIGARLOS)
+git tag -a v1 -m "primer version estable" 94cbf3d
+
+
+AGREGAR TAG AL REPOSITORIO
+git push origin --tags
+
+
+CONSULTAR RELACION COMMIT TAG
+git show-ref --tag
+
+
+ELIMINAR TAG DE GIT  (EL ULTIMO DATO ES EL NOMBRE DEL TAG)
+git tag -d v1
+
+
+ELIMINAR TAG DEL REPOSITORIO (EL ULTIMO DATO ES EL NOMBRE DEL TAG)
+git push origin :refs/tags/v1
+
+
+

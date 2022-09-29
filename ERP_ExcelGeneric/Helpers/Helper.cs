@@ -9,6 +9,7 @@ using GemBox.Spreadsheet;
 
 namespace ERP_ExcelGeneric.Helpers
 {
+
     internal class Helper
     {
         internal static void SaveBook(ExcelFile workbook, string path)
@@ -60,15 +61,11 @@ namespace ERP_ExcelGeneric.Helpers
                 foreach (PropertyDescriptor prop in properties)
                 {
                     MemberInfo property = typeof(T).GetProperty(prop.Name);
-                    //var resp = prop.Attributes.OfType<AttDownloadExcelAttribute>().Any();
                     var att = property.GetCustomAttribute(typeof(AttDownloadExcelAttribute)) as AttDownloadExcelAttribute;
                     if (att is null)
                         row[prop.Name] = prop.GetValue(item);
                     else if (att.IsVisible)
-                    {
-                        var name = (att.AliasProperty is null) ? prop.Name : att.AliasProperty;
-                        row[name] = prop.GetValue(item);
-                    }
+                        row[(string.IsNullOrEmpty(att.AliasProperty) ? prop.Name : att.AliasProperty)] = prop.GetValue(item);
                 }
                 table.Rows.Add(row);
             }
@@ -82,6 +79,7 @@ namespace ERP_ExcelGeneric.Helpers
             Type entityType = typeof(T);
             DataTable table = new DataTable(entityType.Name);
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+            Random r = new Random();
             foreach (PropertyDescriptor prop in properties)
             {
                 MemberInfo property = typeof(T).GetProperty(prop.Name);
@@ -89,14 +87,29 @@ namespace ERP_ExcelGeneric.Helpers
                 if (att is null)
                     table.Columns.Add(prop.Name, prop.PropertyType);
                 else if (att.IsVisible)
-                {
-                    var name = (att.AliasProperty is null) ? prop.Name : att.AliasProperty;
-                    table.Columns.Add(name, prop.PropertyType);
-                }
-
+                    table.Columns.Add((string.IsNullOrEmpty(att.AliasProperty) ? prop.Name : att.AliasProperty), prop.PropertyType);
             }
             return table;
         }
+
+
+        internal static AttDownloadExcelAttribute GetAttributeProperty<T>(string property)
+        {
+            Type entityType = typeof(T);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+            foreach (PropertyDescriptor prop in properties)
+            {
+                MemberInfo propertyInfo = typeof(T).GetProperty(prop.Name);
+                string alias = "";
+                var att = propertyInfo.GetCustomAttribute(typeof(AttDownloadExcelAttribute)) as AttDownloadExcelAttribute;
+                if (!(att is null))
+                    alias = att.AliasProperty;
+                if (prop.Name == property || alias == property)
+                    return att;
+            }
+            return null;
+        }
+
 
     }
 }

@@ -6,6 +6,7 @@ using System.Windows;
 namespace ERP_Core
 {
     public class WindowDialogERP : ModernWindow
+    //public class WindowDialogERP : Window
     {
         private bool IsEnabledWindow { get; set; } = true;
         

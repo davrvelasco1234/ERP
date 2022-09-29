@@ -2,7 +2,7 @@
 
 namespace ERP_Images
 {
-    public class Images
+    public static class Images
     {
         public static GetIcon Icon16 { get; }
         public static GetIcon Icon24 { get; }

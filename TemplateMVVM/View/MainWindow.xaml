@@ -1,0 +1,135 @@
+﻿<RibbonWindow
+    x:Class="TemplateMVVM.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="MainWindow"
+    x:Name="RibbonWindow"
+    xmlns:WinLoc="clr-namespace:TemplateMVVM.WindowLocator"
+    xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
+    xmlns:Img="clr-namespace:ERP_Images;assembly=ERP_Images"
+    
+    xmlns:Interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
+    xmlns:Interactions="http://schemas.microsoft.com/expression/2010/interactions"
+    Width="1000" MinWidth="500"    
+    Height="600" MinHeight="300"
+        
+    WindowStartupLocation="CenterScreen"
+    DataContext="{Binding Source={x:Static WinLoc:ViewModelLocator.MainViewModel}}">
+    
+    
+    
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        
+        
+        
+        
+        
+        <!--*************************************************MENU RIBBON*************************************************-->
+        <!--*************************************************MENU RIBBON*************************************************-->
+        <!--*************************************************MENU RIBBON*************************************************-->
+        <Ribbon Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"/>
+            </Ribbon.ApplicationMenu>
+
+            <RibbonTab Header="Inicio">
+                <RibbonGroup>
+                    <RibbonButton 
+                            LargeImageSource="{Binding getOut, Source={x:Static Img:Images.Images32}}"
+                            Label="Salir">
+                        <Interactivity:Interaction.Triggers>
+                            <Interactivity:EventTrigger EventName="Click">
+                                <Interactions:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" MethodName="Close"/>
+                            </Interactivity:EventTrigger>
+                        </Interactivity:Interaction.Triggers>
+                    </RibbonButton>
+                </RibbonGroup>
+
+
+                
+                <RibbonGroup Header="Autos">
+                    <!--FRAME AUTOS-->
+                    <WrapPanel DataContext="{Binding Source={x:Static WinLoc:ViewModelLocator.FrameViewModel}}">
+                        <RibbonButton Margin="2,0"
+                            ToolTip="Agregar Nuevo Registro" 
+                            LargeImageSource="{Binding add, Source={x:Static Img:Images.Images24}}"
+                            Label="Nuevo"
+                            Command="{Binding AddCommand}">
+                        </RibbonButton>
+                        <RibbonButton Margin="2,0"
+                            ToolTip="Descargar datos a Excel" 
+                            LargeImageSource="{Binding DownloadExcel, Source={x:Static Img:Images.Images24}}"
+                            Label="Descargar"
+                            Command="{Binding DownloadExcelCommand}">
+                        </RibbonButton>
+                    </WrapPanel>
+                </RibbonGroup>
+                
+
+
+            </RibbonTab>
+        </Ribbon>
+        <Image Margin="0,50,5,0" Height="70" Grid.Row="0" Grid.Column="1" Source="{Binding FinamexPositivo, Source={x:Static Img:Images.Logo400}}" HorizontalAlignment="Center"/>
+        
+        <!--**********************************************************************************************************************************-->
+
+        
+        
+        
+        
+
+        <!--**********************************************************FRAMES****************************************************************-->
+        <!--**********************************************************FRAMES****************************************************************-->
+        <!--**********************************************************FRAMES****************************************************************-->
+        <Grid Grid.Row="1" Margin="5" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <TabControl>
+                <!--AGREGAR FRAME AQUI-->
+                <TabItem Name="Autos" Header="Autos" Selector.IsSelected="True">
+                    <Frame Source="FrameControl.xaml"/>
+                </TabItem>
+
+                <TabItem Name="Frame" Header="Frame">
+                    
+                </TabItem>
+
+            </TabControl>
+        </Grid>
+        
+        <!--**********************************************************************************************************************************-->
+
+
+
+
+
+
+        
+        <!--**********************************************************BottomViewModel****************************************************************-->
+        <!--**********************************************************BottomViewModel****************************************************************-->
+        <!--**********************************************************BottomViewModel****************************************************************-->        
+        <Grid Grid.Row="2" Margin="5,-3,5,2" Grid.ColumnSpan="2" DataContext="{Binding Source={x:Static WinLoc:ViewModelLocator.BottomViewModel}}">
+            <ContentPresenter Content="{Binding}"></ContentPresenter>
+        </Grid>
+
+        <!--**********************************************************************************************************************************-->
+
+
+    </Grid>
+</RibbonWindow>

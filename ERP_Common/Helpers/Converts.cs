@@ -34,8 +34,44 @@ namespace ERP_Common.Helpers
             return stringBuilder.ToString().Replace("'", "").Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "");
         }
 
+        public static TypeCode GetTypeCode(string type)
+        {
+            if (type == "Boolean")
+                return TypeCode.Boolean;
+            else if (type == "Byte")
+                return TypeCode.Byte;
+            else if (type == "Char")
+                return TypeCode.Char;
+            else if (type == "DateTime")
+                return TypeCode.DateTime;
+            else if (type == "Decimal")
+                return TypeCode.Decimal;
+            else if (type == "Double")
+                return TypeCode.Double;
+            else if (type == "Int16")
+                return TypeCode.Int16;
+            else if (type == "Int32")
+                return TypeCode.Int32;
+            else if (type == "Int64")
+                return TypeCode.Int64;
+            else if (type == "Object")
+                return TypeCode.Object;
+            else if (type == "SByte")
+                return TypeCode.SByte;
+            else if (type == "Single")
+                return TypeCode.Single;
+            else if (type == "String")
+                return TypeCode.String;
+            else if (type == "UInt16")
+                return TypeCode.UInt16;
+            else if (type == "UInt32")
+                return TypeCode.UInt32;
+            else if (type == "UInt64")
+                return TypeCode.UInt64;
 
-        
+            return TypeCode.Empty;
+        }
+
 
 
 

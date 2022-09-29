@@ -6,5 +6,8 @@ namespace ERP_ExcelGeneric.Models
     {
         public string AliasProperty;
         public bool IsVisible = true;
+        public bool ApplyFormating = true;
+        public bool IsColumnEmpty = false;
+
     }
 }

@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using ERP_Common;
 using ERP_Component_1.Identity;
 using ERP_MVVM.BaseMVVM;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ERP_Component_1.Models
 {
+
+
+    
     public class AutoModel : BaseViewModel<Auto>
     {
         private ObservableCollection<ErpDictionary> marcaList;

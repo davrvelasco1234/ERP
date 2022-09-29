@@ -1,7 +1,7 @@
 ﻿
 using ERP_Entorno.Controllers;
 using ERP_Entorno.Interfaces;
-
+using System.Data.SqlClient;
 
 namespace ERP_Entorno
 {
@@ -35,5 +35,14 @@ namespace ERP_Entorno
             ExecQuery = new ExecQuery(SqlConnection);
             GetProperty = new ExecProperty(SqlConnection);
         }
+
+
+        public EntornoDynamic(SqlConnectionStringBuilder sqlConnection)
+        {
+            SqlConnection = new SqlConnectionString(sqlConnection);
+            ExecQuery = new ExecQuery(SqlConnection);
+            GetProperty = new ExecProperty(SqlConnection);
+        }
+
     }
 }

@@ -5,15 +5,15 @@ using System.Windows;
 using System.Windows.Threading;
 using ERP_Core;
 using ERP_Common.Helpers;
+using Unity;
 
 namespace ERP_AppDesktop
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : AppERP
     {
-        private readonly object _lock = new object();
+
+        private IUnityContainer _container;
+        //private readonly object _lock = new object();
 
         public App()
         {

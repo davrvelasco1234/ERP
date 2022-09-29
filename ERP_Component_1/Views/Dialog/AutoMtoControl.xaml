@@ -15,13 +15,13 @@
     xmlns:MVVM="clr-namespace:ERP_MVVM.Helpers;assembly=ERP_MVVM"
     Width="700" Height="500">
 
-
+<!--
     <UserControl.Resources>
         <ResourceDictionary>
             <Img:Images x:Key="Images"/>
         </ResourceDictionary>
     </UserControl.Resources>
-
+-->
     <Interactivity:Interaction.Triggers>
         <Interactivity:EventTrigger EventName="Loaded">
             <Interactivity:InvokeCommandAction Command="{Binding LoadedCommand}" 
@@ -148,7 +148,7 @@
                     Command="{Binding AcceptCerrarCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"    
                     HorizontalAlignment="Center" Margin="10" Background="Transparent"  BorderBrush="Black">
-                <Image Source="{Binding Images16.accept, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                <Image Source="{Binding accept, Source={x:Static Img:Images.Images24}}"/>
             </Button>
             <Button
                     Width="75" ToolTip="Guardar sin cerrar la pantalla"
@@ -156,21 +156,21 @@
                     Command="{Binding AcceptCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"    
                     HorizontalAlignment="Center" Margin="10" Background="Transparent"  BorderBrush="Black">
-                <Image Source="{Binding Images16.save, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                <Image Source="{Binding save, Source={x:Static Img:Images.Images24}}"/>
             </Button>
             <Button
                     Width="75" ToolTip="Cerrara la pantalla sin realizar cambios"
                     Command="{Binding CancelCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
                     HorizontalAlignment="Center" Margin="10" Background="Transparent"  BorderBrush="Black">
-                <Image Source="{Binding Images16.cancel, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                <Image Source="{Binding cancel, Source={x:Static Img:Images.Images24}}"/>
             </Button>
             <Button
                     Width="75" ToolTip="Solicita Infomacion de los autos Guardados"
                     Command="{Binding GetInfoCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"    
                     HorizontalAlignment="Center" Margin="10" Background="Transparent"  BorderBrush="Black">
-                <Image Source="{Binding Images16.Ajustes, Mode=OneTime, Source={StaticResource ResourceKey=Images}}"/>
+                <Image Source="{Binding Ajustes, Source={x:Static Img:Images.Images24}}"/>
             </Button>
         </WrapPanel>
 
