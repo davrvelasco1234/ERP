@@ -15,5 +15,8 @@ namespace ERP_Common.Helpers
             return Path.GetDirectoryName(path);
         }
 
+        public static string GetAssemblyName()
+            => Assembly.GetEntryAssembly().GetName().Name;
+        
     }
 }

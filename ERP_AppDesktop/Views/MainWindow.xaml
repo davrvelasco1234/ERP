@@ -1,4 +1,4 @@
-﻿<App:WindowERP 
+﻿<App:WindowErp 
     xmlns:App="clr-namespace:ERP_Core;assembly=ERP_Core"
     x:Class="ERP_AppDesktop.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -19,7 +19,7 @@
     WindowState="Maximized"
     xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-    Style="{StaticResource MyModernWindowEmpty}"
+    Style="{StaticResource ModernWindowERP}"
     DataContext="{Binding MainViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"
     Loaded="WindowERP_Loaded"
     KeyUp="WindowERP_KeyUp"
@@ -38,7 +38,7 @@
     </Interactivity:Interaction.Triggers>
 
 
-    <App:WindowERP.InputBindings>
+    <App:WindowErp.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="M" Command="{Binding IcomMenuCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="R" Command="{Binding IcomReloadCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="G" Command="{Binding IcomGetInGetOutCommand}"/>
@@ -48,7 +48,7 @@
         <!--
         <KeyBinding Key="Esc" Command="{Binding InputBindingsWindowERPCommand}" CommandParameter="Esc"/>
         -->
-    </App:WindowERP.InputBindings>
+    </App:WindowErp.InputBindings>
 
 
     <Grid IsEnabled="{Binding GridWindowIsEnabled}">
@@ -216,7 +216,7 @@
                Opacity=".10"/>
     </Grid>
 
-</App:WindowERP>
+</App:WindowErp>
     
     
     

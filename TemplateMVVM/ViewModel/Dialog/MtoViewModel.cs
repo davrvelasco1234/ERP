@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Input;
 using ERP_Common;
 using TemplateMVVM.Model;
-using ERP_MVVM.Notification;
 using Microsoft.Toolkit.Mvvm.Input;
 using static ERP_Common.Helpers.Constantes;
 
@@ -113,14 +112,14 @@ namespace TemplateMVVM.ViewModel.Dialog
         public void GetInfo(Window window)
         {
             WindowLocator.ViewModelLocator.Messenger.SendAutosMessage();
-            Popup.ExecutePopup(MessageType.Warning, "Title", "Autos " + this.AutoList.Count());
+            ERP_Controls.Notification.Popup.ExecutePopup(MessageType.Warning, "Title", "Autos " + this.AutoList.Count());
         }
 
         public void Accept(Window window)
         {
             if (this.HasErrorsProperties)
             {
-                Popup.ExecutePopup(MessageType.Warning, "Errores de Captura", "Soluciona los siguienes errores para continuar " + Environment.NewLine + this.GetErrorsMessage);
+                ERP_Controls.Notification.Popup.ExecutePopup(MessageType.Warning, "Errores de Captura", "Soluciona los siguienes errores para continuar " + Environment.NewLine + this.GetErrorsMessage);
                 return;
             }
 
@@ -151,7 +150,7 @@ namespace TemplateMVVM.ViewModel.Dialog
 
             if (this.HasErrorsProperties)
             {
-                Popup.ExecutePopup(MessageType.Warning, "Errores de Captura", "Soluciona los siguienes errores para continuar " + Environment.NewLine + this.GetErrorsMessage);
+                ERP_Controls.Notification.Popup.ExecutePopup(MessageType.Warning, "Errores de Captura", "Soluciona los siguienes errores para continuar " + Environment.NewLine + this.GetErrorsMessage);
                 return;
             }
 

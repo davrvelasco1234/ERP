@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using log4net;
 
@@ -10,17 +9,20 @@ namespace ERP_Log4Net
     {
         private static ILog _log = null;
         private static string _logFile = null;
-
-        public static void Initialize(string name, string nameFileConfig = "Log4Net.config")
+        
+        public static void Initialize(string name, string path = null, string nameFileConfig = "Log4Net.config")
         {
-            var pathIni = ERP_Common.Helpers.Inicializa.GetAssemblyDirectory();
-            var ApplicationPath = System.IO.Path.Combine(pathIni, "..\\");
+            string pathIni = path is null ? ERP_Common.Helpers.Inicializa.GetAssemblyDirectory() : path;
+            var ApplicationPath = System.IO.Path.Combine(pathIni);
             _logFile = Path.Combine(ApplicationPath, "Logs4Net", name, name + ".log");
             GlobalContext.Properties["LogFileName"] = _logFile;
             string pathConfig = Path.Combine(ApplicationPath, nameFileConfig);
             log4net.Config.XmlConfigurator.Configure(new FileInfo(pathConfig));
             _log = LogManager.GetLogger(name);
 
+            //C:\PROYECTOS\pruebas\ERP-master\TemplateMVVM\bin\Debug\Logs4Net\TemplateMVVM
+
+            /*
             Process currentProcess = Process.GetCurrentProcess();
 
             var qwe = Assembly.GetExecutingAssembly().Location;
@@ -29,6 +31,8 @@ namespace ERP_Log4Net
 
             var resp1 = currentProcess.MainModule.ModuleName;
             var resp2 = currentProcess.MainModule.FileName;
+            var asdads = "";
+            */
         }
 
         public static string LogFile
@@ -39,7 +43,7 @@ namespace ERP_Log4Net
 
         public enum TracingLevel
         {
-            ALL, DEBUG, INFO, WARN, ERROR, FATAL, OFF
+            DEBUG, INFO, WARN, ERROR, FATAL
         }
 
 
@@ -92,6 +96,7 @@ namespace ERP_Log4Net
                 case TracingLevel.FATAL:
                     _log.Fatal(Message, exception);
                     break;
+               
             }
         }
 

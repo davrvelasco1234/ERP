@@ -1,6 +1,4 @@
 ﻿
-
-
 namespace ERP_Common.Helpers
 {
     public static class Constantes
@@ -12,6 +10,7 @@ namespace ERP_Common.Helpers
 
         public const int MessageCodeTry = 999;
         public const int MessageCodeParamArg = 998;
+        public const int MessageCodeErrorLog = 997;
         public const int MessageCodeWindowsClose = 990;
 
         public const double FontSizeSmallger = 12;

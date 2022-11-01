@@ -8,6 +8,9 @@ namespace ERP_Security.Interfaces
 {
     public interface ILoginRequest
     {
-        
+        string User { get; }
+        string UserName { get; }
+        string Rol { get; }
+        bool StatusLog { get; } 
     }
 }

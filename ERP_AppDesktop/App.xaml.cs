@@ -11,24 +11,13 @@ namespace ERP_AppDesktop
 {
     public partial class App : AppERP
     {
-
-        private IUnityContainer _container;
-        //private readonly object _lock = new object();
-
-        public App()
-        {
-
-        }
-
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             string[] param = e.Args.Count() > 0 ? e.Args : null;
             var window = new Views.MainWindow(WindowLocator.ViewModelLocator.BottomViewModel, param);
             window.Show();
-
-            var resp = ERP_AppDesktop.Helpers.LogIn.Log(param);
+            var resp = ERP_Security.LoginERP.Log(param);
             WindowLocator.ViewModelLocator.MainViewModel.InicializaLogIn();
-
         }
 
     }

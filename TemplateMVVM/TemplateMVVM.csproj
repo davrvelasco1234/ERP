@@ -35,9 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClaseEntorno, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dlls\DEFAULT\ClaseEntorno.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -54,6 +53,12 @@
     <Reference Include="Microsoft.Toolkit.Mvvm, Version=7.1.0.0, Culture=neutral, PublicKeyToken=4aff67a105548ee2, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Toolkit.Mvvm.7.1.2\lib\netstandard2.0\Microsoft.Toolkit.Mvvm.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\..\..\dlls\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -62,6 +67,7 @@
       <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
@@ -76,6 +82,7 @@
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -99,25 +106,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\SqlConnect.cs" />
     <Compile Include="Data\Querys.cs" />
     <Compile Include="Data\Scripts.cs" />
     <Compile Include="Messaging\Messenger.cs" />
     <Compile Include="Model\Auto.cs" />
     <Compile Include="Model\AutoModel.cs" />
+    <Compile Include="ViewModel\FrameContentViewModel.cs" />
+    <Compile Include="ViewModel\FrameTabsViewModel.cs" />
+    <Compile Include="View\FrameContentControl.xaml.cs">
+      <DependentUpon>FrameContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FrameTabsControl.xaml.cs">
+      <DependentUpon>FrameTabsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowLocator\ViewModelLocator.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\Dialog\MtoViewModel.cs" />
-    <Compile Include="ViewModel\FrameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\Dialog\MtoControl.xaml.cs">
       <DependentUpon>MtoControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\FrameControl.xaml.cs">
-      <DependentUpon>FrameControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -144,6 +154,9 @@
     <None Include="Config.pub">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -151,17 +164,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Style\EstilosEspecificos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Style\EstilosGenerales.xaml">
+    <Page Include="Style\StylesControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -169,7 +181,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\FrameControl.xaml">
+    <Page Include="View\FrameContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FrameTabsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,10 +195,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ERP_ButtonCom\ERP_ButtonCom.csproj">
-      <Project>{8F329E9F-5CAF-47A2-94FC-AD914789233D}</Project>
-      <Name>ERP_ButtonCom</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ERP_Common\ERP_Common.csproj">
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
@@ -207,21 +219,30 @@
       <Project>{7281e3d7-82f2-45df-8771-0803a0773026}</Project>
       <Name>ERP_Images</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ERP_Log4Net\ERP_Log4Net.csproj">
+      <Project>{2A096CA9-14DD-4F91-BE23-6619A6D5206A}</Project>
+      <Name>ERP_Log4Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ERP_MVVM\ERP_MVVM.csproj">
       <Project>{04c82d0c-6ff4-434e-880d-97fa1cd539fa}</Project>
       <Name>ERP_MVVM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_ReadFIle\ERP_HelperFile.csproj">
+      <Project>{0ea9f89a-cad1-47ea-8957-56106106262b}</Project>
+      <Name>ERP_HelperFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_Security\ERP_Security.csproj">
+      <Project>{e9b7e863-b663-45f8-adcb-b3abea80eb5d}</Project>
+      <Name>ERP_Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_Template\ERP_Template.csproj">
+      <Project>{fbeeb066-759f-4f90-a08e-ae51bc0e8ff8}</Project>
+      <Name>ERP_Template</Name>
     </ProjectReference>
     <ProjectReference Include="..\FirstFloor.ModernUI\FirstFloor.ModernUI.csproj">
       <Project>{43310a91-0ebc-4c18-8f89-7e97839cddb6}</Project>
       <Name>FirstFloor.ModernUI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Templates\Templates.csproj">
-      <Project>{e5d45137-f8af-4b96-8109-178a67d448f6}</Project>
-      <Name>Templates</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Reload.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

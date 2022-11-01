@@ -210,27 +210,22 @@ namespace ERP_AppDesktop.ViewModels
             IComponentERP buttomComp = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_ButtonCom").FirstOrDefault();
             IComponentERP settingsCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_SettingsCom").FirstOrDefault();
             IComponentERP inicializeCom = this.componentManager.Modules.Where(W => W.ToString().Split('.')[0] == "ERP_InicializeCom").FirstOrDefault();
-            
 
             //INICIALIZA COMPONENS DEFAULT
-            if (!(buttomComp is null)) this.ButtonComponent = buttomComp.GetComponent();
             if (!(settingsCom is null)) this.SettingsCom = settingsCom.GetComponent();
+            if (!(buttomComp is null)) this.ButtonComponent = buttomComp.GetComponent();
             if (!(inicializeCom is null)) this.InitializeCom = inicializeCom.GetComponent();
-            
 
             //INICIALIZA IMAGEN
             this.LogoCompany = Properties.Resources.construccion.ToBitmapImage();
-            this.IconMenuImage = Properties.Resources.Menu.ToBitmapImage();
             this.IconReloadImage = Properties.Resources.Reload.ToBitmapImage();
+            this.IconMenuImage = Properties.Resources.Menu.ToBitmapImage();
 
             //INICIALIZA DATOS DEFAULT
             this.IndexGroupList = new ObservableCollection<IndexGroup>(Helpers.CreateIndex.GetIndexGroup());
             //this.BodyComponent = this.InitializeCom;
 
-
             Inicialize();
-
-            
 
         }
 
@@ -244,12 +239,10 @@ namespace ERP_AppDesktop.ViewModels
             //VALIDA LOGIN
             InicializaLogIn();
         }
-
         public void Inicialize()
         {
             this.BodyComponentSelected = new Models.BodyComponent { ComponentView = this.InitializeCom };
         }
-
         #endregion
 
 
@@ -391,7 +384,7 @@ namespace ERP_AppDesktop.ViewModels
             }
             else
             {
-                var resp = ERP_AppDesktop.Helpers.LogIn.Log(null);
+                var resp = ERP_Security.LoginERP.Log(null); //ERP_AppDesktop.Helpers.LogIn.Log(null);
                 InicializaLogIn();
             }
         }
@@ -402,7 +395,7 @@ namespace ERP_AppDesktop.ViewModels
             this.ImagenLockSource = Properties.Resources.Lock.ToBitmapImage();
             this.ImagenLockVisibility = Visibility.Visible;
             this.IconGetInGetOutImage = Properties.Resources.GetIn.ToBitmapImage();
-            this.IconGetInGetOutToolTip = "Get In " + "&#x0a; CTRL+G";
+            this.IconGetInGetOutToolTip = "Get In " + "CTRL+G";
             this.WidthMenu = new GridLength(0);
         }
 
@@ -412,7 +405,7 @@ namespace ERP_AppDesktop.ViewModels
             this.ImagenLockSource = null;
             this.ImagenLockVisibility = Visibility.Collapsed;
             this.IconGetInGetOutImage = Properties.Resources.GetOut.ToBitmapImage();
-            this.IconGetInGetOutToolTip = "Get Out " + " &#x0a; CTRL+G";
+            this.IconGetInGetOutToolTip = "Get Out " + "CTRL+G";
             this.WidthMenu = new GridLength(220);
         }
         

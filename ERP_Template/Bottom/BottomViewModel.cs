@@ -1,9 +1,8 @@
-﻿
-using System.Reflection;
+﻿using System.Reflection;
 using ERP_MVVM.Helpers;
 using ERP_Common.Interfaces;
-
-
+using ERP_Entorno;
+using ERP_Entorno.Helpers;
 
 namespace ERP_Template.Bottom
 {
@@ -14,6 +13,9 @@ namespace ERP_Template.Bottom
         public string DataBase { get; }
         public string AssemblyName { get; }
         public string KeyUser { get; }
+        
+
+
         public string Date { get; }
 
         static BottomViewModel()
@@ -24,19 +26,22 @@ namespace ERP_Template.Bottom
         public BottomViewModel()
         {
             System = "ERP";
-            if ("SERVIDOR ACTUAL" == "SERVIDOR PRODUCCION")
+            if (Entorno.GetProperty.ServidorProduccion() == Entorno.SqlConnection.InitialCatalog)
             {
                 Server = "PRODUCCION";
                 DataBase = "PRODUCCION";
             }
             else
             {
-                Server = "Servidor";
-                DataBase = "BaseDatos";
+                Server = Entorno.SqlConnection.DataSource;
+                DataBase = Entorno.SqlConnection.InitialCatalog;
             }
-            AssemblyName = Assembly.GetEntryAssembly().GetName().Name;
-            KeyUser = "Usuario: " + "000000";
-            Date = "Fecha: " + "00/00/0000";
+            AssemblyName = Entorno.GetProperty.AssemblyName;
+            KeyUser = ERP_Security.LoginERP.LoginRequest.User;
+            Date = Entorno.GetProperty.FechaHoy().ToDateFormat();
         }
+
+        
+
     }
 }

@@ -8,6 +8,7 @@ namespace ERP_ExcelGeneric.Models
         public bool IsVisible = true;
         public bool ApplyFormating = true;
         public bool IsColumnEmpty = false;
+        public int LengthString = 0;
 
     }
 }

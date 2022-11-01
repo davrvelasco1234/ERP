@@ -49,7 +49,10 @@
   <ItemGroup>
     <Compile Include="Controllers\ExecProperty.cs" />
     <Compile Include="Data\Querys.cs" />
+    <Compile Include="Data\Script.cs" />
     <Compile Include="Entorno.cs" />
+    <Compile Include="Helpers\Constantes.cs" />
+    <Compile Include="Helpers\Extension.cs" />
     <Compile Include="Interfaces\IEntornoDynamic.cs" />
     <Compile Include="Interfaces\IExecProperty.cs" />
     <Compile Include="Interfaces\IExecQuery.cs" />
@@ -66,6 +69,10 @@
     <ProjectReference Include="..\ERP_Common\ERP_Common.csproj">
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_ReadFIle\ERP_HelperFile.csproj">
+      <Project>{0ea9f89a-cad1-47ea-8957-56106106262b}</Project>
+      <Name>ERP_HelperFile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

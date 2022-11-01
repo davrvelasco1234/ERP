@@ -13,7 +13,7 @@
                 <ControlTemplate TargetType="controls:ModernTab">
                     <Grid>
                         <!-- link list -->
-                        <ListBox x:Name="LinkList" ItemsSource="{TemplateBinding Links}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="{DynamicResource HeaderMargin}"
+                        <ListBox x:Name="LinkList" ItemsSource="{TemplateBinding Links}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="{DynamicResource HeaderMargin}"
                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                  ScrollViewer.CanContentScroll="False"

@@ -1,29 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Controls.Ribbon;
+﻿using ERP_Core;
+using ERP_Common.Interfaces;
 
 namespace TemplateMVVM.View
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : RibbonWindow
+    public partial class MainWindow : WindowAppErp
     {
-        public MainWindow()
+        public MainWindow() : base()
         {
-            InitializeComponent();
             
+            InitializeComponent();
+        }
+
+        private void WindowERP_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SetFocusIndex();
+        }
+
+        private void WindowERP_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            try
+            {
+                if (e.Key == System.Windows.Input.Key.Escape)
+                {
+                    SetFocusIndex();
+                }
+            }
+            catch (System.Exception)
+            {
+
+
+            }
+        }
+
+        private void SetFocusIndex()
+        {
+            //index.Focus();
+            //index.Focusable = true;
+            //index.ForceCursor = true;
         }
     }
 }

@@ -14,9 +14,9 @@ namespace ERP_ExcelGeneric.Models
         /// <summary>
         /// Formato numerico que se asignara a las propiedades int
         /// </summary>
-        public string FormatInt { get; set; } = "_-* #,##0_-;-* #,##0_-;_-* \" - \"??_-;_-@_-"; 
+        public string FormatInt { get; set; } = "_-* #,##0_-;-* #,##0_-;_-* \" - \"??_-;_-@_-";         
         /// <summary>   
-        /// Formato numerico que se asignara a las propiedades decimal  
+        /// Formato numerico que se asignara a las propiedades decimal      
         /// </summary>  
         public string FormatDec { get; set; } = "_-* #,##0.00_-;-* #,##0.00_-;_-* \" - \"??_-;_-@_-";   
         /// <summary>   
@@ -51,14 +51,38 @@ namespace ERP_ExcelGeneric.Models
         /// <summary>
         /// Indica la extencion con la que se descargara el archivo
         /// </summary>
-        public ExtencionExcel ExtencionExcel { get; set; } = ExtencionExcel.XLSX;
+        public Extencion Extencion { get; set; } = Extencion.XLSX;
+
+        /// <summary>
+        /// Configuraciones para descargar un TXT
+        /// </summary>
+        public ConfigTXT ConfigTXT { get; set; }
     }
 
 
 
-    public enum ExtencionExcel
+    public enum Extencion
     {
+        TXT,
         CSV,
         XLSX
     }
+
+
+    public class ConfigTXT
+    {
+        /// <summary>
+        /// separador
+        /// </summary>
+        public string Delimited { get; set; } = "|";
+        /// <summary>
+        /// indica si quitara o no los espacions de las cadenas
+        /// </summary>
+        public bool QuitarEspacios { get; set; } = false;
+        /// <summary>   
+        /// Encoding
+        /// </summary>  
+        public System.Text.Encoding Encoding { get; set; } = System.Text.Encoding.UTF8;
+    }
+
 }

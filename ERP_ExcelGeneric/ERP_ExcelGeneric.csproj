@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Download.cs" />
+    <Compile Include="Controller\DownloadTXT.cs" />
     <Compile Include="DownloadExcel.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Models\AttDownloadExcelAttribute.cs" />
@@ -56,6 +57,10 @@
     <ProjectReference Include="..\ERP_Common\ERP_Common.csproj">
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ERP_Controls\ERP_Controls.csproj">
+      <Project>{93a3d94b-e723-4717-803b-750cd8fa7b55}</Project>
+      <Name>ERP_Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\ERP_Entorno\ERP_Entorno.csproj">
       <Project>{1bae086b-f7e1-452d-9e18-d046b6e46b67}</Project>

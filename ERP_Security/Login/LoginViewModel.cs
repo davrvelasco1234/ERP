@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,7 +16,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ERP_Security.Login
 {
-    public class LoginViewModel : BaseViewModel<LoginRequest>
+    internal class LoginViewModel : BaseViewModel<LoginRequest>
     {
         private static IEnumerable<LoginRequest> UserList { get; set; }
 
@@ -94,47 +95,97 @@ namespace ERP_Security.Login
 
         public void Loaded()
         {
-            
-
+            //admin admin 123 QA 127.0.0.1 1801
             this.UserIsFocused = true;
         }
-        //admin admin 123 QA 127.0.0.1 1801
 
 
         public ErpResponse<LoginRequest> InicializaArgs(string[] param)
         {
-            this.User = param[0];
-            this.Rol = param[1];
-            this.Password = param[2];
-            this.ServidorSelected = new Servidor
+            if (param.Count() == 6)
             {
-                Server = param[3],
-                IP = param[4],
-                Puerto = param[5],
-            };
+                string user = param[0];
+                string rol = param[1];
+                string password = param[2];
+                string server = param[3];
+                string ip = param[4];
+                string puerto = param[5];
+                return InicializaArgs(user, rol, password, server, ip, puerto);
+            }
+            else if (param.Count() == 2)
+            {
+                string user = param[0];
+                string password = param[1];
+                return InicializaArgs(user, password, "J");
+            }
+            else
+            {
+                return new ErpResponse<LoginRequest>("Error en parametros ", ERP_Common.Helpers.Constantes.MessageCodeParamArg);
+            }
+        }
 
-            var resp = UserList.Where(W => W.User == this.User && W.Rol == this.Rol && W.Password == this.Password).FirstOrDefault();
+
+
+        internal ErpResponse<LoginRequest> InicializaArgs(string user, string password, string origen)
+        {
+            this.User = user;
+            this.Password = password;
+            this.Rol = "ROL";
+            var app = Assembly.GetEntryAssembly().GetName().Name;
+            var terminal = System.Net.Dns.GetHostName();
+            var resp = Data.Querys.sppValidaSeguridad(new { Usuario = User, Contrasena = Password, Pantalla = app, Terminal= terminal, Origen = origen});
+
             if (resp is null)
             {
-                return new ErpResponse<LoginRequest>("Error en parametros ", 998);
+                return new ErpResponse<LoginRequest>("Error en parametros ", ERP_Common.Helpers.Constantes.MessageCodeParamArg);
+            }
+            if (resp.Clave != "0")
+            {
+                return new ErpResponse<LoginRequest>("Error Log " + resp.Descripcion, ERP_Common.Helpers.Constantes.MessageCodeErrorLog);
             }
 
             //si el login es correcto se retorna la respuesta
-            var respLog = new LoginRequest(resp.User, resp.UserName, resp.Rol, resp.Password, true);
+            var respLog = new LoginRequest(this.user, this.User, this.Rol, this.Password, true);
             return new ErpResponse<LoginRequest>(respLog);   
+        }
+
+
+        internal ErpResponse<LoginRequest> InicializaArgs(string user, string rol, string pass, string server, string ip, string puerto)
+        {
+            this.User = user;
+            this.Rol = rol;
+            this.Password = pass;
+            this.ServidorSelected = new Servidor
+            {
+                Server = server,
+                IP = ip,
+                Puerto = puerto
+            };
+
+            
+            var resp = UserList.Where(W => W.User == this.User && W.Rol == this.Rol && W.Password == this.Password).FirstOrDefault();
+            if (resp is null)
+            {
+                return new ErpResponse<LoginRequest>("Error en parametros ", ERP_Common.Helpers.Constantes.MessageCodeParamArg);
+            }
+
+            //si el login es correcto se retorna la respuesta
+            var respLog = new LoginRequest(this.User, this.User, this.Rol, this.Password, true);
+            return new ErpResponse<LoginRequest>(respLog);
         }
 
         private void Login(Window window)   
         {
-            var resp = UserList.Where(W => W.User == this.User && W.Rol == this.Rol && W.Password == this.Password).FirstOrDefault();
-            if (resp is null)
+            var resp = InicializaArgs(this.User, this.Password, "V");
+            
+            if (!resp.IsSuccess)
             {
                 MessageBox.Show("datos invalidos");
                 return;
             }
 
             //si el login es correcto se retorna la respuesta
-            var respLog = new LoginRequest(resp.User, resp.UserName, resp.Rol, resp.Password, true);
+            var respLog = new LoginRequest(this.User, this.User, this.Rol, this.Password, true);
             this.CloseDialogWithResult(window, new ErpResponse<LoginRequest>(respLog));
         }
 

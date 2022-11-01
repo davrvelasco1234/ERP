@@ -6,10 +6,9 @@ namespace ERP_Common.Interfaces
 {
     public interface ILoginRequest
     {
-        string User { get; set; }
-        string UserName { get; set; }
-        string Rol { get; set; }
-        string Password { get; set; }
-        bool StatusLog { get; set; }
+        string User { get; }
+        string UserName { get; }
+        string Rol { get; }
+        bool StatusLog { get; }
     }
 }

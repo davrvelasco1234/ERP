@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using TemplateMVVM.ViewModel;
 using TemplateMVVM.Model;
+using TemplateMVVM.ViewModel;
 using TemplateMVVM.ViewModel.Dialog;
+
+
 
 namespace TemplateMVVM.Messaging
 {
@@ -14,9 +16,8 @@ namespace TemplateMVVM.Messaging
             => Messenger.Register<MtoViewModel, ObservableCollection<Auto>, TokenMsg>(ViewModel, TokenMsg.GetAutoList, (Receptor, Message) => { Receptor.GetAutos(Message); });
 
         //SendAutos
-        public void SendAutosRegisterMessage(FrameViewModel ViewModel)
-            => Messenger.Register<FrameViewModel, String, TokenMsg>(ViewModel, TokenMsg.RequestAutos, (Receptor, Message) => { Receptor.SendAutos(); });
-
+        public void SendAutosRegisterMessage(FrameContentViewModel ViewModel)
+            => Messenger.Register<FrameContentViewModel, String, TokenMsg>(ViewModel, TokenMsg.RequestAutos, (Receptor, Message) => { Receptor.SendAutos(); });
 
         //SendAutos
         public void SendAutosMessage()

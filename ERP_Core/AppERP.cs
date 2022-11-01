@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using ERP_Common.Helpers;
-
-
+using ERP_Log4Net;
 
 namespace ERP_Core
 {
@@ -16,12 +16,14 @@ namespace ERP_Core
         private AppDomain domain;
 
 
+        static AppERP()
+        {
+            
+        }
+
         protected AppERP()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            //DispatcherUnhandledException += App_DispatcherUnhandledException;
-            //TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
-
             this.Exit += Application_Exit;
         }
 
@@ -30,6 +32,7 @@ namespace ERP_Core
         {
             lock (_lock)
             {
+                Custom4Net.LogMessage(Custom4Net.TracingLevel.FATAL, "TaskScheduler_UnobservedTaskException", e.Exception);
                 var resp = "UnobservedTaskException" + Environment.NewLine + e.Exception.FnxGetMessage();
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     SendMessage(resp)
@@ -42,6 +45,7 @@ namespace ERP_Core
         {
             lock (_lock)
             {
+                Custom4Net.LogMessage(Custom4Net.TracingLevel.FATAL, "App_DispatcherUnhandledException", e.Exception);
                 var resp = "DispatcherUnhandledException" + Environment.NewLine + e.Exception.FnxGetMessage();
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     SendMessage(resp)
@@ -54,8 +58,9 @@ namespace ERP_Core
         {
             lock (_lock)
             {
-                var resp = ((Exception)e.ExceptionObject).FnxGetMessage();
-                SendMessage(resp);
+                var resp = ((Exception)e.ExceptionObject);
+                Custom4Net.LogMessage(Custom4Net.TracingLevel.FATAL, "CurrentDomain_UnhandledException", resp);
+                SendMessage(resp.FnxGetMessage());
             }   
         }
         

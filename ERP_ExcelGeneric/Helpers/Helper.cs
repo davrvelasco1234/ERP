@@ -19,7 +19,7 @@ namespace ERP_ExcelGeneric.Helpers
             try
             {
                 workbook.Save(path);
-                ERP_MVVM.Notification.Popup.ExecutePopup(ERP_Common.Helpers.Constantes.MessageType.Success, "Excel", "Archivo Creado !!!");
+                ERP_Controls.Notification.Popup.ExecutePopup(ERP_Common.Helpers.Constantes.MessageType.Success, "Excel", "Archivo Creado !!!");
                 return;
             }
             catch (Exception e)
@@ -36,7 +36,7 @@ namespace ERP_ExcelGeneric.Helpers
                     }
                     else
                     {
-                        ERP_MVVM.Notification.Popup.ExecutePopup(ERP_Common.Helpers.Constantes.MessageType.Warning, "Archivo NO Creado", e.Message);
+                        ERP_Controls.Notification.Popup.ExecutePopup(ERP_Common.Helpers.Constantes.MessageType.Warning, "Archivo NO Creado", e.Message);
                         return;
                     }
                 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using ERP_ExcelGeneric.Models;
 using GemBox.Spreadsheet;
 using Microsoft.Win32;
+
+
 
 namespace ERP_ExcelGeneric.Controller
 {
@@ -14,7 +15,7 @@ namespace ERP_ExcelGeneric.Controller
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = config.NameBook;
-            saveFileDialog.DefaultExt = "." + config.ExtencionExcel.ToString().ToLower();
+            saveFileDialog.DefaultExt = "." + config.Extencion.ToString().ToLower();
             saveFileDialog.Title = "Guardar Archivo";
             if (saveFileDialog.ShowDialog() == false) { return false; }
 
@@ -34,6 +35,16 @@ namespace ERP_ExcelGeneric.Controller
             var worksheet = workbook.Worksheets.Add(config.NameSheet);
 
             var respData = Helpers.Helper.ConvertToDataTable<TData>(datoslist);
+
+
+            //SI ES FORMATO TXT HASTA AQUI LLEGA
+            if (config.Extencion == Extencion.TXT)
+            {
+                DownloadTXT.ExportDataTabletoFile<TData>(respData, path, config);
+                return true;
+            }
+
+
 
             worksheet.InsertDataTable(respData,
             new InsertDataTableOptions()

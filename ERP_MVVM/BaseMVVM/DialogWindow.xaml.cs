@@ -4,7 +4,7 @@ using ERP_Core;
 
 namespace ERP_MVVM.BaseMVVM
 {
-    public partial class DialogWindow : WindowDialogERP
+    public partial class DialogWindow : WindowDialogErp
     {
         public bool CloseWindows { get; set; }
         public DialogWindow()

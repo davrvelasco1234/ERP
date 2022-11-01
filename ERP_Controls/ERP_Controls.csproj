@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -50,6 +51,28 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\ImagingExtension.cs" />
+    <Compile Include="Loading\CommandManagerHelper.cs.cs" />
+    <Compile Include="Loading\Controls\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Loading\Controls\LoadingControl.xaml.cs">
+      <DependentUpon>LoadingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Loading\DelegateCommand.cs" />
+    <Compile Include="Notification\Balloon.xaml.cs">
+      <DependentUpon>Balloon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notification\EnumMember.cs" />
+    <Compile Include="Notification\ExtensionMethods.cs" />
+    <Compile Include="Notification\HelpBalloon.xaml.cs">
+      <DependentUpon>HelpBalloon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notification\HyperLinkEventArgs.cs" />
+    <Compile Include="Notification\Popup.cs" />
+    <Compile Include="Notification\ToastPopUp.xaml.cs">
+      <DependentUpon>ToastPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -78,6 +101,43 @@
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Loading\Controls\CircularProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Loading\Controls\LoadingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notification\Balloon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notification\HelpBalloon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Notification\ToastPopUp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Bug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Warning.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

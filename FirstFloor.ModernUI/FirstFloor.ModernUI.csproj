@@ -71,11 +71,15 @@
     <Page Include="Themes\ModernWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\ModernWindowDialog.xaml">
+    <Page Include="Themes\WindowDialogErp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\ModernWindowEmpty.xaml">
+    <Page Include="Themes\WindowAppErp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\WindowErp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

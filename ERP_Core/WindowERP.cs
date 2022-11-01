@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 
 namespace ERP_Core
 {
-    public class WindowERP : ModernWindow
+    public class WindowErp : ModernWindow
     {
         private bool IsEnabledWindow { get; set; } = true;
 
@@ -17,8 +17,9 @@ namespace ERP_Core
                                                                                                          
         //public BottomViewModel BottomViewModel { get; }
         public IBottomTemplate IBotoom { get; }
-        public WindowERP(IBottomTemplate iBotoom)
+        public WindowErp(IBottomTemplate iBotoom)
         {
+            this.Style = (Style)Application.Current.Resources["WindowErp"];
             //this.BottomViewModel = new BottomViewModel();   
             this.IBotoom = iBotoom;
 
@@ -28,7 +29,7 @@ namespace ERP_Core
             this.Closing += WindowERP_Closing;
 
 
-            //this.IsEnabled = false;
+            this.IsEnabled = false;
         }
 
 

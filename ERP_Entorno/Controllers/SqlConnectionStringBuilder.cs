@@ -1,6 +1,6 @@
-﻿
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using ERP_Entorno.Interfaces;
+using ERP_HelperFile.Models;
 
 namespace ERP_Entorno.Controllers
 {
@@ -36,5 +36,21 @@ namespace ERP_Entorno.Controllers
         }
 
 
+        public SqlConnectionString(DataConecction dc)
+        {
+            var conn = new SqlConnectionStringBuilder
+            {
+                DataSource = dc.DataSource,
+                InitialCatalog = dc.InitialCatalog,
+                UserID = dc.UserID,
+                Password = dc.Password
+            };
+            this.ConnectionString = conn.ConnectionString;
+            this.DataSource = dc.DataSource;
+            this.InitialCatalog = dc.InitialCatalog;
+            this.UserID = dc.UserID;
+            this.Password = dc.Password;
+            this.ApplicationName = dc.ApplicationName;
+        }
     }
 }

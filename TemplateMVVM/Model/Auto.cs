@@ -8,17 +8,19 @@ namespace TemplateMVVM.Model
         public string IdAuto { get; set; }
         [AttDownloadExcel(IsVisible = false)]
         public string IdMarca { get; set; }
-        [AttDownloadExcel(AliasProperty = "Marca")]
+        [AttDownloadExcel(AliasProperty = "Marca", LengthString = 10)]
         public string DescMarca { get; set; }
-        [AttDownloadExcel(IsVisible = false)]
+        [AttDownloadExcel(IsVisible = false, LengthString = 20)]
         public string IdModelo { get; set; }
-        [AttDownloadExcel(AliasProperty = "Modelo")]
+
+        [AttDownloadExcel(AliasProperty = "Modelo", LengthString = 20)]
         public string DescModelo { get; set; }
+
         [AttDownloadExcel(IsVisible = false)]
         public string IdCarroceria { get; set; }
         [AttDownloadExcel(AliasProperty = "Carroceria")]
         public string DescCarroceria { get; set; }
-        [AttDownloadExcel(AliasProperty = "Año", ApplyFormating = false)]
+        [AttDownloadExcel(AliasProperty = "Año", ApplyFormating = false, LengthString = 2)]
         public int Anio { get; set; }
         public string Color { get; set; }
         public decimal Precio { get; set; }

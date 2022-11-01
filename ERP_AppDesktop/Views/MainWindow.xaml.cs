@@ -7,7 +7,7 @@ namespace ERP_AppDesktop.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : WindowERP
+    public partial class MainWindow : WindowErp
     {
         private string[] ParamsArg { get; }
         public MainWindow(IBottomTemplate bottom, string[] paramsArg) : base(bottom)

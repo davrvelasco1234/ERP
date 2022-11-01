@@ -1,14 +1,9 @@
-﻿
-
-using System;
+﻿using System;
 using System.Runtime.Serialization;
 using static ERP_Common.Helpers.Constantes;
 
 namespace ERP_Common
 {
-    /// <summary>
-    ///  validar messagetype
-    /// </summary>
     [DataContract]
     public class ErpResponse<T>
     {
@@ -31,7 +26,6 @@ namespace ERP_Common
         {
 
         }
-
 
         //message
         public ErpResponse(string message)

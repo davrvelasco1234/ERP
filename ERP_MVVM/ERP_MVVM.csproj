@@ -94,29 +94,7 @@
     <Compile Include="Helpers\ComboBoxItemTemplateSelector.cs" />
     <Compile Include="Helpers\DataGridBehavior.cs" />
     <Compile Include="Helpers\FocusExtension.cs" />
-    <Compile Include="Helpers\ImagingExtension.cs" />
     <Compile Include="Helpers\SelectAllFocusBehavior.cs" />
-    <Compile Include="Loading\CommandManagerHelper.cs.cs" />
-    <Compile Include="Loading\Controls\CircularProgressBar.xaml.cs">
-      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Loading\Controls\LoadingControl.xaml.cs">
-      <DependentUpon>LoadingControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Loading\DelegateCommand.cs" />
-    <Compile Include="Notification\Balloon.xaml.cs">
-      <DependentUpon>Balloon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Notification\EnumMember.cs" />
-    <Compile Include="Notification\ExtensionMethods.cs" />
-    <Compile Include="Notification\HelpBalloon.xaml.cs">
-      <DependentUpon>HelpBalloon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Notification\HyperLinkEventArgs.cs" />
-    <Compile Include="Notification\Popup.cs" />
-    <Compile Include="Notification\ToastPopUp.xaml.cs">
-      <DependentUpon>ToastPopUp.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -134,6 +112,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -142,26 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="BaseMVVM\DialogWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Loading\Controls\CircularProgressBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Loading\Controls\LoadingControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Notification\Balloon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Notification\HelpBalloon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Notification\ToastPopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,21 +138,6 @@
       <Project>{43310a91-0ebc-4c18-8f89-7e97839cddb6}</Project>
       <Name>FirstFloor.ModernUI</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Bug.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Help.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Success.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Warning.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

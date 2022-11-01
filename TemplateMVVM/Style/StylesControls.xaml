@@ -1,0 +1,17 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TemplateMVVM.Style"
+    xmlns:controls="clr-namespace:ERP_Controls.CtrolText;assembly=ERP_Controls"
+    xmlns:win="clr-namespace:ERP_Core;assembly=ERP_Core">
+    
+    
+    <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="controls:TextBoxType"/>
+    
+    <!--
+    <Style BasedOn="{StaticResource {x:Type WindowAppErp}}" TargetType="win:WindowAppErp"/>
+    <Style BasedOn="{StaticResource {x:Type WindowDialogErp}}" TargetType="win:WindowDialogErp"/>
+    <Style BasedOn="{StaticResource {x:Type WindowErp}}" TargetType="win:WindowErp"/>
+    -->
+    
+</ResourceDictionary>
