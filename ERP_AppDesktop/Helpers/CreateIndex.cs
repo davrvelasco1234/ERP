@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 using ERP_AppDesktop.Entity;
 using ERP_AppDesktop.Models;
+using ERP_Images.Helpers;
 using ERP_MVVM.Helpers;
 
 namespace ERP_AppDesktop.Helpers

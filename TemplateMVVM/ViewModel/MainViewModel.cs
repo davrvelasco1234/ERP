@@ -28,13 +28,15 @@ namespace TemplateMVVM.ViewModel
 
         public MainViewModel()
         {
-            this.LogoCompany = ((BitmapImage)ERP_Images.Images.Logo400.FinamexPositivoT);
+            this.LogoCompany = ((BitmapImage)ERP_Images.Images.Logo200.Construccion);
         }
+
 
         //public void LoadBottomViewModel() 
         //    => this.BottomViewModel = WindowLocator.ViewModelLocator.BottomViewModel;
 
-
+        
         public void LoadBottomViewModel() => this.BottomViewModel = new BottomViewModel();
+
     }
 }

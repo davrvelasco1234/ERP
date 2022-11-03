@@ -9,7 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml"/>
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.light.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.dark.xaml"/>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowAppErp.xaml"/>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowDialogErp.xaml"/>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowErp.xaml"/>

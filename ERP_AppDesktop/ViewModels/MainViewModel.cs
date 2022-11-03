@@ -10,6 +10,7 @@ using ERP_AppDesktop.Helpers;
 using ERP_AppDesktop.Models;
 using ERP_Common.Models;
 using ERP_Core.Components;
+using ERP_Images.Helpers;
 using ERP_MVVM.BaseMVVM;
 using ERP_MVVM.Helpers;
 using Microsoft.Toolkit.Mvvm.Input;

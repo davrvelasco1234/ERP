@@ -8,9 +8,9 @@ using ERP_Component_1.Identity;
 using ERP_Component_1.ViewModels.Dialog;
 using ERP_Core.Components;
 using ERP_MVVM.BaseMVVM;
-using ERP_MVVM.Notification;
 using Microsoft.Toolkit.Mvvm.Input;
 using static ERP_Common.Helpers.Constantes;
+using ERP_Controls.Notification;
 
 namespace ERP_Component_1.ViewModels
 {

@@ -7,6 +7,9 @@ DROP PROCEDURE SP_GetAutos
 GO
 
 
+
+
+
 CREATE TABLE Marcas
 (
 	Mar_IdMarca INT PRIMARY KEY IDENTITY,

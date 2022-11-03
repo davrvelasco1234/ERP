@@ -26,7 +26,6 @@ namespace TemplateMVVM.Messaging
         //GetAutos
         public void GetAutosMessage(ObservableCollection<Auto> autos)
             => Messenger.Send<ObservableCollection<Auto>, TokenMsg>(autos, TokenMsg.GetAutoList);
-
     }
 
 

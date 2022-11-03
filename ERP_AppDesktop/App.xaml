@@ -23,11 +23,11 @@
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindow.xaml"/>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernDialog.xaml"/>
                 -->
-                
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowERP.xaml"/>
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowDialog.xaml"/>
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/ModernWindowEmpty.xaml"/>
 
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowAppErp.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowDialogErp.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowErp.xaml"/>
+                
                 <ResourceDictionary Source="Styles/StylesControls.xaml"/>
 
                 <!--
