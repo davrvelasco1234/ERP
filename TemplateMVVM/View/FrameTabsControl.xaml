@@ -1,6 +1,6 @@
-﻿<App:UserControlERP 
-    xmlns:App="clr-namespace:ERP_Core;assembly=ERP_Core"
-      
+﻿<Core:UserControlERP 
+    xmlns:Core="http://www.ERP.com/2023/V1/Core"
+    
     x:Class="TemplateMVVM.View.FrameTabsControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,12 +9,15 @@
     xmlns:local="clr-namespace:TemplateMVVM.View"
     mc:Ignorable="d"
     
-    xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
+    xmlns:MVVM="http://www.ERP.com/2023/V1/MVVM"
+    xmlns:Common="http://www.ERP.com/2023/V1/Common"
+    xmlns:Images="http://www.ERP.com/2023/V1/Images"
+    xmlns:Controls="http://www.ERP.com/2023/V1/Controls"
+    xmlns:Fdg="http://filterdatagrid.control.com/2021"
+    xmlns:Mui="http://firstfloorsoftware.com/ModernUI"
     xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:Img="clr-namespace:ERP_Images;assembly=ERP_Images"
-    xmlns:WinLoc="clr-namespace:TemplateMVVM.WindowLocator"
-    xmlns:mui="http://firstfloorsoftware.com/ModernUI"
     
+    xmlns:WinLoc="clr-namespace:TemplateMVVM.WindowLocator" 
     DataContext="{Binding Source={x:Static WinLoc:ViewModelLocator.FrameTabsViewModel}}">
     
     
@@ -41,7 +44,7 @@
                         HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                         Command="{Binding AddCommand}">
                     <StackPanel>
-                        <Image Source="{Binding add, Source={x:Static Img:Images.Images24}}"/>
+                        <Image Source="{Binding add, Source={x:Static Images:Images.Images24}}"/>
                         <TextBlock Text="Nuevo"/>
                     </StackPanel>
                 </Button>
@@ -51,13 +54,11 @@
                         HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                         Command="{Binding DownloadExcelCommand}">
                     <StackPanel>
-                        <Image Source="{Binding DownloadExcel, Source={x:Static Img:Images.Images24}}"/>
+                        <Image Source="{Binding DownloadExcel, Source={x:Static Images:Images.Images24}}"/>
                         <TextBlock Text="Descargar"/>
                     </StackPanel>
                 </Button>
             </WrapPanel>
-            
-            
         </Grid>
 
         <!--SEPARADOR-->
@@ -68,12 +69,12 @@
         <!--**********************************************************FRAMES****************************************************************-->
         <!--************************************************AGREGAR AQUI LAS PENSTAÑAS******************************************************-->
         <!--**********************************************************FRAMES****************************************************************-->
-        <mui:ModernTab Margin="5,30,5,5" Grid.Row="2" Grid.ColumnSpan="2" SelectedSource="/View/FrameContentControl.xaml" Layout="Tab">
-            <mui:ModernTab.Links>
-                <mui:Link DisplayName="FRAME 1" Source="/View/FrameContentControl.xaml"/>
-                <mui:Link DisplayName="FRAME 2" Source="/Content/ControlsModernButton.xaml"/>
-            </mui:ModernTab.Links>
-        </mui:ModernTab>
+        <Mui:ModernTab Margin="5,30,5,5" Grid.Row="2" Grid.ColumnSpan="2" SelectedSource="/View/FrameContentControl.xaml" Layout="Tab">
+            <Mui:ModernTab.Links>
+                <Mui:Link DisplayName="FRAME 1" Source="/View/FrameContentControl.xaml" />
+                <Mui:Link DisplayName="FRAME 2" Source="/Content/ControlsModernButton.xaml" />
+            </Mui:ModernTab.Links>
+        </Mui:ModernTab>
 
         <!--**********************************************************************************************************************************-->
 
@@ -85,4 +86,4 @@
 
 
 
-</App:UserControlERP>
+</Core:UserControlERP>

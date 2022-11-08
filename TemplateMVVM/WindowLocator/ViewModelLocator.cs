@@ -1,6 +1,5 @@
 ﻿using System;
 using ERP_MVVM.Helpers;
-using ERP_Template.Bottom;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using TemplateMVVM.Messaging;

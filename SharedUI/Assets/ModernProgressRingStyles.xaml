@@ -652,6 +652,7 @@
         <Setter Property="MinHeight" Value="32" />
         <Setter Property="MinWidth" Value="32" />
         <Setter Property="IsTabStop" Value="False" />
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:ModernProgressRing">
@@ -789,7 +790,11 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="7*"/>
                             </Grid.RowDefinitions>
-
+                            
+                            <!--
+                            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Text="CARGANDO ..." HorizontalAlignment="Center"/>
+                            -->
+                            
                             <Border Grid.Row="0" Grid.Column="1" RenderTransformOrigin="0.5,4.0">
                                 <Border.RenderTransform>
                                     <RotateTransform Angle="0" />

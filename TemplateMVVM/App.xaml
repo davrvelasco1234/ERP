@@ -9,12 +9,17 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml"/>
-                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.dark.xaml"/>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml"/>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowAppErp.xaml"/>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowDialogErp.xaml"/>
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowErp.xaml"/>
                 <ResourceDictionary Source="Style/StylesControls.xaml"/>
-                <!-- admin admin 123 QA 127.0.0.1 1800  -->
+                
+                
+                <!-- admin admin 123 QA 127.0.0.1 1800 -->
+                <!-- https://github.com/macgile/DataGridFilter -->
+                
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

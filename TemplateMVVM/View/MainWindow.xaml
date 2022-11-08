@@ -1,5 +1,5 @@
-﻿<App:WindowAppErp 
-    xmlns:App="clr-namespace:ERP_Core;assembly=ERP_Core"
+﻿<Core:WindowAppErp 
+    xmlns:Core="http://www.ERP.com/2023/V1/Core"
     
     x:Class="TemplateMVVM.View.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -8,24 +8,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     
-    
-    xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
-    xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:Img="clr-namespace:ERP_Images;assembly=ERP_Images"
-    xmlns:WinLoc="clr-namespace:TemplateMVVM.WindowLocator"
-    xmlns:mui="http://firstfloorsoftware.com/ModernUI" 
-    
-    
     Title="TemplateMVVM"
     Width="1200" MinWidth="600"    
-    Height="600" MinHeight="300"
-        
+    Height="600" MinHeight="300"    
     WindowStartupLocation="CenterScreen"
     LogoCompany="{Binding LogoCompany}"
     
+    xmlns:WinLoc="clr-namespace:TemplateMVVM.WindowLocator"
     DataContext="{Binding Source={x:Static WinLoc:ViewModelLocator.MainViewModel}}">
 
     <!--
+        xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
+    
         Style="{StaticResource MyModernWindowEmpty}"
     -->
 
@@ -49,7 +43,7 @@
         <GridSplitter Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3" IsEnabled="False"/>
         
         
-        <ContentControl  Content="{Binding FrameTabsViewModel}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <ContentControl Content="{Binding FrameTabsViewModel}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         
         
         <!--SEPARADOR-->
@@ -68,4 +62,4 @@
     
     
 
-</App:WindowAppErp >
+</Core:WindowAppErp >

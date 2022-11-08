@@ -10,6 +10,10 @@ using TemplateMVVM.ViewModel.Dialog;
 using System.Reflection;
 using System.IO;
 using ERP_Log4Net;
+using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace TemplateMVVM.ViewModel
 {
@@ -29,6 +33,14 @@ namespace TemplateMVVM.ViewModel
             set => SetProperty(ref this.autoSelected, value);
         }
 
+        private bool isVisibleProgress;
+        public bool IsVisibleProgress
+        {
+            get => this.isVisibleProgress;
+            set => SetProperty(ref this.isVisibleProgress, value);
+        }
+
+
 
         public ICommand LoadedCommand => new RelayCommand(Loaded);
         public ICommand AddCommand => new RelayCommand(Add);
@@ -42,29 +54,38 @@ namespace TemplateMVVM.ViewModel
             WindowLocator.ViewModelLocator.Messenger.SendAutosRegisterMessage(this);
         }
 
-        public void Loaded()
-        {
-            this.AutoList = new ObservableCollection<Auto>(Querys.Sp_GetAutos());
 
-            /*
-            string nameApp = Assembly.GetEntryAssembly().GetName().Name;    
-            string pathBase = AppDomain.CurrentDomain.BaseDirectory;        
-            string fileConfig = Path.Combine(pathBase, "config.pub");       
-            var resp = ERP_HelperFile.Controller.ReadKey("Config", "global gvServer", "123", fileConfig);   
-            var das = "";
-            */
-        }
         #region Methods
 
+        public void Loaded()
+        {
+            this.IsVisibleProgress = true;
+            IEnumerable<Auto> resp = null;
+            BackgroundWorker Background = new BackgroundWorker();
+            Background.DoWork += (s, args) =>
+            {
+                System.Threading.Thread.Sleep(5000);
+                resp = Querys.Sp_GetAutos();
+            };
+            Background.RunWorkerCompleted += (s, args) =>
+            {
+                this.AutoList = new ObservableCollection<Auto>(resp);
+                this.IsVisibleProgress = false;
+            };
+            if (!Background.IsBusy) Background.RunWorkerAsync();
+            
+        }
+
         //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        
+
 
         public void DownloadExcel()
         {
             Custom4Net.LogMessage(Custom4Net.TracingLevel.ERROR,"Hello logging world!");
 
             //ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "Autos" });
-            //ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "AutosTXT", Extencion = ERP_ExcelGeneric.Models.Extencion.TXT, ColumnHeaders = false });
+            //ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "AutosTXT",
+            //Extencion = ERP_ExcelGeneric.Models.Extencion.TXT, ColumnHeaders = false });
         }
 
         public void RecibeMessage(string mesage)

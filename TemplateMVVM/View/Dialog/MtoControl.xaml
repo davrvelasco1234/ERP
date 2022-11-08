@@ -1,4 +1,5 @@
-﻿<UserControl 
+﻿<Core:UserControlERP  
+    xmlns:Core="http://www.ERP.com/2023/V1/Core"
     x:Class="TemplateMVVM.View.Dialog.MtoControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,25 +9,27 @@
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800"
     
-    xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
-    xmlns:Controls="clr-namespace:ERP_Controls.CtrolText;assembly=ERP_Controls"
-    xmlns:Img="clr-namespace:ERP_Images;assembly=ERP_Images"
-    xmlns:Interactivity="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  
-    xmlns:Interactions="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:MVVM="http://www.ERP.com/2023/V1/MVVM"
+    xmlns:Common="http://www.ERP.com/2023/V1/Common"    
+    xmlns:Images="http://www.ERP.com/2023/V1/Images"    
+    xmlns:Controls="http://www.ERP.com/2023/V1/Controls"
+    xmlns:Fdg="http://filterdatagrid.control.com/2021"  
+    xmlns:Mui="http://firstfloorsoftware.com/ModernUI"
+    xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors">
     
-    xmlns:MVVM="clr-namespace:ERP_MVVM.Helpers;assembly=ERP_MVVM">
-
-
-
-
+    <!--
+        xmlns:Controls="clr-namespace:ERP_Controls.CtrolText;assembly=ERP_Controls"
+    -->
+    
+    
     <Interactivity:Interaction.Triggers>
         <Interactivity:EventTrigger EventName="Loaded">
             <Interactivity:InvokeCommandAction Command="{Binding LoadedCommand}" 
                                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
         </Interactivity:EventTrigger>
     </Interactivity:Interaction.Triggers>
-
-
+    
+    
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -119,7 +122,7 @@
                                   x:Name="Precio"
                                   TypeValidate="Decimal"
                                   TypeIsValid="{Binding TextBoxTypeIsValid, Mode=TwoWay}"
-                                  Text="{Binding Precio, StringFormat={x:Static Const:Constantes.FormatAccounting1_Dec}}"
+                                  Text="{Binding Precio, StringFormat={x:Static Common:Constantes.FormatAccounting1_Dec}}"
                                   MVVM:SelectAllFocusBehavior.Enable="True"/>
 
 
@@ -145,7 +148,7 @@
                     ToolTip="Guardar y cerrar pantalla"
                     Command="{Binding AcceptCerrarCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"    >
-                <Image Source="{Binding accept, Source={x:Static Img:Images.Images24}}"/>
+                <Image Source="{Binding accept, Source={x:Static Images:Images.Images24}}"/>
             </Button>
             <Button
                     Margin="5,0,5,0"
@@ -153,21 +156,21 @@
                     IsEnabled="{Binding AcceptIsEnabled}"
                     Command="{Binding AcceptCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
-                <Image Source="{Binding save, Source={x:Static Img:Images.Images24}}"/>
+                <Image Source="{Binding save, Source={x:Static Images:Images.Images24}}"/>
             </Button>
             <Button
                     Margin="5,0,5,0"
                     ToolTip="Cerrara la pantalla sin realizar cambios"
                     Command="{Binding CancelCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}">
-                <Image Source="{Binding cancel, Source={x:Static Img:Images.Images24}}"/>
+                <Image Source="{Binding cancel, Source={x:Static Images:Images.Images24}}"/>
             </Button>
             <Button
                     Margin="5,0,5,0"
                     ToolTip="Solicita Infomacion de los autos Guardados"
                     Command="{Binding GetInfoCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}">
-                <Image Source="{Binding Ajustes, Source={x:Static Img:Images.Images24}}"/>
+                <Image Source="{Binding Ajustes, Source={x:Static Images:Images.Images24}}"/>
             </Button>
         </WrapPanel>
 
@@ -182,4 +185,4 @@
 
 
 
-</UserControl>
+</Core:UserControlERP>
