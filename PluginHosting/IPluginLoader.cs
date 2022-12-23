@@ -1,5 +1,5 @@
 ﻿using System;
-using PluginInterdaces;
+using PluginInterfaces;
 
 namespace PluginHosting
 {

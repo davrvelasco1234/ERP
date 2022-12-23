@@ -197,9 +197,9 @@
     <Resource Include="Images\view.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PluginInterdaces\PluginInterdaces.csproj">
+    <ProjectReference Include="..\PluginInterdaces\PluginInterfaces.csproj">
       <Project>{4008A240-0F9D-4012-A424-31A105137FC3}</Project>
-      <Name>PluginInterdaces</Name>
+      <Name>PluginInterfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

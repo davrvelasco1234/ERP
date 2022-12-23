@@ -1,5 +1,5 @@
-﻿<Core:WindowAppErp 
-    xmlns:Core="http://www.ERP.com/2023/V1/Core"
+﻿<Core:WindowAppErp  
+    xmlns:Core="http://www.ERP.com/2023/V1/Core"    
     
     x:Class="TemplateMVVM.View.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -11,17 +11,13 @@
     Title="TemplateMVVM"
     Width="1200" MinWidth="600"    
     Height="600" MinHeight="300"    
-    WindowStartupLocation="CenterScreen"
     LogoCompany="{Binding LogoCompany}"
+    WindowStartupLocation="CenterScreen"
+    
     
     xmlns:WinLoc="clr-namespace:TemplateMVVM.WindowLocator"
     DataContext="{Binding Source={x:Static WinLoc:ViewModelLocator.MainViewModel}}">
 
-    <!--
-        xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
-    
-        Style="{StaticResource MyModernWindowEmpty}"
-    -->
 
     <Grid IsEnabled="{Binding GridWindowIsEnabled}">
         <Grid.ColumnDefinitions>
@@ -35,31 +31,28 @@
             <RowDefinition Height="2"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        
+
         <!--SEPARADOR-->
         <GridSplitter Grid.Row="0" Grid.Column="1"  IsEnabled="False"/>
 
         <!--SEPARADOR-->
         <GridSplitter Grid.Row="0" Grid.Column="0"  Grid.RowSpan="3" IsEnabled="False"/>
-        
-        
+
+
         <ContentControl Content="{Binding FrameTabsViewModel}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-        
-        
+
+
         <!--SEPARADOR-->
         <GridSplitter Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" IsEnabled="False" />
 
         <!--SEPARADOR-->
         <GridSplitter Grid.Row="2" Grid.Column="1" IsEnabled="False"/>
 
-        
+
         <!--BUTTON-->
         <ContentControl Content="{Binding BottomViewModel}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-
-
     </Grid>
 
-    
-    
 
-</Core:WindowAppErp >
+
+</Core:WindowAppErp>

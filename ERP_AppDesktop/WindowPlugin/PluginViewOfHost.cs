@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Unity;
-using PluginInterdaces;
+using PluginInterfaces;
 
 namespace ERP_AppDesktop.WindowPlugin
 {

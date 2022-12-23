@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Windows;
 using Unity;
-using PluginInterdaces;
 using PluginHosting;
 using System.AddIn.Pipeline;
 using Unity.Lifetime;
 using System.IO;
+using PluginInterfaces;
 
 namespace ERP_AppDesktop.WindowPlugin
 {
-    internal class Plugin : IServiceProvider, IDisposable
+    public class Plugin : IServiceProvider, IDisposable
     {
         private readonly IUnityContainer _childContainer;
         private readonly ILog _log;

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using PluginInterfaces;
+using System;
 using System.AddIn.Contract;
 using System.AddIn.Pipeline;
-using PluginInterdaces;
 
 namespace PluginHosting
 {

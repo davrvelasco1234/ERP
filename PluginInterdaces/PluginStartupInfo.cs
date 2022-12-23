@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PluginInterdaces
+namespace PluginInterfaces
 {
     [Serializable]
     public class PluginStartupInfo

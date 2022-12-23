@@ -1,19 +1,20 @@
-﻿using System.Linq;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using ERP_MVVM.BaseMVVM;
-using Microsoft.Toolkit.Mvvm.Input;
+﻿using System.Linq;                      
+using System.Collections.ObjectModel;   
+using System.Windows.Input;             
+using ERP_MVVM.BaseMVVM;                
+using Microsoft.Toolkit.Mvvm.Input;     
 using static ERP_Common.Helpers.Constantes;
-using TemplateMVVM.Model;
+using TemplateMVVM.Model;   
 using TemplateMVVM.Data;
 using TemplateMVVM.ViewModel.Dialog;
-using System.Reflection;
-using System.IO;
+using System.Reflection;    
+using System.IO;            
 using ERP_Log4Net;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace TemplateMVVM.ViewModel
 {
@@ -21,21 +22,21 @@ namespace TemplateMVVM.ViewModel
     {
         private ObservableCollection<Auto> autoList;
         public ObservableCollection<Auto> AutoList
-        {
+        {   
             get => this.autoList;
             set => SetProperty(ref this.autoList, value);
-        }
-
+        }   
+            
         private Auto autoSelected;
         public Auto AutoSelected
-        {
+        {   
             get => this.autoSelected;
             set => SetProperty(ref this.autoSelected, value);
-        }
+        }   
 
         private bool isVisibleProgress;
         public bool IsVisibleProgress
-        {
+        {   
             get => this.isVisibleProgress;
             set => SetProperty(ref this.isVisibleProgress, value);
         }
@@ -55,8 +56,8 @@ namespace TemplateMVVM.ViewModel
         }
 
 
+        
         #region Methods
-
         public void Loaded()
         {
             this.IsVisibleProgress = true;
@@ -64,7 +65,7 @@ namespace TemplateMVVM.ViewModel
             BackgroundWorker Background = new BackgroundWorker();
             Background.DoWork += (s, args) =>
             {
-                System.Threading.Thread.Sleep(5000);
+                //System.Threading.Thread.Sleep(5000);
                 resp = Querys.Sp_GetAutos();
             };
             Background.RunWorkerCompleted += (s, args) =>
@@ -73,15 +74,17 @@ namespace TemplateMVVM.ViewModel
                 this.IsVisibleProgress = false;
             };
             if (!Background.IsBusy) Background.RunWorkerAsync();
-            
         }
 
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);   
+        
         public void DownloadExcel()
         {
-            Custom4Net.LogMessage(Custom4Net.TracingLevel.ERROR,"Hello logging world!");
+            
+            //this.AutoList = new ObservableCollection<Auto>(this.AutoList);
+            OnPropertyChanged("AutoList");
+            //MessageBox.Show("asfsafd");
+            //Custom4Net.LogMessage(Custom4Net.TracingLevel.ERROR,"Hello logging world!");
 
             //ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "Autos" });
             //ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "AutosTXT",

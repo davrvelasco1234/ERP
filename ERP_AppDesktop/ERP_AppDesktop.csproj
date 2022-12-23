@@ -180,6 +180,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\CloseButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\StylesControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,9 +276,9 @@
       <Project>{ff410dcc-13c6-490a-8c83-70e0c1588120}</Project>
       <Name>PluginHosting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PluginInterdaces\PluginInterdaces.csproj">
+    <ProjectReference Include="..\PluginInterdaces\PluginInterfaces.csproj">
       <Project>{4008a240-0f9d-4012-a424-31a105137fc3}</Project>
-      <Name>PluginInterdaces</Name>
+      <Name>PluginInterfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +325,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="plugins.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -78,7 +79,7 @@ namespace ERP_Core
 
         
 
-        /*
+        
         protected Assembly AssemblyResolveHandler(Object sender, ResolveEventArgs args)
         {
 
@@ -152,11 +153,55 @@ namespace ERP_Core
                     return MyAssembly;
                 }
             }
-
             return null;
+        }
+
+
+        public static string formateaMiensajeExcepcion(Exception Excepcion, String msgBase)
+        {
+            return formateaMiensajeExcepcion(Excepcion, msgBase, true);
+        }
+
+        public static string formateaMiensajeExcepcion(Exception Excepcion, String msgBase, Boolean MuestraStackTrace)
+        {
+            if (String.IsNullOrWhiteSpace(msgBase))
+            {
+                msgBase = "Ocurrio un error inesperado en la aplicación, comunicarse a sistemas.\n";
+            }
+
+            var MensajeError = msgBase + Excepcion.Message;
+
+            if (MuestraStackTrace)
+            {
+                MensajeError += "\n" + Excepcion.StackTrace;
+            }
+
+            if (Excepcion.InnerException != null)
+            {
+                MensajeError += "\n" + Excepcion.InnerException.Message;
+
+                if (MuestraStackTrace) MensajeError += "\n" + Excepcion.InnerException.StackTrace;
+
+                if (Excepcion.InnerException is SqlException)
+                {
+                    var excepcionSQL = (SqlException)Excepcion.InnerException;
+
+                    MensajeError += "\n" + "Codigo de error: " + excepcionSQL.ErrorCode;
+
+                    MensajeError += "\n" + "Linea: " + excepcionSQL.LineNumber;
+
+                    if (!String.IsNullOrWhiteSpace(excepcionSQL.Procedure)) MensajeError += "\n" + "Procedimiento: " + excepcionSQL.Procedure;
+
+                    if (!String.IsNullOrWhiteSpace(excepcionSQL.Server)) MensajeError += "\n" + "Servidor:  " + excepcionSQL.Server;
+
+                }
+            }
+
+            return MensajeError;
 
         }
-        */
+
+
 
     }
 

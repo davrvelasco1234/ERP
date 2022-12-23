@@ -5,29 +5,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:ERP_AppDesktop.Views"
     mc:Ignorable="d"
     
     Title="ERP"
-    xmlns:MVVM="clr-namespace:ERP_MVVM.Helpers;assembly=ERP_MVVM"
     MinHeight="400" MinWidth="600"
-    xmlns:Load="clr-namespace:ERP_Controls.Loading.Controls;assembly=ERP_Controls"
     xmlns:controls="clr-namespace:ERP_AppDesktop.Controls"
     IsTitleVisible="True"
-    LogoCompany="{Binding logoCompany}"
-    HeaderLinksList="{Binding HeaderLinksList}"
+    LogoCompany="{Binding logoCompany}" 
+    HeaderLinksList="{Binding HeaderLinksList}" 
     WindowState="Maximized"
     xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mui="http://firstfloorsoftware.com/ModernUI"
     Style="{StaticResource WindowErp}"
-    DataContext="{Binding MainViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"
+    
     Loaded="WindowERP_Loaded"
-    KeyUp="WindowERP_KeyUp"
-    xmlns:model="clr-namespace:ERP_AppDesktop.Models"
-    xmlns:viewModels="clr-namespace:ERP_AppDesktop.ViewModels"
-    xmlns:views="clr-namespace:ERP_AppDesktop.Views">
+    KeyUp="WindowERP_KeyUp">
     
     
+    <!--
+    DataContext="{Binding MainViewModel, Source={StaticResource ResourceKey=ViewModelLocator}}"
+    -->
     
     
     <Interactivity:Interaction.Triggers>
@@ -36,13 +33,13 @@
                                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
         </Interactivity:EventTrigger>
     </Interactivity:Interaction.Triggers>
-
-
+    
+    
     <App:WindowErp.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="M" Command="{Binding IcomMenuCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="R" Command="{Binding IcomReloadCommand}"/>
         <KeyBinding Modifiers="Ctrl" Key="G" Command="{Binding IcomGetInGetOutCommand}"/>
-
+        
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding InputBindingsWindowERPCommand}" CommandParameter="CtrlS"/>
         <KeyBinding Modifiers="Ctrl" Key="I" Command="{Binding InputBindingsWindowERPCommand}" CommandParameter="CtrlI"/>
         <!--
@@ -50,8 +47,10 @@
         -->
     </App:WindowErp.InputBindings>
 
-
+    <!--
     <Grid IsEnabled="{Binding GridWindowIsEnabled}">
+    -->
+    <Grid IsEnabled="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding WidthMenu, Mode=TwoWay}"/>
             <ColumnDefinition Width="5"/>
@@ -113,7 +112,7 @@
             </Grid.RowDefinitions>
 
             <!--PESTAÑAS-->
-            <ListBox Grid.Row="0"  
+            <ListBox Name="Tabs" Grid.Row="0"  
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                      ItemsSource="{Binding BodyComponentList}" 
                      SelectedValue="{Binding BodyComponentSelected}" IsSynchronizedWithCurrentItem="True">
@@ -126,7 +125,7 @@
 
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" />
+                        <WrapPanel IsItemsHost="True"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
 
@@ -138,21 +137,26 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-
                             </Grid.RowDefinitions>
                             <WrapPanel VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Path=Name}"/>
-                                <Line x:Name="Separator" X1=".5" Y1="1" X2=".5" Y2="20" Margin="10,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+                                <Button Style="{StaticResource CloseButtonStyle}" Width="20" Height="20"
+                                        Margin="3,0,-7,0" 
+                                        Command="{Binding DataContext.CloseTabCommand, ElementName=Tabs}"
+                                        CommandParameter="{Binding}"/>
+                                <Line x:Name="Separator" X1=".5" Y1="1" X2=".5" Y2="20" Margin="10,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}"/>
                             </WrapPanel>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
+            
             <!--SEPARADOR-->
             <GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" IsEnabled="False"/>
-
+            
             <!--COMPONENTE-->
+            
+            <!--
             <ItemsControl  Grid.Row="2" Grid.RowSpan="2" ItemsSource="{Binding BodyComponentList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -165,9 +169,99 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            -->
 
 
 
+
+
+            <Grid>
+                <TabControl Name="PluginTabs" 
+                    Padding="0"
+                    ItemsSource="{Binding LoadedPlugins}" 
+                    SelectedItem="{Binding SelectedPlugin}">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter Content="{Binding Title}" />
+                                <Button Style="{StaticResource CloseButtonStyle}" 
+                                        Margin="3, 0,-7, 0" 
+                                        Command="{Binding DataContext.CloseTabCommand, ElementName=PluginTabs}"
+                                        CommandParameter="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate >
+                            <ContentPresenter Content="{Binding View}" />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+                <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Width="24" Height="24" BorderThickness="0.5" BorderBrush="Black">
+                    <MenuItem Header="+" ItemsSource="{Binding AvailablePlugins}">
+                        <MenuItem.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" ToolTip="{Binding Description}">
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Version}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </MenuItem.ItemTemplate>
+                        <MenuItem.ItemContainerStyle>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="CommandParameter" Value="{Binding}"/>
+                                <EventSetter Event="Click" Handler="OnLoadPluginClick"/>
+                            </Style>
+                        </MenuItem.ItemContainerStyle>
+                    </MenuItem>
+                </Menu>
+            </Grid>
+
+
+
+
+
+
+
+            <!--
+            <TabControl Grid.Row="0" Name="PluginTabs" 
+                    Padding="0"
+                    ItemsSource="{Binding BodyComponentList}" 
+                     SelectedValue="{Binding BodyComponentSelected}" IsSynchronizedWithCurrentItem="True">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{Binding Title}"/>
+                            <Button Style="{StaticResource CloseButtonStyle}" 
+                                Margin="3, 0,-7,0" 
+                                Command="{Binding DataContext.CloseTabCommand, ElementName=PluginTabs}"
+                                CommandParameter="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                
+                <TabControl.ContentTemplate>
+                    <DataTemplate >
+                        <ContentPresenter Name="control"  Content="{Binding ComponentView, IsAsync=True, FallbackValue=Loading...}"></ContentPresenter>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+                
+            </TabControl>
+            -->
+            <!--
+            <ItemsControl  Grid.Row="2" Grid.RowSpan="2" ItemsSource="{Binding BodyComponentList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,5"  Visibility="{Binding IsVisibilityItemsControl}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Name="control"  Content="{Binding ComponentView, IsAsync=True, FallbackValue=Loading...}"></ContentPresenter>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            -->
             <!--
             <UserControl Grid.Row="1" Grid.RowSpan="2" Name="control" Content="{Binding BodyComponentSelected.ComponentView, IsAsync=True, FallbackValue=Loading...}" ></UserControl>
             -->

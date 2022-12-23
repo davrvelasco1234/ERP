@@ -4,7 +4,7 @@ using System.Runtime.Remoting;
 using System.Threading;
 using System.Windows.Threading;
 using PluginHosting.Log;
-using PluginInterdaces;
+using PluginInterfaces;
 
 namespace PluginHosting
 {

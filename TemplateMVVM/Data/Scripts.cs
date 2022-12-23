@@ -3,6 +3,7 @@ namespace TemplateMVVM.Data
 {
     public class Scripts
     {
+        
         public static string Select_MarcaList => "SELECT Mar_IdMarca AS Clave, Mar_Descripcion AS Descripcion FROM Marcas";
         public static string Select_Marca => "SELECT Mar_IdMarca AS Clave, Mar_Descripcion AS Descripcion FROM Marcas WHERE Mar_IdMarca = @Clave";
         public static string Insert_Marca => "INSERT INTO Marcas (Mar_Descripcion) VALUES (@Descripcion)";

@@ -1,11 +1,12 @@
-﻿using PluginHosting;
-using PluginInterdaces;
+﻿
+using PluginHosting;
+using PluginInterfaces;
 using System;
 using System.Windows;
 
 namespace ERP_AppDesktop.WindowPlugin
 {
-    class ErrorHandlingService
+    public class ErrorHandlingService
     {
         private readonly ILog _log;
 

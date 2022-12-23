@@ -1,4 +1,4 @@
-﻿namespace PluginInterdaces
+﻿namespace PluginInterfaces
 {
     public interface IUnsavedData
     {

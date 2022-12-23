@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using TemplateMVVM.Messaging;
 using TemplateMVVM.ViewModel;
-
+using TemplateMVVM.WindowStart;
 
 namespace TemplateMVVM.WindowLocator
 {

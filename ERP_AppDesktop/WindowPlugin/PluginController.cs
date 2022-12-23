@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using Unity;
 using PluginInterdaces;
 using ERP_AppDesktop.Catalog;
+using PluginInterfaces;
 
 namespace ERP_AppDesktop.WindowPlugin
 {
-    internal class PluginController : IDisposable
+    public class PluginController : IDisposable
     {
         private readonly IUnityContainer _container;        
         private readonly TaskScheduler _scheduler;          
@@ -33,19 +34,11 @@ namespace ERP_AppDesktop.WindowPlugin
             return Task.Factory.StartNew(LoadCatalog);
         }
 
-        /*
-        public Plugin LoadPluginAsync(PluginCatalogEntry info)
-        {
-            var plugin = LoadPlugin(info);
-            plugin.CreateView();
-            LoadedPlugins.Add(plugin);
-            return plugin;
 
-        }
-        */
         
         public Task<Plugin> LoadPluginAsync(PluginCatalogEntry info)
         {
+            var asd = LoadPlugin(info);
             return
                 Task.Factory.StartNew(() => LoadPlugin(info))
                 .ContinueWith(

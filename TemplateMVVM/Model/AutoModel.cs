@@ -103,8 +103,6 @@ namespace TemplateMVVM.Model
             get => this.acceptIsEnabled;
             set => SetProperty(ref this.acceptIsEnabled, value);
         }
-
-
     }
 
 }

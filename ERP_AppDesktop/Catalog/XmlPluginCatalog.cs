@@ -35,21 +35,20 @@ namespace ERP_AppDesktop.Catalog
             {
                 new PluginCatalogEntry
                 {
-                    Name = "Pruebas 111",
-                    Version = "88",
-                    Description = "nuevo plugin",
-                    AssemblyPath = @"C:\PROYECTOS\MAF\ERP2\PluginPruebas\bin\Debug\PluginPruebas.exe",
-                    MainClass = "PluginPruebas.WindowPlugin.Plugin",
-                    Parameters = "Default message"
+                    Name = "TemplateMVVM",
+                    Version = "1.0",
+                    Description = "TemplateMVVM_Pruebas",
+                    AssemblyPath = @"C:\PROYECTOS\pruebas\ERP-master\TemplateMVVM\bin\Release\TemplateMVVM.exe",
+                    MainClass = "TemplateMVVM.WindowStart.Plugin",
                 },
                 new PluginCatalogEntry
                 {
-                    Name = "Pruebas 222",
-                    Version = "88",
-                    Description = "nuevo plugin",
-                    AssemblyPath = @"C:\PROYECTOS\MAF\ERP2\PluginPruebas\bin\Debug\PluginPruebas.exe",
-                    MainClass = "PluginPruebas.WindowPlugin.Plugin",
-                    Parameters = "Default message"
+                    Name = "SolarSystem",
+                    Version = "2.0",
+                    Description = "SolarSystem",
+                    AssemblyPath = @"C:\PROYECTOS\pruebas\pluigin\Plugins\SolarSystem\bin\Debug\SolarSystem.exe",
+                    MainClass = "SolarSystem.Plugin",
+                    Parameters = "Default_message"
                 },
                 new PluginCatalogEntry
                 {
@@ -58,7 +57,7 @@ namespace ERP_AppDesktop.Catalog
                     Description = "nuevo plugin",
                     AssemblyPath = @"C:\PROYECTOS\MAF\ERP2\PluginPruebas\bin\Debug\PluginPruebas.exe",
                     MainClass = "PluginPruebas.WindowPlugin.Plugin",
-                    Parameters = "Default message"
+                    Parameters = "Default_message"
                 },
                 new PluginCatalogEntry
                 {

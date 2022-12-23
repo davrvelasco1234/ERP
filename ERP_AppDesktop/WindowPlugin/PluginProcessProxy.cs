@@ -5,8 +5,7 @@ using System.IO;
 using System.Threading;
 using PluginHosting;
 using PluginInterdaces;
-
-
+using PluginInterfaces;
 
 namespace ERP_AppDesktop.WindowPlugin
 {
@@ -89,8 +88,8 @@ namespace ERP_AppDesktop.WindowPlugin
             _name = "PluginProcess." + Guid.NewGuid();  
             var eventName = _name + ".Ready";   
             _readyEvent = new EventWaitHandle(false, EventResetMode.ManualReset, eventName);    
-                
-            var directory = Path.GetDirectoryName(GetType().Assembly.Location); 
+            
+            var directory = Path.GetDirectoryName(GetType().Assembly.Location);                 
             var exeFile = _startupInfo.Bits == 64 ? "PluginProcess64.exe" : "PluginProcess.exe";    
             var processName = Path.Combine(directory, exeFile); 
                 
@@ -110,11 +109,10 @@ namespace ERP_AppDesktop.WindowPlugin
                 FileName = processName  
             };  
                 
-            Trace.WriteLine(info.Arguments);    
+            Trace.WriteLine(info.Arguments);        
             
-            _process = Process.Start(info);
-
-            var asd = "";
+            _process = Process.Start(info); 
+            
         }   
 
 

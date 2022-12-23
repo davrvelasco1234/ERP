@@ -60,7 +60,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginsCore", "PluginsCore"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginHosting", "PluginHosting\PluginHosting.csproj", "{FF410DCC-13C6-490A-8C83-70E0C1588120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginInterdaces", "PluginInterdaces\PluginInterdaces.csproj", "{4008A240-0F9D-4012-A424-31A105137FC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginInterfaces", "PluginInterdaces\PluginInterfaces.csproj", "{4008A240-0F9D-4012-A424-31A105137FC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginProcess", "PluginProcess\PluginProcess.csproj", "{EC0806D2-BFE5-4D83-A849-7AE10A403F48}"
 EndProject

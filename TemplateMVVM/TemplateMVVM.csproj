@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClaseEntorno">
+      <HintPath>..\..\..\dlls\DEFAULT\ClaseEntorno.dll</HintPath>
+    </Reference>
     <Reference Include="DataGridFilterLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\dlls\DEFAULT\DataGridFilterLibrary.dll</HintPath>
@@ -88,10 +91,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Controls.Ribbon" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dlls\DEFAULT\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -104,6 +104,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfHost.Interfaces">
+      <HintPath>..\..\pluigin\WpfHost\WpfHost.Interfaces\obj\Debug\WpfHost.Interfaces.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -162,7 +165,9 @@
     <Content Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -176,6 +181,7 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Images\" />
+    <Folder Include="WindowStart\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Style\StylesControls.xaml">
@@ -231,14 +237,6 @@
     <ProjectReference Include="..\ERP_MVVM\ERP_MVVM.csproj">
       <Project>{04c82d0c-6ff4-434e-880d-97fa1cd539fa}</Project>
       <Name>ERP_MVVM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ERP_ReadFIle\ERP_HelperFile.csproj">
-      <Project>{0ea9f89a-cad1-47ea-8957-56106106262b}</Project>
-      <Name>ERP_HelperFile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ERP_Security\ERP_Security.csproj">
-      <Project>{e9b7e863-b663-45f8-adcb-b3abea80eb5d}</Project>
-      <Name>ERP_Security</Name>
     </ProjectReference>
     <ProjectReference Include="..\ERP_Template\ERP_Template.csproj">
       <Project>{fbeeb066-759f-4f90-a08e-ae51bc0e8ff8}</Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using PluginInterdaces;
+using PluginInterfaces;
 
 namespace PluginHosting
 {

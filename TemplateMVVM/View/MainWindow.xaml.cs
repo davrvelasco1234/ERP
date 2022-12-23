@@ -1,5 +1,4 @@
 ﻿using ERP_Core;
-using ERP_Common.Interfaces;
 
 namespace TemplateMVVM.View
 {
@@ -7,10 +6,10 @@ namespace TemplateMVVM.View
     {
         public MainWindow() : base()
         {
-            
+
             InitializeComponent();
         }
-
+        /*
         private void WindowERP_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             SetFocusIndex();
@@ -31,12 +30,12 @@ namespace TemplateMVVM.View
 
             }
         }
-
         private void SetFocusIndex()
         {
             //index.Focus();
             //index.Focusable = true;
             //index.ForceCursor = true;
         }
+        */
     }
 }

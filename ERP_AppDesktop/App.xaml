@@ -29,7 +29,7 @@
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Themes/WindowErp.xaml"/>
                 
                 <ResourceDictionary Source="Styles/StylesControls.xaml"/>
-
+                <ResourceDictionary Source="Styles/CloseButton.xaml"/>
                 <!--
                 admin admin 123 QA 127.0.0.1 1800
                 <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.dark.xaml" />

@@ -17,13 +17,13 @@ namespace ERP_Core
         
         public WindowAppErp()
         {
-            this.IsEnabled = false;
             this.Style = (Style)Application.Current.Resources["WindowAppErp"];
 
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.Title = Assembly.GetEntryAssembly().GetName().Name;
             this.Title = this.Title.ToUpper();
             this.Closing += WindowERP_Closing;
+            this.IsEnabled = true;
         }
 
 

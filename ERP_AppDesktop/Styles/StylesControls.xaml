@@ -12,4 +12,10 @@
 
     <Style BasedOn="{StaticResource {x:Type TextBoxBase}}" TargetType="controls:TextBoxType"/>
 
+    <Style x:Name="PopUpBorder" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="Black" />
+    </Style>
+    
+
+
 </ResourceDictionary>

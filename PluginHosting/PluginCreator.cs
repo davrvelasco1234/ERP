@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows;
-using PluginInterdaces;
+using PluginInterfaces;
 
 namespace PluginHosting
 {

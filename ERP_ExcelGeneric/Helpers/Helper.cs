@@ -6,20 +6,21 @@ using System.Reflection;
 using System.Windows;
 using ERP_ExcelGeneric.Models;
 using GemBox.Spreadsheet;
+using static ERP_Common.Helpers.Constantes;
 
 namespace ERP_ExcelGeneric.Helpers
 {
+
 
     internal class Helper
     {
         internal static void SaveBook(ExcelFile workbook, string path)
         {
             string MessageDefault1 = "El proceso no puede obtener acceso al archivo";
-            //string MessageDefault2 = "siendo utilizado en otro";
             try
             {
                 workbook.Save(path);
-                ERP_Controls.Notification.Popup.ExecutePopup(ERP_Common.Helpers.Constantes.MessageType.Success, "Excel", "Archivo Creado !!!");
+                ERP_Controls.Notification.Popup.ExecutePopup(MessageType.Success, "Excel", "Archivo Creado !!!");
                 return;
             }
             catch (Exception e)
@@ -36,7 +37,8 @@ namespace ERP_ExcelGeneric.Helpers
                     }
                     else
                     {
-                        ERP_Controls.Notification.Popup.ExecutePopup(ERP_Common.Helpers.Constantes.MessageType.Warning, "Archivo NO Creado", e.Message);
+                        ERP_Controls.Notification.Popup.ExecutePopup(MessageType.Warning, "Archivo NO Creado", e.Message);
+
                         return;
                     }
                 }
@@ -112,4 +114,6 @@ namespace ERP_ExcelGeneric.Helpers
 
 
     }
+
+
 }

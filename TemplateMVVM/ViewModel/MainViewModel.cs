@@ -1,10 +1,10 @@
-﻿
-using ERP_MVVM.BaseMVVM;
+﻿using ERP_MVVM.BaseMVVM;
 using ERP_Template.Bottom;
 using System.Windows.Media.Imaging;
+using TemplateMVVM.ViewModel;
 
 
-namespace TemplateMVVM.ViewModel
+namespace TemplateMVVM.WindowStart
 {
     public class MainViewModel : BaseViewModel
     {
@@ -30,10 +30,6 @@ namespace TemplateMVVM.ViewModel
         {
             this.LogoCompany = ((BitmapImage)ERP_Images.Images.Logo200.Construccion);
         }
-
-
-        //public void LoadBottomViewModel() 
-        //    => this.BottomViewModel = WindowLocator.ViewModelLocator.BottomViewModel;
 
         
         public void LoadBottomViewModel() => this.BottomViewModel = new BottomViewModel();

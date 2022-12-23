@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PluginCatalog xmlns="http://www.ikriv.com/wpfHosting/plugins">
+  <Plugins>
+    
+    <Plugin Name="Test Plugin"  
+            Version="1.0"       
+            Description="Plugin de pruebas" 
+            AssemblyPath="..\..\..\Plugins\TestExceptions\bin\Release\TestExceptions.dll" 
+            MainClass="TemplateMVVM.WindowStart.Plugin" />  
+    
+  </Plugins>
+</PluginCatalog>

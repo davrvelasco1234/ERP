@@ -1,19 +1,16 @@
-﻿using FirstFloor.ModernUI.Presentation;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using FirstFloor.ModernUI.Presentation;
+
 
 namespace FirstFloor.ModernUI.Windows.Controls
 {
     /// <summary>
     /// Represents a control that contains multiple pages that share the same space on screen.
     /// </summary>
-    public class ModernTab
-        : Control
+    public class ModernTab : Control
     {
         /// <summary>
         /// Identifies the ContentLoader dependency property.

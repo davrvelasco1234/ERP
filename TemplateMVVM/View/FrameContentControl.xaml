@@ -111,8 +111,8 @@
         </Fdg:FilterDataGrid>
 
 
-        <Mui:ModernProgressRing IsActive="{Binding IsVisibleProgress}" Width="150" Height="150" Style="{StaticResource CircleProgressRingStyle}" />
-
+        <Mui:ModernProgressRing IsActive="{Binding IsVisibleProgress}"  Width="150" Height="150"/>
+        
         <!--
         Tag="{StaticResource ChasingDotsProgressRingStyle}"
         Tag="{StaticResource CircleProgressRingStyle}"

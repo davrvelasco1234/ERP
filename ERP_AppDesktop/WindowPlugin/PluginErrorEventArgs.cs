@@ -2,7 +2,7 @@
 
 namespace ERP_AppDesktop.WindowPlugin
 {
-    class PluginErrorEventArgs : EventArgs
+    public class PluginErrorEventArgs : EventArgs
     {
         public PluginErrorEventArgs(Plugin plugin, string message, Exception exception)
         {

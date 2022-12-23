@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PluginInterdaces
+namespace PluginInterfaces
 {
     public interface ILog
     {

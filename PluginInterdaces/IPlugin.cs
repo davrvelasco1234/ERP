@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace PluginInterdaces
+namespace PluginInterfaces
 {
     public interface IPlugin : IServiceProvider, IDisposable
     {

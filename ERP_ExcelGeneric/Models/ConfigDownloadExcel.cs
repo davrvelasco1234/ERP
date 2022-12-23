@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace ERP_ExcelGeneric.Models
 {
     public class ConfigDownloadExcel
@@ -14,24 +16,24 @@ namespace ERP_ExcelGeneric.Models
         /// <summary>
         /// Formato numerico que se asignara a las propiedades int
         /// </summary>
-        public string FormatInt { get; set; } = "_-* #,##0_-;-* #,##0_-;_-* \" - \"??_-;_-@_-";         
+        public string FormatInt { get; set; } = "_-* #,##0_-;-* #,##0_-;_-* \" - \"??_-;_-@_-";
         /// <summary>   
         /// Formato numerico que se asignara a las propiedades decimal      
         /// </summary>  
-        public string FormatDec { get; set; } = "_-* #,##0.00_-;-* #,##0.00_-;_-* \" - \"??_-;_-@_-";   
+        public string FormatDec { get; set; } = "_-* #,##0.00_-;-* #,##0.00_-;_-* \" - \"??_-;_-@_-";
         /// <summary>   
         /// Formato numerico que se asignara a las propiedades datetime 
         /// </summary>  
-        public string FormatDate { get; set; } = "dd MMM yyyy"; 
+        public string FormatDate { get; set; } = "dd MMM yyyy";
         /// <summary>   
         /// Indica si coloca o no titulos a las coumnas 
         /// </summary>  
-        public bool ColumnHeaders { get; set; } = true; 
+        public bool ColumnHeaders { get; set; } = true;
         /// <summary>   
         /// Indica a partir de que renglon comiensa escribir    
         /// </summary>  
-        private int startRow = 0;   
-        public int StartRow 
+        private int startRow = 0;
+        public int StartRow
         {
             get { return startRow; }
             set
@@ -40,7 +42,7 @@ namespace ERP_ExcelGeneric.Models
                 PanesStateRow = startRow + 1;
             }
         }
-        /// <summary>
+        /// <summary>   
         /// indica si fijara los titulos 
         /// </summary>
         public bool PanesState { get; set; } = true;
@@ -68,6 +70,11 @@ namespace ERP_ExcelGeneric.Models
         XLSX
     }
 
+    public enum LeftRigh
+    {
+        Left,
+        Right
+    }
 
     public class ConfigTXT
     {
@@ -83,6 +90,10 @@ namespace ERP_ExcelGeneric.Models
         /// Encoding
         /// </summary>  
         public System.Text.Encoding Encoding { get; set; } = System.Text.Encoding.UTF8;
+
     }
+
+    
+
 
 }

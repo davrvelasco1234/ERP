@@ -8,16 +8,31 @@ namespace ERP_Entorno
 
     public static class Entorno
     {
-        public static ISqlConnection SqlConnection { get; }
-        public static IExecQuery ExecQuery { get; }
-        public static IExecProperty GetProperty { get; }
+        public static ISqlConnection SqlConnection { get; private set; }
+        public static IExecQuery ExecQuery { get; private set; }
+        public static IExecProperty GetProperty { get; private set; }
 
+        private static SqlConnection SqlConn { get; set; }
+        /*
         static Entorno()
         {
             SqlConnection = new SqlConnectionString(ERP_HelperFile.Controller.GetConfigCon());
             ExecQuery = new ExecQuery(SqlConnection);
             GetProperty = new ExecProperty(SqlConnection);
         }
+        */
+        public static void Initilize(SqlConnection conn, string pass)
+        {
+            SqlConnection = new SqlConnectionString(new SqlConnectionStringBuilder(Conexion(conn, pass))); 
+            ExecQuery = new ExecQuery(SqlConnection);
+            GetProperty = new ExecProperty(SqlConnection);
+        }
+
+        private static string Conexion(SqlConnection conn, string pass)
+        {
+            return conn.ConnectionString.Replace("MultipleActiveResultSets", string.Format("Password={0};{1}", pass, "MultipleActiveResultSets"));
+        }
+
     }
 
 

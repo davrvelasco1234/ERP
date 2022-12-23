@@ -34,8 +34,7 @@ namespace TemplateMVVM.Data
         public static int Update_Auto(Auto param) => ERP_Entorno.Entorno.ExecQuery.Execute(Scripts.Update_Auto, param);
         public static int Delete_Auto(object param) => ERP_Entorno.Entorno.ExecQuery.Execute(Scripts.Delete_Auto, param);
 
-
-
         public static IEnumerable<Auto> Sp_GetAutos() => ERP_Entorno.Entorno.ExecQuery.Query<Auto>(Scripts.Sp_GetAutos, null);
+
     }
 }

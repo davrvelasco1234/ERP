@@ -25,6 +25,6 @@ namespace TemplateMVVM.Model
         public string Color { get; set; }
         public decimal Precio { get; set; }
         public DateTime FechaCompra { get; set; }
-        public string Observaciones { get; set; }
+        public string Observaciones { get; set; }   
     }
 }

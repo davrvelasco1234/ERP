@@ -16,9 +16,7 @@
 
 
     <!--
-    
-    <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="Support:DataGridColumnFilter"/>
-    
+        <Style BasedOn="{StaticResource {x:Type DataGrid}}" TargetType="Support:DataGridColumnFilter"/>
     -->
     
 </ResourceDictionary>
