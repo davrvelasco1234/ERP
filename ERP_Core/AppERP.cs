@@ -1,75 +1,45 @@
-﻿using System;
+﻿
+
+using ERP_Common;
+using System;
 using System.Data.SqlClient;
+using System.Globalization;
+using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
-using System.Windows.Threading;
-using ERP_Common.Helpers;
-using ERP_Log4Net;
+
+
 
 namespace ERP_Core
 {
 
     public class AppERP : Application
     {
-        private readonly object _lock = new object();
         public static string DirectorioBase;
         private AppDomain domain;
 
 
-        static AppERP()
-        {
-            
-        }
-
         protected AppERP()
         {
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            domain = AppDomain.CurrentDomain;
+            //AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolveHandlerPRUEBAS; 
+            DirectorioBase = AppDomain.CurrentDomain.BaseDirectory;
+            domain.UnhandledException += domain_UnhandledException;
             this.Exit += Application_Exit;
         }
 
-
-        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        /*
+        [MTAThread()]
+        protected override void OnStartup(System.Windows.StartupEventArgs e)
         {
-            lock (_lock)
-            {
-                Custom4Net.LogMessage(Custom4Net.TracingLevel.FATAL, "TaskScheduler_UnobservedTaskException", e.Exception);
-                var resp = "UnobservedTaskException" + Environment.NewLine + e.Exception.FnxGetMessage();
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                    SendMessage(resp)
-                ), DispatcherPriority.Normal);
-            }
-        }
-        
+            base.OnStartup(e);
 
-        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
-        {
-            lock (_lock)
-            {
-                Custom4Net.LogMessage(Custom4Net.TracingLevel.FATAL, "App_DispatcherUnhandledException", e.Exception);
-                var resp = "DispatcherUnhandledException" + Environment.NewLine + e.Exception.FnxGetMessage();
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                    SendMessage(resp)
-                ), DispatcherPriority.Normal);
-            }
-        }
-        
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("es-MX");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-MX");
 
-        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            lock (_lock)
-            {
-                var resp = ((Exception)e.ExceptionObject);
-                Custom4Net.LogMessage(Custom4Net.TracingLevel.FATAL, "CurrentDomain_UnhandledException", resp);
-                SendMessage(resp.FnxGetMessage());
-            }   
         }
-        
-
-        private void SendMessage(string message)
-        {
-            MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
+        */
 
 
         private void Application_Exit(Object sender, System.Windows.ExitEventArgs e)
@@ -77,9 +47,83 @@ namespace ERP_Core
             //Funcion para guardar/salvar configuraciónes, logs de cierre.
         }
 
-        
+        /*
+        protected Assembly AssemblyResolveHandlerPRUEBAS(Object sender, ResolveEventArgs args)
+        {
+            Assembly entryAssembly = Assembly.GetEntryAssembly();
+            AssemblyName[] assemblyNames = entryAssembly.GetReferencedAssemblies();
 
-        
+            foreach (AssemblyName item in assemblyNames)
+            {
+                string nombreLibreria = args.Name.Substring(0, args.Name.IndexOf(","));
+
+                string pathCore = @"..\DllCore\" + nombreLibreria + ".dll";
+                string pathDev = @"..\dllDev\" + nombreLibreria + ".dll";
+                string pathSystem = @"..\dllSystem\" + nombreLibreria + ".dll";
+                string pathNuget = @"..\dllNuget\" + nombreLibreria + ".dll";
+                string path = "";
+
+                if (System.IO.File.Exists(path))
+                    path = pathCore;
+                else if (System.IO.File.Exists(path))
+                    path = pathDev;
+                else if (System.IO.File.Exists(path))
+                    path = pathSystem;
+                else if (System.IO.File.Exists(path))
+                    path = pathNuget;
+
+                //if (path == "") continue;
+
+
+                Assembly MyAssembly = null;
+
+                try
+                {
+                    MyAssembly = Assembly.LoadFrom(path);
+                }
+                catch (ArgumentNullException ex)
+                {
+                    var mensaje = formateaMiensajeExcepcion(ex, "No se encontró una libreria: " + nombreLibreria);
+                    MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                }
+                catch (System.IO.FileNotFoundException ex)
+                {
+                    var mensaje = formateaMiensajeExcepcion(ex, "No se encontró una libreria: " + nombreLibreria);
+                    MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                }
+                catch (System.IO.FileLoadException ex)
+                {
+                    var mensaje = formateaMiensajeExcepcion(ex, "No se pudo cargar una libreria: " + nombreLibreria);
+                    MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                }
+                catch (BadImageFormatException ex)
+                {
+                    var mensaje = formateaMiensajeExcepcion(ex, "La libreria no es valida: " + nombreLibreria);
+                    MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                }
+                catch (System.Security.SecurityException ex)
+                {
+                    var mensaje = formateaMiensajeExcepcion(ex, "No se pudo cargar una libreria por problemas de seguridad: " + nombreLibreria);
+                    MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                }
+                catch (ArgumentException ex)
+                {
+                    var mensaje = formateaMiensajeExcepcion(ex, "Path a libreria invalido: '" + path + "'");
+                    MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                }
+                catch (System.IO.PathTooLongException ex)
+                {
+                    var mensaje = formateaMiensajeExcepcion(ex, "El path de ejecucion es demasiado largo. " + path);
+                    MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+                }
+                return MyAssembly;
+            }
+
+            return null;
+        }
+        */
+
+        /*
         protected Assembly AssemblyResolveHandler(Object sender, ResolveEventArgs args)
         {
 
@@ -153,11 +197,28 @@ namespace ERP_Core
                     return MyAssembly;
                 }
             }
+
             return null;
+
+        }
+        */
+
+
+        protected void MyHandler(Object sender, UnhandledExceptionEventArgs args)
+        {
+            Exception e = (Exception)args.ExceptionObject;
         }
 
+        protected void domain_UnhandledException(Object sender, System.UnhandledExceptionEventArgs e)
+        {
+            var Excepcion = (Exception)e.ExceptionObject;
 
-        public static string formateaMiensajeExcepcion(Exception Excepcion, String msgBase)
+            var mensaje = formateaMiensajeExcepcion(Excepcion, string.Empty);
+
+            MessageBox.Show(mensaje, "Error", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.None);
+        }
+
+        protected static string formateaMiensajeExcepcion(Exception Excepcion, String msgBase)
         {
             return formateaMiensajeExcepcion(Excepcion, msgBase, true);
         }
@@ -201,12 +262,6 @@ namespace ERP_Core
 
         }
 
-
-
     }
 
 }
-
-
-
-

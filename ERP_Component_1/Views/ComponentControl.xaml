@@ -8,127 +8,144 @@
     xmlns:VM="clr-namespace:ERP_Component_1.ViewModels"
     mc:Ignorable="d" 
     
-    xmlns:Const="clr-namespace:ERP_Common.Helpers;assembly=ERP_Common"
-    xmlns:Img="clr-namespace:ERP_Images;assembly=ERP_Images"
     xmlns:Interactivity="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mui="http://firstfloorsoftware.com/ModernUI"
-    xmlns:MVVM="clr-namespace:ERP_MVVM.Helpers;assembly=ERP_MVVM">
-    
-    <!--   
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <Img:Images x:Key="Images"/>
-        </ResourceDictionary>
-    </UserControl.Resources>
+    Loaded="UserControl_Loaded"
+    Initialized="UserControl_Initialized"
+    Unloaded="UserControl_Unloaded">
+
+    <!--
+    <UserControl.DataContext>
+        <VM:ComponentViewModel/>
+    </UserControl.DataContext>
     -->
-    
+        
     <Interactivity:Interaction.Triggers>
         <Interactivity:EventTrigger EventName="Loaded">
             <Interactivity:InvokeCommandAction Command="{Binding LoadedCommand}" 
                                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"/>
         </Interactivity:EventTrigger>
     </Interactivity:Interaction.Triggers>
+    
+    <!--
+    <Grid>
 
+        <StackPanel>
+            <Label Content="Componente de Pruebas"/>
+            
+            <TextBox Text="{Binding InputText}"/>
+            
+            <Button Grid.Column="0" Grid.Row="1" 
+                    Content="button" 
+                    Command="{Binding MethodButtomCommand}"/>
+            
+            <TextBox Text="{Binding OutputText}"/>
+            
+            <ProgressBar Minimum="0" Maximum="1" Height="16" IsIndeterminate="True" Margin="0,0,0,16" />
+            
+        </StackPanel>
+
+    </Grid>
+    -->
+
+    <!--
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open"/>
+                <MenuItem Header="_Close"/>
+                <MenuItem Header="_Save"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel></StackPanel>
+    </DockPanel>
+    -->
+
+    <!--
+    <Grid>
+        <mui:ModernTab SelectedSource="/2" Layout="List">
+            <mui:ModernTab.Links>
+                <mui:Link DisplayName="Lorem Ipsum 1" Source="/1" />
+                <mui:Link DisplayName="Lorem Ipsum 2" Source="/2" />
+                <mui:Link DisplayName="Lorem Ipsum 3" Source="/3"/>
+                <mui:Link DisplayName="Lorem Ipsum 4" Source="/4" />
+                <mui:Link DisplayName="Lorem Ipsum 5" Source="/5"/>
+            </mui:ModernTab.Links>
+-->
+            <!-- ensures new LoremIpsum content is loaded for each uri -->
+   <!--         
+            <mui:ModernTab.ContentLoader>
+                <app:LoremIpsumLoader />
+            </mui:ModernTab.ContentLoader>
+            -->
+    <!--
+        </mui:ModernTab>
+    </Grid>
+    -->
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <GridSplitter Grid.Row="1" Height="1" HorizontalAlignment="Stretch" IsEnabled="False"/>
-
-        <!--MENU-->
-        <Grid Grid.Row="0"  Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <WrapPanel>
-                <Button ToolTip="Agregar Nuevo Registro" 
-                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                        Command="{Binding AddCommand}">
-                    <StackPanel>
-                        <Image Source="{Binding add, Source={x:Static Img:Images.Images24}}"/>
-                        <TextBlock Text="Nuevo Registro"/>
-                    </StackPanel>
-                </Button>
-
-
-                <Button ToolTip="Descargar datos a Excel" Margin="5,0"
-                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                        Command="{Binding DownloadExcelCommand}">
-                    <StackPanel>
-                        <Image Source="{Binding DownloadExcel, Source={x:Static Img:Images.Images24}}"/>
-                        <TextBlock Text="Descargar"/>
-                    </StackPanel>
-                </Button>
-            </WrapPanel>
-        </Grid>
 
 
 
-        <!--BODY
-            MVVM:DataGridBehavior.DisplayRowNumber="True"
-        -->
-        <DataGrid Grid.Row="2" Margin="5" FrozenColumnCount="0" 
-                  ItemsSource="{Binding AutoList}" SelectedItem="{Binding AutoSelected}"
-                  
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True">
 
-            <DataGrid.Columns>
-                
-                <DataGridTextColumn Header="IdAuto" Binding="{Binding IdAuto}"/>
-                <DataGridTextColumn Header="IdMarca" Binding="{Binding IdMarca}" Visibility="Collapsed"/>
-                <DataGridTextColumn Header="DescMarca" Binding="{Binding DescMarca}"/>
-                <DataGridTextColumn Header="IdModelo" Binding="{Binding IdModelo}" Visibility="Collapsed"/>
-                <DataGridTextColumn Header="DescModelo" Binding="{Binding DescModelo}"/>
-                <DataGridTextColumn Header="IdCarroceria" Binding="{Binding IdCarroceria}" Visibility="Collapsed"/>
-                <DataGridTextColumn Header="DescCarroceria" Binding="{Binding DescCarroceria}"/>
-                <DataGridTextColumn Header="Año" Binding="{Binding Anio}"/>
-                <DataGridTextColumn Header="Color" Binding="{Binding Color}"/>
-                <DataGridTemplateColumn Header="Precio" Width="Auto" SortMemberPath="Precio">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Precio, StringFormat={x:Static Const:Constantes.FormatAccounting1_Dec}}" HorizontalAlignment="Right" Margin="0,0,10,0"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="FechaCompra" Binding="{Binding FechaCompra, StringFormat={x:Static Const:Constantes.FormatDate1}}"/>
-                <DataGridTextColumn Header="Observaciones" Binding="{Binding Observaciones}" />
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="{Binding OutputText}" Style="{StaticResource Heading1}" Margin="0,0,0,8"/>
+
+            <TreeView> 
+                <TreeViewItem IsExpanded="True">
+                    <TreeViewItem.Header>
+                        <TextBlock Text="menu 1" Style="{StaticResource Heading2}"/>
+                    </TreeViewItem.Header>
+                    <TreeViewItem IsSelected="True">
+                        <TreeViewItem.Header>
+                            <TextBlock Text="menu 1.1"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <TextBlock Text="menu 1.2"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <TextBlock Text="menu 1.2"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                </TreeViewItem>
 
 
-                <DataGridTemplateColumn Header="Modifica" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button ToolTip="Modificar Registro" 
-                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.UpdateCommand}">
-                                <Image Source="{Binding modify, Source={x:Static Img:Images.Images16}}"/>
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <TreeViewItem IsExpanded="True">
+                    <TreeViewItem.Header>
+                        <TextBlock Text="menu 2" Style="{StaticResource Heading2}"/>
+                    </TreeViewItem.Header>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <TextBlock Text="menu 2.1"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <TextBlock Text="menu 2.2"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                    <TreeViewItem>
+                        <TreeViewItem.Header>
+                            <TextBlock Text="menu 2.2"/>
+                        </TreeViewItem.Header>
+                    </TreeViewItem>
+                </TreeViewItem>
 
-                <DataGridTemplateColumn Header="Eliminar" Width="auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button ToolTip="Eliminar Registro" 
-                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Path=DataContext.DeleteCommand}">
-                                <Image Source="{Binding remove, Source={x:Static Img:Images.Images16}}"/>
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-            </DataGrid.Columns>
-        </DataGrid>
-
+            </TreeView>
+        </StackPanel>
     </Grid>
-
+    
 </UserControl>

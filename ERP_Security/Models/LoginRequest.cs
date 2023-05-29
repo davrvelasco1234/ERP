@@ -5,16 +5,15 @@ using ERP_Common.Interfaces;
 namespace ERP_Security.Models
 {
 
-    public class LoginRequest : ILoginRequest
+    public class LoginRequest 
     {
+        public string User { get; private set; }
+        public string UserName { get; private set; }
+        public string Rol { get; private set; }
+        internal string Password { get; private set; }
+        public bool StatusLog { get; private set; } = false;
         
-        public string User { get; }
-        public string UserName { get; }
-        public string Rol { get; }
-        internal string Password { get; }
-        public bool StatusLog { get; } = false;
 
-        
 
         internal LoginRequest(string user,  string userName, string rol, string password, bool statusLog)
         {
@@ -24,8 +23,6 @@ namespace ERP_Security.Models
             Password = password;
             StatusLog = statusLog;
         }
-
-        
     }
 }
 

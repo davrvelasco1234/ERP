@@ -1,7 +1,11 @@
-﻿using System;
-using System.Windows;
-using ERP_Core.Components;
+﻿using ERP_Components;
 using ERP_MVVM.BaseMVVM;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace ERP_AppDesktop.Models
 {
@@ -9,7 +13,6 @@ namespace ERP_AppDesktop.Models
     {
         public string Name { get; set; }
         public IComponentView ComponentView { get; set; }
-
 
         public string NameSpace { get; set; }
 

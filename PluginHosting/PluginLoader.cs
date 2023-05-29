@@ -4,13 +4,10 @@ using System.Runtime.Remoting;
 using System.Threading;
 using System.Windows.Threading;
 using PluginHosting.Log;
-using PluginInterfaces;
+using WpfHost.Interfaces;
 
 namespace PluginHosting
 {
-    /// <summary>
-    /// Loads plugins for the host
-    /// </summary>
     public class PluginLoader : MarshalByRefObject, IPluginLoader
     {
         private Dispatcher _dispatcher;
@@ -39,6 +36,7 @@ namespace PluginHosting
                 {
                     ReportFatalError(ex);
                 }
+
                 Thread.Sleep(100); // allow any pending remoting operations to finish
                 _log.Debug("Shutdown complete");
             }
@@ -137,7 +135,7 @@ namespace PluginHosting
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var exception = 
+            var exception =
                 (e.ExceptionObject as Exception) ??
                 new Exception("Unknown error. Exception object is null");
 

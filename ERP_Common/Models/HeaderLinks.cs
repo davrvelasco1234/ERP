@@ -1,6 +1,7 @@
-﻿    
-    
-    
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace ERP_Common.Models
 {
     public class HeaderLinks
@@ -8,7 +9,4 @@ namespace ERP_Common.Models
         public string DisplayContent { get; set; }
         public string DisplayCommanParam { get; set; }
     }
-
-}   
-    
-    
+}

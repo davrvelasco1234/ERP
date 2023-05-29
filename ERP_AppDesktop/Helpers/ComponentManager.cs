@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
-using ERP_Core.Components;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+using ERP_Components;
 
 namespace ERP_AppDesktop.Helpers
 {
@@ -13,8 +18,8 @@ namespace ERP_AppDesktop.Helpers
         public static ComponentManager GetComponents() => new ComponentManager(Constantes.RutaComponens);
 
 
-        [ImportMany(typeof(IComponentERP))]
-        public IEnumerable<IComponentERP> Modules { get; set; }
+        [ImportMany(typeof(IComponent))]
+        public IEnumerable<IComponent> Modules { get; set; }
 
         public ComponentManager(string File)
         {

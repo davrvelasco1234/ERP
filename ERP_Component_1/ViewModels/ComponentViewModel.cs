@@ -1,116 +1,70 @@
 ﻿
-
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Collections.ObjectModel;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
-using ERP_Component_1.Data;
-using ERP_Component_1.Identity;
-using ERP_Component_1.ViewModels.Dialog;
-using ERP_Core.Components;
+
+using ERP_Components;
 using ERP_MVVM.BaseMVVM;
 using Microsoft.Toolkit.Mvvm.Input;
-using static ERP_Common.Helpers.Constantes;
-using ERP_Controls.Notification;
 
 namespace ERP_Component_1.ViewModels
 {
     public class ComponentViewModel : BaseViewModel, IComponentView
     {
-
-        private ObservableCollection<Auto> autoList;
-        public ObservableCollection<Auto> AutoList
+        private string inputText;
+        public string InputText
         {
-            get => this.autoList;
-            set => SetProperty(ref this.autoList, value);
+            get => inputText;
+            set => SetProperty(ref this.inputText, value);
         }
 
-        private Auto autoSelected;
-        public Auto AutoSelected
+        private string outputText;
+        public string OutputText
         {
-            get => this.autoSelected;
-            set => SetProperty(ref this.autoSelected, value);
+            get => outputText;
+            set => SetProperty(ref this.outputText, value);
         }
-
 
         public ICommand LoadedCommand => new RelayCommand(Loaded);
-        public ICommand AddCommand => new RelayCommand(Add);
-        public ICommand UpdateCommand => new RelayCommand(Update);
-        public ICommand DeleteCommand => new RelayCommand(Delete);
-        public ICommand DownloadExcelCommand => new RelayCommand(DownloadExcel);
+
         
+
+        public ICommand MethodButtomCommand => new RelayCommand(MethodButtom);
+
 
         public ComponentViewModel()
         {
-            MainComponent.Messenger.SendAutosRegisterMessage(this);
+            //int uno = 1;
+            //int cero = 1;
+            //var ASDF = (uno / cero);
+            //
+
+            Console.WriteLine("contructor");
+        
+            //this.OutputText = "TITULO";
+
         }
 
         public void Loaded()
         {
-            this.AutoList = new ObservableCollection<Auto>(Querys.Sp_GetAutos());
+            //System.Threading.Thread.Sleep(5000);
+
+            this.OutputText = "TITULO";
+
+
+            
         }
-
-        #region Methods
-
         
-        public void DownloadExcel() 
+
+
+        public void MethodButtom()
         {
-            ERP_ExcelGeneric.MainDownloadExcel.Exec<Auto>(this.AutoList, new ERP_ExcelGeneric.Models.ConfigDownloadExcel { NameBook = "Autos" }); 
+            this.OutputText = "Hola " + this.InputText;
+
         }
-
-        public void RecibeMessage(string mesage)
-        {
-            Popup.ExecutePopup(MessageType.Warning, "Title", mesage);
-        }
-
-
-        public void SendAutos()
-        {
-            MainComponent.Messenger.GetAutosMessage(this.AutoList);
-        }
-
-        public Auto SendAutos2()
-        {
-            return this.AutoList.FirstOrDefault();
-        }
-
-        public void AddItem(Auto auto)
-        {
-            Data.Querys.Insert_Auto(auto);
-            Loaded();
-        }
-
-        public void Add()
-        {
-
-
-            var response = OpenDialogMVVM.Show(new AutoMtoViewModel(), "Inserta Auto");
-            if (response.IsSuccess == false) return;
-
-            Data.Querys.Insert_Auto(response.Result);
-
-            Loaded();
-        }
-
-        public void Update()
-        {
-            var response = OpenDialogMVVM.Show(new AutoMtoViewModel(this.AutoSelected), "Mantenimiento Auto");
-            if (response.IsSuccess == false) return;
-
-            Data.Querys.Update_Auto(response.Result);
-
-            Loaded();
-        }
-
-        public void Delete()
-        {
-            Data.Querys.Delete_Auto(this.AutoSelected);
-            Loaded();
-        }
-
-        #endregion
-
     }
-
 }
-
-

@@ -1,9 +1,14 @@
-﻿using System;
+﻿
+
+using System;
 using System.Runtime.Serialization;
 using static ERP_Common.Helpers.Constantes;
 
 namespace ERP_Common
 {
+    /// <summary>
+    ///  validar messagetype
+    /// </summary>
     [DataContract]
     public class ErpResponse<T>
     {
@@ -27,13 +32,14 @@ namespace ERP_Common
 
         }
 
+
         //message
         public ErpResponse(string message)
         {
             this.IsSuccess = false;
             this.Message = message;
             this.MessageCode = 0;
-            this.MessageType = MessageType.Warning;
+            this.MessageType = MessageType.Bug;
             this.Exception = null;
         }
 
@@ -42,7 +48,7 @@ namespace ERP_Common
             this.IsSuccess = false;
             this.Message = message;
             this.MessageCode = messageCode;
-            this.MessageType = MessageType.Warning;
+            this.MessageType = MessageType.Bug;
             this.Exception = null;
         }
 
@@ -114,37 +120,24 @@ namespace ERP_Common
             this.Exception = null;
         }
 
-        public ErpResponse(bool isSuccess, T result)
-        {
-            this.IsSuccess = isSuccess;
-            this.Message = "";
-            this.MessageCode = isSuccess ? 1 : 0;
-            this.MessageType = isSuccess ? MessageType.Success : MessageType.Warning;
-            this.Result = result;
-            this.Exception = null;
-        }
-
-
         public ErpResponse(bool isSuccess, string message, T result)
         {
             this.IsSuccess = isSuccess;
             this.Message = message;
             this.MessageCode = isSuccess ? 1 : 0;
-            this.MessageType = isSuccess ? MessageType.Success : MessageType.Warning;
+            this.MessageType = isSuccess ? MessageType.Success : MessageType.Bug;
             this.Result = result;
             this.Exception = null;
         }
 
-
-        //todos
-        public ErpResponse(bool isSuccess, string message, int messageCode, MessageType messageType, T result, Exception exception)
+        public ErpResponse(bool isSuccess, string message, int messageCode, MessageType messageType, T result)
         {
             this.IsSuccess = isSuccess;
             this.Message = message;
             this.MessageCode = messageCode;
             this.MessageType = messageType;
             this.Result = result;
-            this.Exception = exception;
+            this.Exception = null;
         }
     }
 }

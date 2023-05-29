@@ -13,6 +13,10 @@ namespace ERP_MVVM.BaseMVVM
                 System.Windows.WindowState state = System.Windows.WindowState.Normal,
                 System.Windows.SizeToContent sizeToContent = System.Windows.SizeToContent.WidthAndHeight)
         {
+
+
+            
+
             DialogWindow win = new DialogWindow();
             win.DataContext = vm;
             win.Title = title;

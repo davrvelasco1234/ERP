@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using ERP_Core.Components;
+using ERP_Components;
 using ERP_Entorno;
 using ERP_MVVM.BaseMVVM;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -14,7 +14,7 @@ namespace ERP_Component_2.ViewModels
         #region Fields
         //private string Att;
         #endregion
-        
+
 
         #region Properties
         private ObservableCollection<object> objectList;

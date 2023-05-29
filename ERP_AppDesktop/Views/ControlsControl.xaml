@@ -182,6 +182,9 @@
 
         <!-- actual form starts here -->
         <StackPanel Grid.Column="1" Grid.Row="2" x:Name="Form" Orientation="Vertical">
+
+
+
             <StackPanel.Resources>
                 <Style TargetType="StackPanel">
                     <Setter Property="Orientation" Value="Horizontal" />
@@ -341,7 +344,13 @@
                 <TextBlock Text="LABEL" Style="{StaticResource Heading2}" Margin="0,0,0,8"/>
                 <Label Content="label" Margin="0,0,0,8"/>
                 <Label Content="disabled label" IsEnabled="False" />
+
+
+
             </StackPanel>
+
+
+
         </ScrollViewer>
 
 

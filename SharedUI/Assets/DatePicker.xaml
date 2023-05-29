@@ -17,7 +17,6 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Focusable" Value="True" />
 
-
         <Setter Property="CalendarStyle">
             <Setter.Value>
                 <Style TargetType="Calendar" BasedOn="{StaticResource {x:Type Calendar}}">
@@ -72,7 +71,6 @@
                                                Foreground="{TemplateBinding Foreground}" 
                                                HorizontalContentAlignment="Stretch"
                                                VerticalContentAlignment="Center"
-                                              
                                                Focusable="{TemplateBinding Focusable}" />
                             <Popup x:Name="PART_Popup" 
                                    PlacementTarget="{Binding ElementName=LayoutRoot}"

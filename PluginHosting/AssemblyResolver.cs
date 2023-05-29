@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using PluginInterfaces;
+using WpfHost.Interfaces;
 
 namespace PluginHosting
 {

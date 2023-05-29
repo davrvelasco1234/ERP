@@ -1,7 +1,6 @@
 ﻿using System;
 using System.AddIn.Contract;
 
-
 namespace PluginHosting
 {
     internal class NativeHandleContractInsulator : MarshalByRefObject, INativeHandleContract
@@ -10,7 +9,7 @@ namespace PluginHosting
 
         public NativeHandleContractInsulator(INativeHandleContract source)
         {
-            _source = source;    
+            _source = source;
         }
 
         public IntPtr GetHandle()

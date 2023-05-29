@@ -7,10 +7,5 @@ namespace ERP_Security.Models
         public string Server { get; set; }
         public string IP { get; set; }
         public string Puerto { get; set; }
-
-        internal Servidor()
-        {
-
-        }
     }
 }

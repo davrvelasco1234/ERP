@@ -1,14 +1,14 @@
-﻿using PluginInterfaces;
-using System;
+﻿using System;
 using System.AddIn.Contract;
 using System.AddIn.Pipeline;
+using WpfHost.Interfaces;
 
 namespace PluginHosting
 {
     internal class RemotePlugin : MarshalByRefObject, IRemotePlugin
     {
         private readonly IPlugin _plugin;
-        
+
         public RemotePlugin(IPlugin plugin)
         {
             _plugin = plugin;

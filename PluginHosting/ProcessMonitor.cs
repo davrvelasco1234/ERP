@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
+
 namespace PluginHosting
 {
     public class ProcessMonitor
@@ -21,7 +22,7 @@ namespace PluginHosting
 
         public void Start(Process process)
         {
-            if (process == null) 
+            if (process == null)
             {
                 FireOnce();
                 return;

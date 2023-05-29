@@ -1,31 +1,40 @@
-﻿using System.ComponentModel.Composition;
-using ERP_Core.Components;
+﻿
+using System;
+using System.ComponentModel.Composition;
+using System.Windows.Controls;
+using ERP_Components;
 using ERP_MVVM.Helpers;
 
 namespace ERP_SettingsCom
 {
-    [Export(typeof(IComponentERP))]
-    public class MainComponent : ComponentERP
+    [Export(typeof(IComponent))]
+    public class MainComponent : IComponent
     {
         static MainComponent()
         {
             DataTemplateManager.RegisterDataTemplate<ViewModels.SettingsViewModel, Views.SettingsControl>();
         }
 
-        public override ComponentInfo ComponentInfo => new ComponentInfo
+        public string ComponentName => "ERP_SettingsCom";
+
+        public object ComponentContent => "Settings ERP";
+
+        public string ComponentCode => "ERP_SettingsCom";
+
+        public ComponentInfo ComponentInfo() => new ComponentInfo
         {
-            ComponentName = "Name",
-            ComponentContent = "Content",
-            ComponentCode = "Code",
-            Title = "Title"
+            Code = "ERP",
+            Name = "ERP_SettingsCom"
         };
 
+        public IComponentView GetComponent() => new ViewModels.SettingsViewModel();
+        public UserControl GetControl() => new Views.SettingsControl();
 
-        public override IComponentView GetInstansComponent()
-        {
-            return new ViewModels.SettingsViewModel();
-        }
+        public UserControl GetControlView() => new Views.SettingsControl();
+        public object GetControlViewModel() => new ViewModels.SettingsViewModel();
+        public string Title => "Titulo";
 
-
+        public Func<UserControl> FuncControlView(object param) => null;
+        public Func<object> FuncViewModel() => () => null;
     }
 }

@@ -1,40 +1,57 @@
 ﻿
+using System;
 using System.ComponentModel.Composition;
+using System.Windows.Controls;
+
+using ERP_Components;
 using ERP_MVVM.Helpers;
-using ERP_Core.Components;
-using ERP_Component_1.Messaging;
 
 namespace ERP_Component_1
 {
-    [Export(typeof(IComponentERP))]
-    public class MainComponent : ComponentERP
+    [Export(typeof(IComponent))]
+    public class MainComponent : IComponent
     {
-        public static Messenger Messenger { get; }
-
-
         static MainComponent()
         {
             DataTemplateManager.RegisterDataTemplate<ViewModels.ComponentViewModel, Views.ComponentControl>();
-            DataTemplateManager.RegisterDataTemplate<ViewModels.Dialog.AutoMtoViewModel, Views.Dialog.AutoMtoControl>();
-            Messenger = new Messenger();
         }
 
+        public string ComponentName => "Primer Componente MEF";
 
-        public override ComponentInfo ComponentInfo => new ComponentInfo
+        public object ComponentContent => "Pruebas de un componente";
+
+        public string ComponentCode => "codigo de pruebas";
+
+
+        public ComponentInfo ComponentInfo() => new ComponentInfo
         {
-            ComponentName = "Name",
-            ComponentContent = "Content",
-            ComponentCode = "Code",
-            Title = "ERP_Component_1"
+            Code = "code",
+            Name = "name"
         };
 
 
-        public override IComponentView GetInstansComponent()
-        {
-            return new ViewModels.ComponentViewModel();
-        }
+        public IComponentView GetComponent() => new ViewModels.ComponentViewModel();
+        public UserControl GetControl() => new Views.ComponentControl();
 
 
+        public UserControl GetControlView() => new Views.ComponentControl();
+        public object GetControlViewModel() => new ViewModels.ComponentViewModel();
 
+        
+
+        public string Title => "Titulo";
+
+        
+
+
+        public Func<UserControl> FuncControlView(object dataContext) => () => new Views.ComponentControl() { DataContext = dataContext };
+        public Func<object> FuncViewModel() => () => new ViewModels.ComponentViewModel();
+
+        
+
+        //public Func<UserControl> FuncControlView(object asdasd)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

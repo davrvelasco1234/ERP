@@ -1,37 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FF410DCC-13C6-490A-8C83-70E0C1588120}</ProjectGuid>
+    <ProjectGuid>{56C75A84-8737-4F8F-B4CA-5E86319C2FD5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IKriv.PluginHosting</RootNamespace>
+    <RootNamespace>PluginHosting</RootNamespace>
     <AssemblyName>PluginHosting</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\bin\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -48,9 +45,6 @@
     <Compile Include="AssemblyResolver.cs" />
     <Compile Include="ExceptionUtil.cs" />
     <Compile Include="IpcServices.cs" />
-    <Compile Include="PluginCreator.cs" />
-    <Compile Include="ProcessMonitor.cs" />
-    <Compile Include="PluginLoaderBootstrapper.cs" />
     <Compile Include="IPluginLoader.cs" />
     <Compile Include="IRemotePlugin.cs" />
     <Compile Include="Log\ConsoleAppender.cs" />
@@ -60,22 +54,18 @@
     <Compile Include="Log\TempFileAppender.cs" />
     <Compile Include="Log\TraceAppender.cs" />
     <Compile Include="NativeHandleContractInsulator.cs" />
+    <Compile Include="PluginCreator.cs" />
     <Compile Include="PluginLoader.cs" />
+    <Compile Include="PluginLoaderBootstrapper.cs" />
+    <Compile Include="ProcessMonitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemotePlugin.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PluginInterdaces\PluginInterfaces.csproj">
-      <Project>{4008A240-0F9D-4012-A424-31A105137FC3}</Project>
-      <Name>PluginInterfaces</Name>
+    <ProjectReference Include="..\WpfHost.Interfaces\WpfHost.Interfaces.csproj">
+      <Project>{7d442085-8b68-4928-b52d-a71276195275}</Project>
+      <Name>WpfHost.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

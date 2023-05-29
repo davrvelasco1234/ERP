@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace ERP_Core
 {
-    public class WindowDialogErp : ModernWindow
+    public class WindowDialogERP : ModernWindow
     {
         private bool IsEnabledWindow { get; set; } = true;
         
@@ -13,9 +13,9 @@ namespace ERP_Core
         public string textLabel { get; set; }
 
 
-        public WindowDialogErp()
+        public WindowDialogERP()
         {
-            this.Style = (Style)Application.Current.Resources["WindowDialogErp"];
+
             //Messenger.Default.Register<bool>(this, "IsEnabledWindowFinamex", IsEnabledWindowFinamex);
             this.textLabel = "Pruebas label";
             

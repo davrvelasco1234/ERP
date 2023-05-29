@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows;
-using PluginInterfaces;
+using WpfHost.Interfaces;
 
 namespace PluginHosting
 {
@@ -15,10 +15,10 @@ namespace PluginHosting
             if (type == null) throw new InvalidOperationException("Could not find type " + typeName + " in assembly " + assemblyName);
 
             SetupWpfApplication(assembly);
-            var hostConstructor = type.GetConstructor(new[] {typeof(IWpfHost)});
+            var hostConstructor = type.GetConstructor(new[] { typeof(IWpfHost) });
             if (hostConstructor != null)
             {
-                return hostConstructor.Invoke(new object[]{host});
+                return hostConstructor.Invoke(new object[] { host });
             }
 
             var defaultConstructor = type.GetConstructor(new Type[0]);

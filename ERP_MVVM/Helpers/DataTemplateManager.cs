@@ -9,13 +9,13 @@ namespace ERP_MVVM.Helpers
     public class DataTemplateManager
     {
 
-        public static DataTemplate RegisterDataTemplate<TViewModel, TView>() where TView : FrameworkElement
+        public static void RegisterDataTemplate<TViewModel, TView>() where TView : FrameworkElement
         {
-            return RegisterDataTemplate(typeof(TViewModel), typeof(TView));
+            RegisterDataTemplate(typeof(TViewModel), typeof(TView));
         }
 
 
-        private static DataTemplate RegisterDataTemplate(Type viewModelType, Type viewType)
+        private static void RegisterDataTemplate(Type viewModelType, Type viewType)
         {
             var template = CreateTemplate(viewModelType, viewType);
             var key = template.DataTemplateKey;
@@ -30,10 +30,9 @@ namespace ERP_MVVM.Helpers
             }
             if (!exist)
             {
+
                 Application.Current.Resources.Add(key, template);
             }
-
-            return template;
         }
 
 
@@ -56,6 +55,7 @@ namespace ERP_MVVM.Helpers
 
             var template = (DataTemplate)XamlReader.Parse(xaml, context);
             return template;
+
         }
 
     }

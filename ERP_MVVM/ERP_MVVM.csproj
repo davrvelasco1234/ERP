@@ -22,7 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,43 +30,42 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces">
-      <HintPath>..\DLLS\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Toolkit.Mvvm">
       <HintPath>..\DLLS\Microsoft.Toolkit.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Windows.Shell">
-      <HintPath>..\DLLS\Microsoft.Windows.Shell.dll</HintPath>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dllsNuGet\DLLS\Microsoft.Windows.Shell.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors">
-      <HintPath>..\DLLS\Microsoft.Xaml.Behaviors.dll</HintPath>
+      <HintPath>..\..\dllsNuGet\Microsoft.Xaml.Behaviors.Wpf\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers">
-      <HintPath>..\DLLS\System.Buffers.dll</HintPath>
+      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Memory">
-      <HintPath>..\DLLS\System.Memory.dll</HintPath>
+      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>..\DLLS\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions">
-      <HintPath>..\DLLS\System.Threading.Tasks.Extensions.dll</HintPath>
+      <HintPath>..\..\dllsNuGet\microsoft.toolkit.mvvm\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -85,16 +83,39 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseMVVM\BaseViewModel.cs" />
-    <Compile Include="BaseMVVM\BaseViewModelDialog.cs" />
+    <Compile Include="BaseMVVM\ObservableValidatorDialog.cs" />
     <Compile Include="BaseMVVM\DialogService.cs" />
     <Compile Include="BaseMVVM\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BaseMVVM\OpenDialogMVVM.cs" />
+    <Compile Include="BaseMVVM\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ComboBoxItemTemplateSelector.cs" />
-    <Compile Include="Helpers\DataGridBehavior.cs" />
     <Compile Include="Helpers\FocusExtension.cs" />
+    <Compile Include="Helpers\ImagingExtension.cs" />
     <Compile Include="Helpers\SelectAllFocusBehavior.cs" />
+    <Compile Include="Loading\CommandManagerHelper.cs.cs" />
+    <Compile Include="Loading\Controls\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Loading\Controls\LoadingControl.xaml.cs">
+      <DependentUpon>LoadingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Loading\DelegateCommand.cs" />
+    <Compile Include="Notification\Balloon.xaml.cs">
+      <DependentUpon>Balloon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notification\EnumMember.cs" />
+    <Compile Include="Notification\ExtensionMethods.cs" />
+    <Compile Include="Notification\HelpBalloon.xaml.cs">
+      <DependentUpon>HelpBalloon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Notification\HyperLinkEventArgs.cs" />
+    <Compile Include="Notification\Popup.cs" />
+    <Compile Include="Notification\ToastPopUp.xaml.cs">
+      <DependentUpon>ToastPopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,7 +133,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -121,6 +141,30 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="BaseMVVM\DialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BaseMVVM\UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Loading\Controls\CircularProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Loading\Controls\LoadingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notification\Balloon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notification\HelpBalloon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notification\ToastPopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,6 +182,21 @@
       <Project>{43310a91-0ebc-4c18-8f89-7e97839cddb6}</Project>
       <Name>FirstFloor.ModernUI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

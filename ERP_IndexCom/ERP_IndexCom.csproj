@@ -112,6 +112,10 @@
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ERP_Components\ERP_Components.csproj">
+      <Project>{26e170bb-31e8-473a-82e7-2b3d7e7dfe5c}</Project>
+      <Name>ERP_Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ERP_Entorno\ERP_Entorno.csproj">
       <Project>{1bae086b-f7e1-452d-9e18-d046b6e46b67}</Project>
       <Name>ERP_Entorno</Name>

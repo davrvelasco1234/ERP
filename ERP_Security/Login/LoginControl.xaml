@@ -48,7 +48,7 @@
                Content="Rol"/>
         <TextBox Grid.Column="2" Grid.Row="2"
                  Text="{Binding Rol}"
-                 MVVM:SelectAllFocusBehavior.Enable="True" IsEnabled="False"/>
+                 MVVM:SelectAllFocusBehavior.Enable="True"/>
 
         <Label Grid.Column="1" Grid.Row="3"
                Content="Password"/>
@@ -67,8 +67,7 @@
         <ComboBox Grid.Column="2" Grid.Row="4"
                   ItemsSource="{Binding ServidorList}"
                   SelectedItem="{Binding ServidorSelected}"
-                  ItemTemplateSelector="{DynamicResource itemTemplateSelector}"
-                  IsEnabled="False">
+                  ItemTemplateSelector="{DynamicResource itemTemplateSelector}">
             <ComboBox.Resources>
                 <DataTemplate x:Key="selectedTemplate">
                     <StackPanel Orientation="Horizontal">

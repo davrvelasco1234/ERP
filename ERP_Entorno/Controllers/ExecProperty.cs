@@ -1,16 +1,12 @@
-﻿using ERP_Common;
-using ERP_Entorno.Data;
+﻿using ERP_Entorno.Data;
 using ERP_Entorno.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace ERP_Entorno.Controllers
 {
     internal class ExecProperty  : IExecProperty
     {
         private ISqlConnection SqlConnection;
-        
+
         private string _fechaHoy { get; }
         private string _fecha24 { get; }
         private string _fecha48 { get; }
@@ -22,57 +18,46 @@ namespace ERP_Entorno.Controllers
         private string _fechaMesAntDos { get; }
         private string _fechaMesAntUno { get; }
 
-        private string _servidorProduccion { get; }
-
-        private IEnumerable<ErpDictionary> _datos { get; }
 
         internal ExecProperty(ISqlConnection sqlConnection)
         {
             this.SqlConnection = sqlConnection;
 
-            _datos = Querys.Select_Data(sqlConnection);
+            _fechaHoy           = GetFechaHoy(this.SqlConnection.ConnectionString);
+            _fecha24            = GetFecha24(this.SqlConnection.ConnectionString);
+            _fecha48            = GetFecha28(this.SqlConnection.ConnectionString);
+            _fecha72            = GetFecha72(this.SqlConnection.ConnectionString);
+            _fecha96            = GetFecha96(this.SqlConnection.ConnectionString);
+            _fechaAntier        = GetFechaAntier(this.SqlConnection.ConnectionString);
+            _fechaAyer          = GetFechaAyer(this.SqlConnection.ConnectionString);
+            _fechaAnioAnt       = GetFechaAnioAnt(this.SqlConnection.ConnectionString);
+            _fechaMesAntDos     = GetFechaMesAntDos(this.SqlConnection.ConnectionString);
+            _fechaMesAntUno     = GetFechaMesAntUno(this.SqlConnection.ConnectionString);
+        }                         
 
-            _fechaHoy           = FechaHoy(true);
-            _fecha24            = Fecha24(true);
-            _fecha48            = Fecha48(true);
-            _fecha72            = Fecha72(true);
-            _fecha96            = Fecha96(true);
-            _fechaAntier        = FechaAntier(true);
-            _fechaAyer          = FechaAyer(true);
-            _fechaAnioAnt       = FechaAnioAnt(true);
-            _fechaMesAntDos     = FechaMesAntDos(true);
-            _fechaMesAntUno     = FechaMesAntUno(true);
-
-            _servidorProduccion = ServidorProduccion(true);
-        }
-
-
-
-        private string GetDato(string clave) => _datos.Where(W => W.Clave == clave).FirstOrDefault().Descripcion;
-
-
-        //FECAS
-        public string FechaHoy(bool connection = false)             => (!connection) ? _fechaHoy        : Querys.Select_FechaHoy(this.SqlConnection);
-        public string Fecha24(bool connection = false)              => (!connection) ? _fecha24         : Querys.Select_Fecha24(this.SqlConnection);
-        public string Fecha48(bool connection = false)              => (!connection) ? _fecha48         : Querys.Select_Fecha48(this.SqlConnection);
-        public string Fecha72(bool connection = false)              => (!connection) ? _fecha72         : Querys.Select_Fecha72(this.SqlConnection);
-        public string Fecha96(bool connection = false)              => (!connection) ? _fecha96         : Querys.Select_Fecha96(this.SqlConnection);
-        public string FechaAntier(bool connection = false)          => (!connection) ? _fechaAntier     : Querys.Select_FechaAntier(this.SqlConnection);    
-        public string FechaAyer(bool connection = false)            => (!connection) ? _fechaAyer       : Querys.Select_FechaAyer(this.SqlConnection);      
-        public string FechaAnioAnt(bool connection = false)         => (!connection) ? _fechaAnioAnt    : Querys.Select_FechaAnioAnt(this.SqlConnection);   
-        public string FechaMesAntDos(bool connection = false)       => (!connection) ? _fechaMesAntDos  : Querys.Select_FechaMesAntDos(this.SqlConnection); 
-        public string FechaMesAntUno(bool connection = false)       => (!connection) ? _fechaMesAntUno  : Querys.Select_FechaMesAntUno(this.SqlConnection); 
+        public string FechaHoy(bool connection = false)         => (!connection) ? _fechaHoy       : GetFechaHoy(this.SqlConnection.ConnectionString);
+        public string Fecha24(bool connection = false)          => (!connection) ? _fecha24        : GetFecha24(this.SqlConnection.ConnectionString);
+        public string Fecha48(bool connection = false)          => (!connection) ? _fecha48        : GetFecha28(this.SqlConnection.ConnectionString);
+        public string Fecha72(bool connection = false)          => (!connection) ? _fecha72        : GetFecha72(this.SqlConnection.ConnectionString);
+        public string Fecha96(bool connection = false)          => (!connection) ? _fecha96        : GetFecha96(this.SqlConnection.ConnectionString);
+        public string FechaAntier(bool connection = false)      => (!connection) ? _fechaAntier    : GetFechaAntier(this.SqlConnection.ConnectionString);
+        public string FechaAyer(bool connection = false)        => (!connection) ? _fechaAyer      : GetFechaAyer(this.SqlConnection.ConnectionString);
+        public string FechaAnioAnt(bool connection = false)     => (!connection) ? _fechaAnioAnt   : GetFechaAnioAnt(this.SqlConnection.ConnectionString);
+        public string FechaMesAntDos(bool connection = false)   => (!connection) ? _fechaMesAntDos : GetFechaMesAntDos(this.SqlConnection.ConnectionString);
+        public string FechaMesAntUno(bool connection = false)   => (!connection) ? _fechaMesAntUno : GetFechaMesAntUno(this.SqlConnection.ConnectionString);
 
 
-        //SERVIDOR
-        public string ServidorProduccion(bool connection = false) => (!connection) ? _servidorProduccion : Querys.Select_ServidorProd(this.SqlConnection);
-        
-        
-        //APP
-        public string AssemblyName => Assembly.GetEntryAssembly().GetName().Name;
-        //public string UsuarioLog(bool connection = false) => "";
-        
-        
+        private string GetFechaHoy(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_FechaHoy, null, this.SqlConnection.ConnectionString);
+        private string GetFecha24(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_Fecha24, null, this.SqlConnection.ConnectionString);
+        private string GetFecha28(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_Fecha48, null, this.SqlConnection.ConnectionString);
+        private string GetFecha72(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_Fecha72, null, this.SqlConnection.ConnectionString);
+        private string GetFecha96(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_Fecha96, null, this.SqlConnection.ConnectionString);
+        private string GetFechaAntier(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_FechaAntier, null, this.SqlConnection.ConnectionString);
+        private string GetFechaAyer(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_FechaAyer, null, this.SqlConnection.ConnectionString);
+        private string GetFechaAnioAnt(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_FechaAnioAnt, null, this.SqlConnection.ConnectionString);
+        private string GetFechaMesAntDos(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_FechaMesAntDos, null, this.SqlConnection.ConnectionString);
+        private string GetFechaMesAntUno(string connectionString) => ExecQueryBase.ExecuteScalar<string>(Querys.Select_FechaMesAntUno, null, this.SqlConnection.ConnectionString);
+
+
     }
 }
-

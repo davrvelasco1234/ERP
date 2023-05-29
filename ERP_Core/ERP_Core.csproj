@@ -22,7 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,7 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -39,7 +37,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,30 +47,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppERP.cs" />
-    <Compile Include="Components\ComponentERP.cs" />
-    <Compile Include="Components\ComponentInfo.cs" />
-    <Compile Include="Components\IComponentERP.cs" />
-    <Compile Include="Components\IComponentView.cs" />
-    <Compile Include="UserControlERP.cs" />
-    <Compile Include="WindowAppErp.cs" />
-    <Compile Include="WindowErp.cs" />
+    <Compile Include="WindowERP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WindowDialogErp.cs" />
+    <Compile Include="WindowDialogERP.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ERP_Common\ERP_Common.csproj">
       <Project>{6fad86c0-1948-4810-98b5-6b9a9bc59fb5}</Project>
       <Name>ERP_Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ERP_Log4Net\ERP_Log4Net.csproj">
-      <Project>{2A096CA9-14DD-4F91-BE23-6619A6D5206A}</Project>
-      <Name>ERP_Log4Net</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FirstFloor.ModernUI\FirstFloor.ModernUI.csproj">
       <Project>{43310a91-0ebc-4c18-8f89-7e97839cddb6}</Project>
       <Name>FirstFloor.ModernUI</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

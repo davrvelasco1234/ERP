@@ -1,6 +1,6 @@
-﻿using System.Data.SqlClient;
+﻿
+using System.Data.SqlClient;
 using ERP_Entorno.Interfaces;
-using ERP_HelperFile.Models;
 
 namespace ERP_Entorno.Controllers
 {
@@ -17,40 +17,14 @@ namespace ERP_Entorno.Controllers
         {
             this.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings[IdCadena].ConnectionString;
 
-            var sqlConnection = new SqlConnectionStringBuilder(this.ConnectionString);
-            this.DataSource = sqlConnection.DataSource;
-            this.InitialCatalog = sqlConnection.InitialCatalog;
-            this.UserID = sqlConnection.UserID;
-            this.Password = sqlConnection.Password;
-            this.ApplicationName = sqlConnection.ApplicationName;
-        }
-
-        public SqlConnectionString(SqlConnectionStringBuilder sqlConnection)
-        {
-            this.ConnectionString = sqlConnection.ConnectionString;
-            this.DataSource = sqlConnection.DataSource;
-            this.InitialCatalog = sqlConnection.InitialCatalog;
-            this.UserID = sqlConnection.UserID;
-            this.Password = sqlConnection.Password;
-            this.ApplicationName = sqlConnection.ApplicationName;
+            var conn = new SqlConnectionStringBuilder(this.ConnectionString);
+            this.DataSource = conn.DataSource;
+            this.InitialCatalog = conn.InitialCatalog;
+            this.UserID = conn.UserID;
+            this.Password = conn.Password;
+            this.ApplicationName = conn.ApplicationName;
         }
 
 
-        public SqlConnectionString(DataConecction dc)
-        {
-            var conn = new SqlConnectionStringBuilder
-            {
-                DataSource = dc.DataSource,
-                InitialCatalog = dc.InitialCatalog,
-                UserID = dc.UserID,
-                Password = dc.Password
-            };
-            this.ConnectionString = conn.ConnectionString;
-            this.DataSource = dc.DataSource;
-            this.InitialCatalog = dc.InitialCatalog;
-            this.UserID = dc.UserID;
-            this.Password = dc.Password;
-            this.ApplicationName = dc.ApplicationName;
-        }
     }
 }

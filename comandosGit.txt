@@ -8,14 +8,27 @@ git config --global user.name "mi nombre"
 git config --global user.email MiCorreo@example.com
 ******************************************************
 
+Aa1234&
+
+
+
+
+
+
+
 ENLISTAR ARCHIVOS 
-ls
+ls      
 ENLISTAR ARCHIVOS Y ARCHIVOS OCULTOS 
-ls -la
+ls -la  
 
 
-INICIALIZAR REPOSITORIO
-git init 
+INICIALIZAR REPOSITORIO 
+git init    
+
+
+PARA GREAR GITIGNORE
+dotnet new gitignore
+
 
 
 AGREGAR ARCHIVOS 
@@ -99,6 +112,29 @@ git tag -d v1
 
 ELIMINAR TAG DEL REPOSITORIO (EL ULTIMO DATO ES EL NOMBRE DEL TAG)
 git push origin :refs/tags/v1
+
+
+
+
+
+
+
+
+
+*****************************************************************
+INSTALAR SERVICIO
+installutil NOMBRESERVICIO.EXE
+
+
+DESINSTALAR SERVICIO
+installutil /u NOMBRESERVICIO.EXE
+
+
+
+
+
+
+
 
 
 

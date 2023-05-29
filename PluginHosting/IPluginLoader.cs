@@ -1,5 +1,5 @@
 ﻿using System;
-using PluginInterfaces;
+using WpfHost.Interfaces;
 
 namespace PluginHosting
 {
