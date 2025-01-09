@@ -44,9 +44,9 @@ namespace ERP_Component_2.ViewModels
         #region Contructors
         public ComponentViewModel()
         {
-            string query = "SELECT count(*) FROM fechas";
-            var resp = Entorno.ExecQuery.ExecuteScalar<int>(query, null);
-            var asd = "";
+            //string query = "select count(*) from Autos";
+            //var resp = Entorno.ExecQuery.ExecuteScalar<int>(query, null);
+            //var asd = "";
         }
         #endregion
 
